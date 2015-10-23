@@ -1,0 +1,92 @@
+div#divLogin{
+	margin: auto;
+	margin-top: 10%;
+	width: 300px;
+	height: 210px;
+	border-radius: 20px;
+}
+
+div#titleLogin{
+	text-align: center;
+}
+
+div.form-group{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+div#btnGroupLogin{
+	text-align: center;
+}
+
+a#navbar{
+	color: #337ab7;
+}
+
+div#loginHeader{
+	border-top-left-radius: 17px;
+	border-top-right-radius: 17px;
+}
+
+/*Index*/
+
+/*BARRA DE MENU*/
+.sidebar-nav {
+    position: absolute;
+    border: 1px solid black;
+    width: 15%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 0;
+    height: auto;
+}
+
+.sidebar-nav li {
+    text-align: center;
+    line-height: 30px;
+    
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    /*color: #fff;*/
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: black;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    background: none;
+}
+
+
+/*content*/
+div#content-wrapper{
+    width: 86.3%;
+}
+
+iframe#principal{
+    border:none;
+    height: 575px;
+    width:100%;
+}
