@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>Home - Projeto BD-2 </title>
+<title>Contatos - Projeto BD-2 </title>
 
 <!-- Arquivos CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -17,11 +17,7 @@
 <body>
 	<div class="container">
 
-		<h1><small>Bem vindo,</small>Breno Antunes</h1>
-		<br>
-		<p>Você tem __ mensagens não lidas.</p>
-		<br><br>
-		<p>Data: __/__/____ Hora: __:__</p>
+
 	</div>
 
 

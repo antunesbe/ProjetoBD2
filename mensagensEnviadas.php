@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>Home - Projeto BD-2 </title>
+<title>Contatos - Projeto BD-2 </title>
 
 <!-- Arquivos CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -16,14 +16,21 @@
 </head>
 <body>
 	<div class="container">
-
-		<h1><small>Bem vindo,</small>Breno Antunes</h1>
+		<h2>Mesagens Enviadas</h2>
 		<br>
-		<p>Você tem __ mensagens não lidas.</p>
-		<br><br>
-		<p>Data: __/__/____ Hora: __:__</p>
-	</div>
+		<table class="table table-hover">
+			<tbody>
+				<tr onclick="location.href = 'login.php'" class="tabelaClicavel" >
+					<td><input type="checkbox"</td>
+					<td>Destinatario</td>
+					<td>Assunto</td>
+					<td>Data</td>
+				</tr>
+				
+			</tbody>
+		</table>
 
+	</div>
 
 </body>
 </html>

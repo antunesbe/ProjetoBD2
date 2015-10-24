@@ -84,9 +84,12 @@ div#loginHeader{
 div#content-wrapper{
     width: 86.3%;
 }
-
 iframe#principal{
     border:none;
     height: 575px;
     width:100%;
+}
+
+tr.tabelaClicavel{
+    cursor: pointer;
 }

@@ -32,34 +32,34 @@
     <br/><br/>
 <!-- CORPO PRINCIPAL -->
     <div id="wrapper">
+
         <!-- MENU LATERAL -->
             <ul class="nav sidebar-nav">
                 <li class="sidebar-brand">
-                   <a href="#">HOME</a>
+                   <a href="home.php" target="principal">HOME</a>
                 </li>
                 <li>
-                    <a href="#">Contatos</a>
+                    <a href="contatos.php" target="principal">Contatos</a>
                 </li>
                 <li>
-                    <a href="#">Escrever mensagem</a>
+                    <a href="escreverMensagem.php" target="principal">Escrever mensagem</a>
                 </li>
                 <li>
-                    <a href="#">Mensagens enviadas</a>
+                    <a href="mensagensEnviadas.php" target="principal">Mensagens enviadas</a>
                 </li>
                 <li>
-                    <a href="#">Mensagens recebidas</a>
+                    <a href="mensagensRecebidas.php" target="principal">Mensagens recebidas</a>
                 </li>
             </ul>
         
     
         <!-- FIM MENU LATERAL -->
         <!-- CONTEUDO -->
-
+        <br>
         <div id="content-wrapper" class="container-fluid pull-right">
-            <iframe src="home.php" id="principal"></iframe>
-
+            <iframe src="home.php" name="principal" id="principal"></iframe>
         </div>
-
+        <!-- FIM DO CONTEUDO -->
 
     </div>
 
