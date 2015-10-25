@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>Contatos - Projeto BD-2 </title>
+<title>Usuario - Projeto BD-2 </title>
 
 <!-- Arquivos CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -16,38 +16,35 @@
 </head>
 <body>
 	<div class="container">
-		<h2>Escrever Mensagem</h2>
+		<h2>Cadastrar Usuario </h2>
 				<form class="form form-vertical">
 					<div class="row">
-						<div class="form-group col-md-3">
-							<label for="destinatario" class="label-control" id="labelDestinatario">Destinatario:</label>
-							<select class="form-control" name="destinatario" id="destinatario">
-								<option></option>
-								<option>Contas a receber</option>
-							</select>
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group col-md-3">
-							<label for="tipoMsg" class="label-control" id="labelTipoMsg">Tipo da Mensagem:</label>
-							<select class="form-control" name="tipoMsg" id="tipoMsg">
-								<option></option>
-								<option>Aviso</option>
-							</select>
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group col-md-3">
-							<label for="assunto" class="label-control" id="labelAssunto">Assunto:</label>
-							<input type="text" class="form-control" name="assunto" id="assunto">
-						</div>
-					</div>
-					<div class="row">
 						<div class="form-group col-md-6">
-							<label for="assunto" class="label-control" id="labelAssunto">Mensagem:</label>
-							<textarea class="form-control" rows="5" name="mensagem" id="mensagem"></textarea>
+						<label for="nome" class="label-control" id="labelNome">Nome:</label>
+							<input type = "text" class="form-control" name="nome" id="nome">
 						</div>
 					</div>
+					<div class="row">
+						<div class="form-group col-md-3">
+						<label for="data_nasc" class="label-control" id="labelData">Data de Nascimento:</label>
+							<input class="form-control" type = "date" name="data_nasc" id="data_nasc">
+						</div>
+						<div class="form-group col-md-3">
+							<label for="email" class="label-control" id="labelEmail">Email:</label>
+							<input type="email" class="form-control email" name="email" id="assunto">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-3">
+						<label for="senha" class="label-control" id="labelSenha">Senha:</label>
+							<input class="form-control" type = "password" name="senha" id="senha">
+						</div>
+						<div class="form-group col-md-3">
+							<label for="conf-Senha" class="label-control" id="labelConfSenha">Confirmar Senha:</label>
+							<input type="password" class="form-control" name="conf-Senha" id="conf-Senha">
+						</div>
+					</div>
+					
 					<div class="row">
 						<div class="form-group col-md-3">
 							<button class="btn btn-success" id="btnEnviar">Enviar</button>

@@ -19,7 +19,7 @@
 		<h2>Cadastro de Usuarios</h2>
 		<br>
 		<div class="form-group">
-			<button class = "pull-right"><a class="button" href="create.php"><span class="glyphicon glyphicon-plus"></span>Adicionar</a></button>
+			<button class = "pull-right"><a class="button" href="createUsuario.php"><span class="glyphicon glyphicon-plus"></span>Adicionar</a></button>
 			<table class="table table-hover">
 				<tbody>
 					<tr onclick="location.href = 'login.php'" class="tabelaClicavel" >

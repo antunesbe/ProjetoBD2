@@ -19,7 +19,7 @@
 		<h2>Cadastro de Perfis</h2>
 		<br>
 		<br>
-		<div class="form-group col-md-10">
+		<div class="form-group">
 			<button class = "pull-right"><a class="button glyphicon glyphicon-plus" href="create.php">Adicionar</a></button>
 			<table class="table table-hover">
 				<tbody>
@@ -32,6 +32,7 @@
 							<button class = "glyphicon glyphicon-edit"></button>
 							<button class = "glyphicon glyphicon-search"></button>
 							<button class = "glyphicon glyphicon-remove"></button>
+							<a href = "cadastrarPrivilegio.php"><button class = "glyphicon glyphicon-list"></button></a>
 						</td>
 					</tr>
 					
