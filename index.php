@@ -50,8 +50,9 @@
                 <li>
                     <a href="contatos.php" target="principal">Contatos</a>
                 </li>
-
-
+                <li>
+                    <a href="administrar.php" target="principal">Administrar</a>
+                </li>
             </ul>
         
     
