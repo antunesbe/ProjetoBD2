@@ -29,7 +29,7 @@
 						<td>Nome</td>
 						<td>Descrição</td>
 						<td>
-							<button class = "glyphicon glyphicon-edit"></button>
+							<a href = "edit.php"> <button class = "glyphicon glyphicon-edit"></button> </a>
 							<button class = "glyphicon glyphicon-search"></button>
 							<button class = "glyphicon glyphicon-remove"></button>
 						</td>

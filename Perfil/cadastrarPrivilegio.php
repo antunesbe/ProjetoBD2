@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="container">
-		<h2>Cadastrar Perfil</h2>
+		<h2>Cadastrar Privilegio</h2>
 		<form class="form form-vertical">
 			<div class="row">
 				<div class="form-group col-md-3">
@@ -45,7 +45,6 @@
 		</form>
 		
 		<div class="form-group">
-			<button class = "pull-right"><a class="button glyphicon glyphicon-plus" href="create.php">Adicionar</a></button>
 			<table class="table table-hover">
 				<tbody>
 					<tr onclick="location.href = 'login.php'" class="tabelaClicavel" >
