@@ -19,6 +19,8 @@
 
 		<h2>Perfil</h2>
 		<br>
+		<a class="btn btn-default pull-right">Editar</a>
+		<br>
 		<fieldset>
 			<legend class="tituloPerfil">Pessoal</legend>
 			<p><span class="legendaPerfil">Nome: </span></p>
