@@ -17,26 +17,15 @@
 <body>
 	<div class="container">
 
-		<h1>Breno Antunes &nbsp &nbsp &nbsp Setor 100 &nbsp &nbsp &nbsp Estes são seus contatos </h1>
-	<table class="table table-hover">
-			<tbody>
-				<tr>
-					<td>Ademir de Luca</td>
-					<td>Setor 102</td>
-				</tr>
-				<tr>
-					<td> Breno Bonassi dos Santos</td>
-					<td> Setor 120</td>
-				</tr>
-				<tr>
-					<td> Danilo Freitas da Silva</td>
-					<td> Setor 130</td>
-				</tr>
-				<tr>
-					<td> Fernando Luquinha</td>
-					<td> Setor 230</td>
-				</tr>
-
+		<h1><small>Bem vindo,</small>Breno Antunes</h1>
+		<br>
+		<h2><small>Sua prioridade no sistema é ___ &nbsp &nbsp &nbsp CPF: ______________</h2></small>
+		<br>
+		<h3><small>Data de nascimento: __/__/____ &nbsp &nbsp &nbsp Data de Vinculação __/__/____ </h3></small>
+		<br>
+		<h4><small>Seu setor é identificado por ____ &nbsp &nbsp &nbsp Seu ID __________</h4></small>
+		<p></p>
+	</div>
 
 
 </body>
