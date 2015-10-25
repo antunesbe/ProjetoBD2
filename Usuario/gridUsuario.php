@@ -18,10 +18,8 @@
 	<div class="container">
 		<h2>Cadastro de Usuarios</h2>
 		<br>
-		<div class "float-right">
-			<a class="button glyphicon glyphicon-plus" href="create.php">Adicionar</a>
-		</div>
 		<div class="form-group col-md-10">
+			<button class = "pull-right"><a class="button glyphicon glyphicon-plus" href="create.php">Adicionar</a></button>
 			<table class="table table-hover">
 				<tbody>
 					<tr onclick="location.href = 'login.php'" class="tabelaClicavel" >
