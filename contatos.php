@@ -17,8 +17,9 @@
 <body>
 	<div class="container">
 
-		<h1>Breno Antunes &nbsp &nbsp &nbsp Setor 100 &nbsp &nbsp &nbsp Estes são seus contatos </h1>
-	<table class="table table-hover">
+		<h1>Contatos</h1>
+		<br>
+		<table class="table table-hover">
 			<tbody>
 				<tr>
 					<td>Ademir de Luca</td>
@@ -36,7 +37,8 @@
 					<td> Fernando Luquinha</td>
 					<td> Setor 230</td>
 				</tr>
-
-
-
+			</tbody>	
+		</table>
+	</div>
 </body>
+</html>

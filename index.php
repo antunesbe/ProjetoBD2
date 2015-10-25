@@ -23,8 +23,8 @@
   			  </div>
   	      <div id="navbar" class="navbar-collapse collapse">
     			    <ul class="nav navbar-nav navbar-right">
-    				      <li ><a href="Perfil.php" target="principal">Perfil</a></li>
-    				      <li><a href="#">Sair</a></li>
+    				      <li ><a href="perfil.php" target="principal">Perfil</a></li>
+    				      <li><a href="login.php">Sair</a></li>
    				    </ul>
   		    </div>
  		  </div>
@@ -39,17 +39,19 @@
                    <a href="home.php" target="principal">HOME</a>
                 </li>
                 <li>
-                    <a href="contatos.php" target="principal">Contatos</a>
+                    <a href="escreverMensagem.php" target="principal">Escrever mensagem</a>
                 </li>
                 <li>
-                    <a href="escreverMensagem.php" target="principal">Escrever mensagem</a>
+                    <a href="mensagensRecebidas.php" target="principal">Mensagens recebidas</a>
                 </li>
                 <li>
                     <a href="mensagensEnviadas.php" target="principal">Mensagens enviadas</a>
                 </li>
                 <li>
-                    <a href="mensagensRecebidas.php" target="principal">Mensagens recebidas</a>
+                    <a href="contatos.php" target="principal">Contatos</a>
                 </li>
+
+
             </ul>
         
     

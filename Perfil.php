@@ -17,14 +17,23 @@
 <body>
 	<div class="container">
 
-		<h1><small>Bem vindo,</small>Breno Antunes</h1>
+		<h2>Perfil</h2>
 		<br>
-		<h2><small>Sua prioridade no sistema é ___ &nbsp &nbsp &nbsp CPF: ______________</h2></small>
+		<fieldset>
+			<legend class="tituloPerfil">Pessoal</legend>
+			<p><span class="legendaPerfil">Nome: </span></p>
+			<p><span class="legendaPerfil">CPF: </span></p>
+			<p><span class="legendaPerfil">Data de nascimento: </span></p>
+		</fieldset>
 		<br>
-		<h3><small>Data de nascimento: __/__/____ &nbsp &nbsp &nbsp Data de Vinculação __/__/____ </h3></small>
-		<br>
-		<h4><small>Seu setor é identificado por ____ &nbsp &nbsp &nbsp Seu ID __________</h4></small>
-		<p></p>
+		<fieldset>
+			<legend class="tituloPerfil">Empresa</legend>
+			<p><span class="legendaPerfil">ID: </span></p>
+			<p><span class="legendaPerfil">Sua prioridade de sistema é: </span></p>
+			<p><span class="legendaPerfil">Data de Vinculação: </span></p>
+			<p><span class="legendaPerfil">Setor: </span></p>
+		</fieldset>
+		
 	</div>
 
 

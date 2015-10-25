@@ -21,9 +21,12 @@
 		<br>
 		<p>Você tem __ mensagens não lidas.</p>
 		<br><br>
-		<p>Data: __/__/____ Hora: __:__</p>
+		<p>Data: <?php echo date('d/m/Y');?> Hora: <?php echo gmdate('H:i');?></p>
 	</div>
 
-
+<?php
+    $data = date('d-m-Y');
+    $data .= ' '.date('H:i:s');
+?>
 </body>
 </html>

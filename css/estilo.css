@@ -56,8 +56,7 @@ div#loginHeader{
 
 .sidebar-nav li a:hover {
     text-decoration: none;
-    /*color: #fff;*/
-    background: rgba(255,255,255,0.2);
+    
 }
 
 .sidebar-nav li a:active,
@@ -75,7 +74,8 @@ div#loginHeader{
     color: black;
 }
 
-.sidebar-nav > .sidebar-brand a:hover {
+.sidebar-nav > .sidebar-brand a:active,
+.sidebar-nav > .sidebar-brand a:focus {
     background: none;
 }
 
@@ -92,4 +92,14 @@ iframe#principal{
 
 tr.tabelaClicavel{
     cursor: pointer;
+}
+
+
+/* PERFIL */
+span.legendaPerfil{
+    font-weight: bold;
+} 
+
+legend.tituloPerfil{
+    font-weight: bolder;
 }
