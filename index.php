@@ -23,7 +23,7 @@
   			  </div>
   	      <div id="navbar" class="navbar-collapse collapse">
     			    <ul class="nav navbar-nav navbar-right">
-    				      <li ><a href="#">Perfil</a></li>
+    				      <li ><a href="Perfil.php">Perfil</a></li>
     				      <li><a href="#">Sair</a></li>
    				    </ul>
   		    </div>
