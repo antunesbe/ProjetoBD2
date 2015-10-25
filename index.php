@@ -23,7 +23,7 @@
   			  </div>
   	      <div id="navbar" class="navbar-collapse collapse">
     			    <ul class="nav navbar-nav navbar-right">
-    				      <li ><a href="Perfil.php" target="principal">Perfil</a></li>
+    				      <li ><a href="perfil.php" target="principal">Perfil</a></li>
     				      <li><a href="#">Sair</a></li>
    				    </ul>
   		    </div>
@@ -49,6 +49,9 @@
                 </li>
                 <li>
                     <a href="mensagensRecebidas.php" target="principal">Mensagens recebidas</a>
+                </li>
+                <li>
+                    <a href="administrar.php" target="principal">Administrar</a>
                 </li>
             </ul>
         
