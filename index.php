@@ -1,9 +1,12 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="utf-8">
 
-<title>Login - Projeto BD-2 </title>
+<title>Pagina Inicial - Projeto BD-2 </title>
 
 <!-- Arquivos CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -12,7 +15,23 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<?php
+    $login = NULL;
+    if($_POST){
+        $login= $_POST['login'];
+    }
+?>
+<script type="text/javascript">
+    var flag = "<?echo $login;?>";
+    if(!flag){
+        alert("faça login");
+        window.location.href="login.php";
+    }
+</script>
 
+<?php
+  $_SESSION["id"] = $_POST['login'];
+?>
 </head>
 <body>
 <!-- MENU SUPERIOR -->

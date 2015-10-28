@@ -1,9 +1,12 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="utf-8">
 
-<title>Home - Projeto BD-2 </title>
+<title>Perfil - Projeto BD-2 </title>
 
 <!-- Arquivos CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">

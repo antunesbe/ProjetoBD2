@@ -33,15 +33,15 @@
 			</div>
 
 		<div class="panel-body">
-			<form id="formLogin" class="form-horizontal">
+			<form id="formLogin" class="form-horizontal" method="post" action="index.php">
 				<div class="form-group">
-					<input type="text" id="txtLogin" class="form-control" placeholder="Usuário"/>
+					<input type="text" id="txtLogin" class="form-control" name="login" placeholder="Usuário"/>
 				</div>
 				<div class="form-group">
-					<input type="password" id="txtPassword" class="form-control" placeholder="Senha"/>
+					<input type="password" id="txtPassword" class="form-control" name="senha" placeholder="Senha"/>
 				</div>
 				<div class="form-group" id="btnGroupLogin">
-					<a type="button" class="btn btn-primary" href="index.php">Entrar</a>
+					<input type="submit" class="btn btn-primary" name="btnLogin" value="Entrar"></input>
 				</div>
 			</form>
 		</div>
