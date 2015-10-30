@@ -19,7 +19,7 @@ div#btnGroupLogin{
 	text-align: center;
 }
 
-a#navbar{
+a#navbarBrand{
 	color: #337ab7;
 }
 
@@ -28,65 +28,66 @@ div#loginHeader{
 	border-top-right-radius: 17px;
 }
 
+.navbar{
+    border: 1px solid black;
+}
+div.navTop{
+    background-color: #183047;
+}
+
 /*Index*/
+li#lastOptionMenuTop{
+    padding-right: 10px;
+}
+
+section#content{
+    background-color: #183047;
+
+}
 
 /*BARRA DE MENU*/
-.sidebar-nav {
-    position: absolute;
-    border: 1px solid black;
+div#sidebar{    
+    position:absolute;
+    margin-top: 10px;
+    background-color: #183047;
     width: 15%;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    margin-bottom: 0;
-    height: auto;
+    height:93.2%;
 }
 
-.sidebar-nav li {
+ul#sideMenu{
+    text-align: left;
+
+}
+
+span.icones{
+    padding-right: 5px;
+}
+
+li#sidebarHome{
     text-align: center;
-    line-height: 30px;
-    
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
-
-.sidebar-nav li a {
-    display: block;
-    text-decoration: none;
-    color: #999999;
-}
-
-.sidebar-nav li a:hover {
-    text-decoration: none;
-    
-}
-
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
-    text-decoration: none;
-}
-
-.sidebar-nav > .sidebar-brand {
-    height: 65px;
-    font-size: 18px;
-    line-height: 60px;
-}
-
-.sidebar-nav > .sidebar-brand a {
-    color: black;
-}
-
-.sidebar-nav > .sidebar-brand a:active,
-.sidebar-nav > .sidebar-brand a:focus {
+#sidebarHome a:hover,
+#sidebarHome a:active,
+#sidebarHome a:focus{
     background: none;
 }
 
+a.sideOptions{
+    color:#DCDCD5;
+    text-decoration: none;
+}
 
 /*content*/
 div#content-wrapper{
-    width: 86.3%;
+    width: 90%;
+    height:620px;
 }
+
 iframe#principal{
-    border:none;
-    height: 575px;
+    height: 100%;
     width:100%;
 }
 

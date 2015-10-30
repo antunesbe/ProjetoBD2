@@ -15,8 +15,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<?php
-    $login = NULL;
+<!--<?php
+   $login = NULL;
     if($_POST){
         $login= $_POST['login'];
     }
@@ -28,62 +28,61 @@
         window.location.href="login.php";
     }
 </script>
-
+-->
 <?php
   $_SESSION["id"] = $_POST['login'];
 ?>
 </head>
 <body>
 <!-- MENU SUPERIOR -->
-	 <nav class="navbar navbar-default navbar-fixed-top" >
-		  <div class="container-fluid">
-			    <div class="navbar-header">
-   				    <a class="navbar-brand" href="#"id="navbar">Sistema de Comunicação Interna</a>
-  			  </div>
-  	      <div id="navbar" class="navbar-collapse collapse">
-    			    <ul class="nav navbar-nav navbar-right">
-    				      <li ><a href="perfil.php" target="principal">Perfil</a></li>
-    				      <li><a href="login.php">Sair</a></li>
-   				    </ul>
-  		    </div>
- 		  </div>
-	  </nav>
-    <br/><br/>
+	<nav class="navbar navbar-default navbar-fixed-top" >  
+	    <div class="navbar-header navTop">
+			    <a class="navbar-brand" href="#" id="navbarBrand">Sistema de Comunicação Interna</a>
+		</div>
+        <div class="navbar-collapse collapse navTop">
+		    <ul class="nav navbar-nav navbar-right">
+			      <li ><a href="perfil.php" target="principal"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+			      <li id="lastOptionMenuTop"><a href="login.php"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
+			    </ul>
+	    </div>  
+	</nav>
+
 <!-- CORPO PRINCIPAL -->
-    <div id="wrapper">
+    <section id="content">
 
         <!-- MENU LATERAL -->
-            <ul class="nav sidebar-nav">
-                <li class="sidebar-brand">
-                   <a href="home.php" target="principal">HOME</a>
+        <div id="sidebar" class="sidebar">
+            <ul id="sideMenu" class="nav">
+                <li id="sidebarHome">
+                    <a class="sideOptions" href="home.php" target="principal">HOME</a>
                 </li>
                 <li>
-                    <a href="escreverMensagem.php" target="principal">Escrever mensagem</a>
+                    <a class="sideOptions" href="escreverMensagem.php" target="principal">Escrever Mensagem<span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
                 </li>
                 <li>
-                    <a href="mensagensRecebidas.php" target="principal">Mensagens recebidas</a>
+                    <a class="sideOptions" href="mensagensRecebidas.php" target="principal">Caixa de Entrada<span class="badge pull-right">12</span></a>
                 </li>
                 <li>
-                    <a href="mensagensEnviadas.php" target="principal">Mensagens enviadas</a>
+                    <a class="sideOptions" href="mensagensEnviadas.php" target="principal">Mensagens Enviadas<span class="glyphicon glyphicon-envelope pull-right icones"></span></a>
                 </li>
                 <li>
-                    <a href="contatos.php" target="principal">Contatos</a>
+                    <a class="sideOptions" href="contatos.php" target="principal">Contatos<span class="glyphicon glyphicon-list-alt pull-right icones"></span></a>
                 </li>
                 <li>
-                    <a href="administrar.php" target="principal">Administrar</a>
+                    <a class="sideOptions" href="administrar.php" target="principal">Administrar<span class="glyphicon glyphicon-cog pull-right icones"></span></a>
                 </li>
             </ul>
-        
-    
+        </div>
+
         <!-- FIM MENU LATERAL -->
         <!-- CONTEUDO -->
-        <br>
-        <div id="content-wrapper" class="container-fluid pull-right">
+        
+        <div id="content-wrapper" class="pull-right">
             <iframe src="home.php" name="principal" id="principal"></iframe>
         </div>
         <!-- FIM DO CONTEUDO -->
 
-    </div>
+    </section>
 
 
 </body>
