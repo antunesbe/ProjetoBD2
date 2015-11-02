@@ -1,21 +1,26 @@
-<?php
-    session_start();
-?>
+<!--<?php/*
+    session_start();*/
+?>-->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
 
 <title>Pagina Inicial - Projeto BD-2 </title>
 
 <!-- Arquivos CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/estilo.css">
-<!-- Arquivos Javascript -->
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/indexStyle.css">
+<link rel="stylesheet" href="css/menuTopoEstilo.css">
+<link rel="stylesheet" href="css/menuLateralEstilo.css">
+<link rel="stylesheet" href="css/footerEstilo.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<!--<?php
+<!-- Arquivos Javascript -->
+<script src="js/bootstrap.js"></script>
+<script src="js/jquery.js"></script>
+<!--
+<?php/*
    $login = NULL;
     if($_POST){
         $login= $_POST['login'];
@@ -28,63 +33,51 @@
         window.location.href="login.php";
     }
 </script>
--->
+
 <?php
-  $_SESSION["id"] = $_POST['login'];
-?>
+  $_SESSION["id"] = $_POST['login'];*/
+?>-->
 </head>
 <body>
 <!-- MENU SUPERIOR -->
-	<nav class="navbar navbar-default navbar-fixed-top" >  
-	    <div class="navbar-header navTop">
-			    <a class="navbar-brand" href="#" id="navbarBrand">Sistema de Comunicação Interna</a>
-		</div>
-        <div class="navbar-collapse collapse navTop">
-		    <ul class="nav navbar-nav navbar-right">
-			      <li ><a href="perfil.php" target="principal"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
-			      <li id="lastOptionMenuTop"><a href="login.php"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
-			    </ul>
-	    </div>  
-	</nav>
-
+<!--inclui o Menu Superior-->
+<?php
+    include "includes/menuSuperior.php";
+?>
 <!-- CORPO PRINCIPAL -->
-    <section id="content">
 
-        <!-- MENU LATERAL -->
-        <div id="sidebar" class="sidebar">
-            <ul id="sideMenu" class="nav">
-                <li id="sidebarHome">
-                    <a class="sideOptions" href="home.php" target="principal">HOME</a>
-                </li>
-                <li>
-                    <a class="sideOptions" href="escreverMensagem.php" target="principal">Escrever Mensagem<span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
-                </li>
-                <li>
-                    <a class="sideOptions" href="mensagensRecebidas.php" target="principal">Caixa de Entrada<span class="badge pull-right">12</span></a>
-                </li>
-                <li>
-                    <a class="sideOptions" href="mensagensEnviadas.php" target="principal">Mensagens Enviadas<span class="glyphicon glyphicon-envelope pull-right icones"></span></a>
-                </li>
-                <li>
-                    <a class="sideOptions" href="contatos.php" target="principal">Contatos<span class="glyphicon glyphicon-list-alt pull-right icones"></span></a>
-                </li>
-                <li>
-                    <a class="sideOptions" href="administrar.php" target="principal">Administrar<span class="glyphicon glyphicon-cog pull-right icones"></span></a>
-                </li>
-            </ul>
-        </div>
+    <section id="content" class="container-fluid">
+<!-- MENU LATERAL -->
+        <div class="row">
+            <!-- inclui uma row col-md-2 com o menu lateral-->
+            <?php
+                include "includes/menuLateral.php";
+            ?>
+<!-- FIM MENU LATERAL -->
 
-        <!-- FIM MENU LATERAL -->
-        <!-- CONTEUDO -->
-        
-        <div id="content-wrapper" class="pull-right">
-            <iframe src="home.php" name="principal" id="principal"></iframe>
-        </div>
-        <!-- FIM DO CONTEUDO -->
+<!-- CONTEUDO -->
 
+
+            <div class="col-md-10 display">
+                
+                <h1><small>Bem vindo,</small>Breno Antunes</h1>
+                <br>
+                <p>Você tem __ mensagens não lidas.</p>
+                <br><br>
+                <p>Data: <?php echo date('d/m/Y');?> Hora: <?php echo gmdate('H:i');?></p>
+
+            </div><!--/col-->
+
+        </div><!--/row-->  
     </section>
 
-
+<!-- FIM DO CONTEUDO -->
+<!--RODAPE-->
+<!--inclui um rodape dividido em 4 colunas-->
+    <?php
+        include "includes/footer.php";
+    ?>
+<!--RODAPE-->
 </body>
 
 </html>

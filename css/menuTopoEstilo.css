@@ -1,0 +1,35 @@
+/*Menu topo*/
+
+.navbar{
+	border:0;
+}
+
+.navTop{
+	background-color: #183047;
+}
+
+#navbarBrand{
+	color: #F4F3F3;
+}
+
+
+/*OPCOES DE MENU*/
+#menuTopOption1{
+	color:#DCDCD5;
+}
+
+#menuTopOption2{
+	color:#DCDCD5;
+}
+
+#menuTopOption1:hover{
+	text-decoration: underline;
+}
+#menuTopOption2:hover{
+	text-decoration: underline;
+}
+
+.activeTopo{
+	border-bottom: 2px solid white;
+
+}

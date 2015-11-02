@@ -1,0 +1,35 @@
+/*LOGIN.PHP*/
+div#divLogin{
+	margin: auto;
+	margin-top: 10%;
+	margin-bottom: 23.3%;
+	width: 300px;
+	height: 210px;
+	border-radius: 20px;
+	border-color: #183047;
+}
+
+div#titleLogin{
+	text-align: center;
+}
+
+div.form-group{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+div#btnGroupLogin{
+	text-align: center;
+}
+
+div#loginHeader{
+	border-top-left-radius: 17px;
+	border-top-right-radius: 17px;
+	background-color: #183047;
+
+}
+
+#btnLogin{
+	background-color: #183047;
+	color: white;
+}

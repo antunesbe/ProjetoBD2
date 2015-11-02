@@ -1,23 +1,48 @@
+<!--<?php/*
+    session_start();*/
+?>-->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
 
-<title>Cadastro de Setores - Projeto BD-2 </title>
+<title>Pagina Inicial - Projeto BD-2 </title>
 
 <!-- Arquivos CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/estilo.css">
-<!-- Arquivos Javascript -->
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/indexStyle.css">
+<link rel="stylesheet" href="../css/menuTopoEstilo.css">
+<link rel="stylesheet" href="../css/menuLateralEstilo.css">
+<link rel="stylesheet" href="../css/footerEstilo.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- Arquivos Javascript -->
+<script src="../js/bootstrap.js"></script>
+<script src="../js/jquery.js"></script>
 
 </head>
 <body>
-	<div class="container">
-		<h2>Cadastro de Setores</h2>
-		<br>
+<!-- MENU SUPERIOR -->
+<!--inclui o Menu Superior-->
+<?php
+    include "../includes/menuSuperiorCrud.php";
+?>
+<!-- CORPO PRINCIPAL -->
+
+    <section id="content" class="container-fluid">
+<!-- MENU LATERAL -->
+        <div class="row">
+            <!-- inclui uma row col-md-2 com o menu lateral-->
+            <?php
+                include "../includes/menuLateralCrud.php";
+            ?>
+<!-- FIM MENU LATERAL -->
+
+<!-- CONTEUDO -->
+
+
+            <div class="col-md-10 display">
+                <h2>Cadastro de Setores</h2>
 		<br>
 		<div class="form-group">
 			<button class = "pull-right"><a class="button glyphicon glyphicon-plus" href="create.php">Adicionar</a></button>
@@ -39,7 +64,18 @@
 			</table>
 		</div>
 
-	</div>
+            </div><!--/col-->
 
+        </div><!--/row-->  
+    </section>
+
+<!-- FIM DO CONTEUDO -->
+<!--RODAPE-->
+<!--inclui um rodape dividido em 4 colunas-->
+    <?php
+        include "../includes/footer.php";
+    ?>
+<!--RODAPE-->
 </body>
-</html>
+
+</html>		
