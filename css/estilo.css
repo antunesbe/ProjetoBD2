@@ -1,0 +1,32 @@
+html, body{
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;  
+}
+
+.principal{
+	height: 81%;
+	
+}
+.linhaPrincipal{
+	height: 100%;
+}
+
+.conteudo{
+	height: 100%;
+}
+
+.rodape{
+	height: 12%;
+	background-color: #183047;
+	border-top:1px solid black;
+	
+	overflow-y: auto;
+}
+
+.conteudoRodape{
+	padding: 0;
+	color: #DCDCD5;
+	text-align: center;
+
+}

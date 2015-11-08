@@ -1,35 +1,28 @@
-/*Menu topo*/
-
-.navbar{
-	border:0;
-}
-
-.navTop{
+.menuSuperior{
 	background-color: #183047;
+	border-bottom: 1px solid black;
 }
 
-#navbarBrand{
-	color: #F4F3F3;
+#tituloTopo{
+	color: #DCDCD5;
 }
 
-
-/*OPCOES DE MENU*/
-#menuTopOption1{
-	color:#DCDCD5;
+#opcaoMenuSuperior1{
+	color: #DCDCD5;
 }
 
-#menuTopOption2{
-	color:#DCDCD5;
-}
-
-#menuTopOption1:hover{
+#opcaoMenuSuperior1:hover{
 	text-decoration: underline;
 }
-#menuTopOption2:hover{
+
+#opcaoMenuSuperior2{
+	color: #DCDCD5;
+}
+
+#opcaoMenuSuperior2:hover{
 	text-decoration: underline;
 }
 
 .activeTopo{
 	border-bottom: 2px solid white;
-
 }

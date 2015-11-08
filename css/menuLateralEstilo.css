@@ -1,59 +1,71 @@
-/* MENU LATERAL*/
 .menuLateral{
-	height: 100%;
-}
-
-div#sidebar{
-	height: 100%;
-	margin-left: -9%;
+	padding: 0px;
 	background-color: #183047;
-
+	height: 100%;
 }
 
-li#sidebarHome{
+#opcaoMenuLateral0{
+	color: #DCDCD5;
 	text-align: center;
-	padding-top: 2%;
-	padding-bottom: 2%;
-	font-weight: bolder;
+	font-weight: bold;
+	height: 40px;
+}
+
+.active{
+	border-left: 5px solid #DCDCD5;
+}
+
+/*OPCOES DO MENU LATERAL*/
+
+#opcaoMenuLateral0:hover{
 	background: none;
 }
-#sidebarHome a:hover,
-#sidebarHome a:focus{
+
+#opcaoMenuLateral1{
+	color: #DCDCD5;
+}
+
+#opcaoMenuLateral1:hover{
 	background: none;
+	border-left: 5px solid #DCDCD5;
 }
-a.active{
-	border-left: 5px solid white;
+
+#opcaoMenuLateral2{
+	color: #DCDCD5;
 }
-/*Opcoes de menu*/
-#menuOption1 a:hover,
-#menuOption1 a:focus{
+
+#opcaoMenuLateral2:hover{
 	background: none;
-	border-left:5px solid white;
+	border-left: 5px solid #DCDCD5;
 }
-#menuOption2 a:hover,
-#menuOption2 a:focus{
+
+#opcaoMenuLateral3{
+	color: #DCDCD5;
+}
+
+#opcaoMenuLateral3:hover{
 	background: none;
-	border-left:5px solid white;
+	border-left: 5px solid #DCDCD5;
 }
-#menuOption3 a:hover,
-#menuOption3 a:focus{
+
+#opcaoMenuLateral4{
+	color: #DCDCD5;
+}
+
+#opcaoMenuLateral4:hover{
 	background: none;
-	border-left:5px solid white;
+	border-left: 5px solid #DCDCD5;
 }
-#menuOption4 a:hover,
-#menuOption4 a:focus{
+
+#opcaoMenuLateral5{
+	color: #DCDCD5;
+}
+
+#opcaoMenuLateral5:hover{
 	background: none;
-	border-left:5px solid white;
+	border-left: 5px solid #DCDCD5;
 }
-#menuOption5 a:hover,
-#menuOption5 a:focus{
-	background: none;
-	border-left:5px solid white;
-}
-/*fim opcoes menu*/
-a.sideOptions{
-	color:#DCDCD5;
-}
+/*FIM  OPCOES DO MENU LATERAL*/
 
 span.icones{
     padding-right: 5px;
