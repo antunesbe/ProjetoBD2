@@ -30,3 +30,79 @@ html, body{
 	text-align: center;
 
 }
+
+
+a:hover{
+	text-decoration: none;
+}
+
+/* CONF TIPO MENSAGEM*/
+#titleTipoMensagem{
+	background-color: #CCE5FF;
+	border:1px solid #99CCFF;
+	text-align: center;
+}
+
+a #titleTipoMensagem{
+	font-weight:bold;
+	color: #3E5594;
+}
+a #titleTipoMensagem:hover{
+	font-weight:bolder;
+}
+
+#bodyTipoMensagem a{
+	color: #3E5594;
+	
+}
+
+/* CONF PERFIL*/
+#titlePerfil{
+	background-color: #FFFFCC;
+	border:1px solid #FFFF66;
+	text-align: center;
+}
+
+a #titlePerfil{
+	font-weight:bold;
+	color: #94913E;
+}
+a #titlePerfil:hover{
+	font-weight:bolder;
+}
+
+/* CONF USUARIO*/
+#titleUsuario{
+	background-color: #CCFFCC;
+	border:1px solid #66FF66;
+	text-align: center;
+}
+
+a #titleUsuario{
+	font-weight:bold;
+	color: #41943E;
+}
+a #titleUsuario:hover{
+	font-weight:bolder;
+}
+
+/* CONF SETOR*/
+#titleSetor{
+	background-color: #FFCCCC;
+	border:1px solid #FF9999;
+	text-align: center;
+}
+
+a #titleSetor{
+	font-weight:bold;
+	color: #943E47;
+}
+a #titleSetor:hover{
+	font-weight:bolder;
+}
+/*/CONF SETOR*/
+.admPills{
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+}

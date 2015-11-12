@@ -1,3 +1,36 @@
+<?php
+	session_start();
+	$USUARIO;
+	$SENHA;
+    if(!$_POST){
+    	if(!$_SESSION){
+    	echo "<script>
+    			alert('É necessario fazer login para acessar essa pagina.');
+    			window.location.href='login.php';
+    		</script>";
+    		}
+    }else{
+		include "includes/conexaoBD.php";
+		$EMAIL = $_POST["email"];
+    	$SENHA = $_POST["senha"];
+
+    	$consulta = mysql_query("SELECT * FROM USUARIO WHERE email = '$EMAIL' AND senha='$SENHA'");
+    	if(mysql_num_rows($consulta)<=0){
+    		echo "<script>
+    			alert('E-Mail e/ou Senha estão errados. Tente Novamente');
+    			window.location.href='login.php';
+    		</script>";
+    	}else{
+  			$resultado = mysql_fetch_assoc($consulta);
+    		$_SESSION['nome'] = $resultado['nome'];
+    		$_SESSION['id'] = $resultado['id_pessoa'];
+    		$_SESSION['cpf'] = $resultado['cpf'];
+    		$_SESSION['data_nasc'] = $resultado['data_nascimento'];
+    		$_SESSION['email'] = $resultado['email'];
+    	}
+  		
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -24,13 +57,13 @@
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a id="opcaoMenuSuperior1" href="perfil.php"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
-				<li><a id="opcaoMenuSuperior2" href="login.php"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
+				<li><a id="opcaoMenuSuperior2" href="includes/sair.php"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
 			</ul>
 		</div>
 	</nav>
 	<!-- /MENU SUPERIOR-->
 	<div class="container-fluid principal">
-		<div class="row linhaPrincipal">
+		<div class="row linhaPrincipal"> 
 		<!-- MENU LATERAL -->
 			<nav class="col-md-2 menuLateral">
 				<ul class="nav nav-pulls nav-stacked">
@@ -58,7 +91,7 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
-				<h2><small>Bem vindo,</small> Breno Antunes</h2>
+				<h2><small>Bem vindo,</small> <? echo $_SESSION['nome'];?></h2>
                 <br>
                 <p>Você tem __ mensagens não lidas.</p>
                 <br><br>

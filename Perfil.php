@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -64,14 +68,14 @@
 
                 <fieldset>
                     <legend class="tituloPerfil">Pessoal</legend>
-                    <p><span class="legendaPerfil">Nome: </span></p>
-                    <p><span class="legendaPerfil">CPF: </span></p>
-                    <p><span class="legendaPerfil">Data de nascimento: </span></p>
+                    <p><span class="legendaPerfil">Nome: <?echo $_SESSION['nome'];?> </span></p>
+                    <p><span class="legendaPerfil">CPF: <?echo $_SESSION['cpf'];?></span></p>
+                    <p><span class="legendaPerfil">Data de nascimento: <?echo $_SESSION['data_nasc'];?> </span></p>
                 </fieldset>
                 <br>
                 <fieldset>
                     <legend class="tituloPerfil">Empresa</legend>
-                    <p><span class="legendaPerfil">ID: </span></p>
+                    <p><span class="legendaPerfil">ID: <?echo $_SESSION['id'];?></span></p>
                     <p><span class="legendaPerfil">Sua prioridade de sistema é: </span></p>
                     <p><span class="legendaPerfil">Data de Vinculação: </span></p>
                     <p><span class="legendaPerfil">Setor: </span></p>

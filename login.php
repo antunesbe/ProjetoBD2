@@ -22,7 +22,7 @@
 	<nav class="navbav navbar-default menuSuperior">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" id="tituloTopo" href="index.php">Sistema de Comunicação Interno</a>
+				<a class="navbar-brand" id="tituloTopo" href="#">Sistema de Comunicação Interno</a>
 			</div>
 		</div>
 	</nav>
@@ -39,10 +39,10 @@
 			<div class="panel-body">
 				<form id="formLogin" class="form-horizontal" method="post" action="index.php">
 					<div class="form-group">
-						<input type="text" id="txtLogin" class="form-control" name="login" placeholder="Usuário"/>
+						<input type="text" id="txtEmail" class="form-control" name="email" placeholder="E-Mail"/>
 					</div>
 					<div class="form-group">
-						<input type="password" id="txtPassword" class="form-control" name="senha" placeholder="Senha"/>
+						<input type="password" id="txtSenha" class="form-control" name="senha" placeholder="Senha"/>
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn" name="btnLogin" id="btnLogin" value="Entrar"></input>

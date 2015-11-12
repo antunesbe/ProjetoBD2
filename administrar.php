@@ -61,13 +61,124 @@
             <section class="col-md-10 conteudo">
                 <h2>Administrar</h2>
                 <br>
-                <form class="form form-vertical">
-                            <a class="btn btn-default col-md-8" href="Usuario/gridUsuario.php">Usuarios</a>
-                            <a class="btn btn-default col-md-8" href="Perfil/gridPerfil.php">Perfis</a>
-                            <a class="btn btn-default col-md-8" href="Setor/gridSetor.php">Setores</a>
-                            <a class="btn btn-default col-md-8" href="TipoMensagem/gridTipoMensagem.php">Tipos de Mensagem</a>
-                        
-                </form>
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-success">
+                            <a href="Usuario/gridUsuario.php">
+                                <div class="panel-heading" id="titleUsuario">
+                                    Usuários
+                                </div>
+                            </a>
+                            <div class="panel-body admPills">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li>
+                                        <a href="#">Listar</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Adicionar</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Editar</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Excluir</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-warning">
+                            <a href="Perfil/gridPerfil.php">
+                                <div class="panel-heading" id="titlePerfil">Perfis
+                                </div>
+                            </a>
+                                <div class="panel-body admPills">
+                                    <ul class="nav nav-pills nav-stacked">
+                                        <li>
+                                            <a href="#">Listar</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Adicionar</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Editar</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Excluir</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-danger">
+                            <a href="Setor/gridSetor.php">
+                                <div class="panel-heading"  id="titleSetor">
+                                    Setores
+                                </div>
+                            </a>
+                                <div class="panel-body admPills">
+                                    <ul class="nav nav-pills nav-stacked">
+                                        <li>
+                                            <a href="#">Listar</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Adicionar</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Editar</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Excluir</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-primary">
+                            <a href="TipoMensagem/gridTipoMensagem.php">
+                                <div class="panel-heading" id="titleTipoMensagem">
+                                    Tipos de Mensagem
+                                </div>
+                            </a>
+                            <div class="panel-body admPills">
+                                <ul class="nav nav-pills nav-stacked" id="bodyTipoMensagem">
+                                    <li>
+                                        <a href="#">Listar</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Adicionar</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Editar</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Excluir</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
             </section>
             <!-- /CONTEUDO -->
         </div>  

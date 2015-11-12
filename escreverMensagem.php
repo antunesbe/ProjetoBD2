@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	include "includes/conexaoBD.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -58,6 +62,9 @@
 			</nav>
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
+		<?php
+			
+		?>
 			<section class="col-md-10 conteudo">
 				<h2>Escrever Mensagem</h2>
 				<form class="form form-vertical">
@@ -65,8 +72,16 @@
 						<div class="form-group col-md-3">
 							<label for="destinatario" class="label-control" id="labelDestinatario">Destinatario:</label>
 							<select class="form-control" name="destinatario" id="destinatario">
-								<option></option>
-								<option>Contas a receber</option>
+								<?php
+									$consulta = mysql_query("SELECT * FROM DEPARTAMENTO ORDER BY id_departamento");
+	    							$row = mysql_num_rows($consulta);
+									while($linha = mysql_fetch_assoc($consulta)){
+										echo "<option id='" . $linha['id_departamento'] . "'>" . $linha['nome_depto'] . "</option>"; 
+									}
+									if ($row<=0){
+										echo "<option>Sem valor</option>";
+									}
+								?>
 							</select>
 						</div>
 					</div>
@@ -74,8 +89,16 @@
 						<div class="form-group col-md-3">
 							<label for="tipoMsg" class="label-control" id="labelTipoMsg">Tipo da Mensagem:</label>
 							<select class="form-control" name="tipoMsg" id="tipoMsg">
-								<option></option>
-								<option>Aviso</option>
+								<?php
+								$consulta = mysql_query("SELECT * FROM TIPO_MENSAGEM ORDER BY id_tipo_mensagem");
+		    							$row = mysql_num_rows($consulta);
+										while($linha = mysql_fetch_assoc($consulta)){
+											echo "<option id='" . $linha['id_tipo_mensagem'] . "'>" . $linha['nome_tipo_mensagem'] . "</option>"; 
+										}
+										if ($row<=0){
+											echo "<option>Sem valor</option>";
+										}
+								?>
 							</select>
 						</div>
 					</div>
