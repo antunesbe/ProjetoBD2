@@ -60,24 +60,24 @@
         <!-- CONTEUDO -->
             <section class="col-md-10 conteudo">
                 <h2>Administrar</h2>
-                <br>
+                
                 <div class="row">
-                    <div class="col-md-1">
-                    </div>
-                    <div class="col-md-4">
+                    <!--<div class="col-md-1">
+                    </div>-->
+                    <div class="col-md-3">
                         <div class="panel panel-success">
                             <a href="Usuario/gridUsuario.php">
                                 <div class="panel-heading" id="titleUsuario">
                                     Usuários
                                 </div>
                             </a>
-                            <div class="panel-body admPills">
+                            <div class="panel-body admPills" id="bodyUsuario">
                                 <ul class="nav nav-pills nav-stacked">
                                     <li>
-                                        <a href="#">Listar</a>
+                                        <a href="Usuario/gridUsuario.php">Listar</a>
                                     </li>
                                     <li>
-                                        <a href="#">Adicionar</a>
+                                        <a href="Usuario/createUsuario.php">Adicionar</a>
                                     </li>
                                     <li>
                                         <a href="#">Editar</a>
@@ -89,22 +89,22 @@
                             </div>
                             
                         </div>
-                    </div>
+                    </div><!--
                     <div class="col-md-2">
-                    </div>
-                    <div class="col-md-4">
+                    </div>-->
+                    <div class="col-md-3">
                         <div class="panel panel-warning">
                             <a href="Perfil/gridPerfil.php">
                                 <div class="panel-heading" id="titlePerfil">Perfis
                                 </div>
                             </a>
                                 <div class="panel-body admPills">
-                                    <ul class="nav nav-pills nav-stacked">
+                                    <ul class="nav nav-pills nav-stacked" id="bodyPerfil">
                                         <li>
-                                            <a href="#">Listar</a>
+                                            <a href="Perfil/gridPerfil.php">Listar</a>
                                         </li>
                                         <li>
-                                            <a href="#">Adicionar</a>
+                                            <a href="Perfil/create.php">Adicionar</a>
                                         </li>
                                         <li>
                                             <a href="#">Editar</a>
@@ -116,30 +116,30 @@
                                 </div>
                             
                         </div>
-                    </div>
+                    </div><!--
                     <div class="col-md-2">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-1">
-                    </div>
-                    <div class="col-md-4">
+                    </div>-->
+                    <div class="col-md-3">
                         <div class="panel panel-danger">
                             <a href="Setor/gridSetor.php">
                                 <div class="panel-heading"  id="titleSetor">
                                     Setores
                                 </div>
                             </a>
-                                <div class="panel-body admPills">
+                                <div class="panel-body admPills" id="bodySetor">
                                     <ul class="nav nav-pills nav-stacked">
                                         <li>
-                                            <a href="#">Listar</a>
+                                            <a href="Setor/gridSetor.php">Listar</a>
                                         </li>
                                         <li>
-                                            <a href="#">Adicionar</a>
+                                            <a href="Setor/create.php">Adicionar</a>
                                         </li>
                                         <li>
-                                            <a href="#">Editar</a>
+                                            <a href="Setor/edit.php">Editar</a>
                                         </li>
                                         <li>
                                             <a href="#">Excluir</a>
@@ -148,10 +148,10 @@
                                 </div>
                             
                         </div>
-                    </div>
+                    </div><!--
                     <div class="col-md-2">
-                    </div>
-                    <div class="col-md-4">
+                    </div>-->
+                    <div class="col-md-3">
                         <div class="panel panel-primary">
                             <a href="TipoMensagem/gridTipoMensagem.php">
                                 <div class="panel-heading" id="titleTipoMensagem">
@@ -161,10 +161,10 @@
                             <div class="panel-body admPills">
                                 <ul class="nav nav-pills nav-stacked" id="bodyTipoMensagem">
                                     <li>
-                                        <a href="#">Listar</a>
+                                        <a href="TipoMensagem/gridTipoMensagem.php">Listar</a>
                                     </li>
                                     <li>
-                                        <a href="#">Adicionar</a>
+                                        <a href="TipoMensagem/create.php">Adicionar</a>
                                     </li>
                                     <li>
                                         <a href="#">Editar</a>
@@ -175,9 +175,9 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div><!--
                     <div class="col-md-2">
-                    </div>
+                    </div>-->
                 </div>
             </section>
             <!-- /CONTEUDO -->

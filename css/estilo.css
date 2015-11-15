@@ -52,6 +52,7 @@ a #titleTipoMensagem:hover{
 }
 
 #bodyTipoMensagem a{
+	text-align: center;
 	color: #3E5594;
 	
 }
@@ -71,6 +72,12 @@ a #titlePerfil:hover{
 	font-weight:bolder;
 }
 
+#bodyPerfil a{
+	text-align: center;
+	color: #94913E;
+	
+}
+
 /* CONF USUARIO*/
 #titleUsuario{
 	background-color: #CCFFCC;
@@ -84,6 +91,11 @@ a #titleUsuario{
 }
 a #titleUsuario:hover{
 	font-weight:bolder;
+}
+
+#bodyUsuario a{
+	text-align: center;
+	color: #41943E;
 }
 
 /* CONF SETOR*/
@@ -100,9 +112,21 @@ a #titleSetor{
 a #titleSetor:hover{
 	font-weight:bolder;
 }
+
+#bodySetor a{
+	text-align: center;
+	color: #943E47;
+	
+}
+
 /*/CONF SETOR*/
 .admPills{
 	margin: 0px;
 	border: 0px;
 	padding: 0px;
+}
+
+.panel{
+	margin: 0px;
+	margin-bottom: 5px;
 }

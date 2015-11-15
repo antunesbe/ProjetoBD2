@@ -1,3 +1,7 @@
+<?php
+	include "../includes/conexaoBD.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -59,50 +63,82 @@
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
 				<h2>Cadastrar Usuario </h2>
-					<form class="form form-vertical">
-						<div class="row" style="border:none;">
-							<div class="form-group col-md-6">
-							<label for="nome" class="label-control" id="labelNome">Nome:</label>
-								<input type = "text" class="form-control" name="nome" id="nome">
+					<form class="form form-vertical" method="POST" action="cadastraFuncionario.php">
+						<div class="row">
+							<div class="col-md-6">
+								<h3>Dados do Funcionário</h3>
+								<div class="row" style="border:none;">
+									<div class="form-group col-md-12">
+										<label for="nome" class="label-control" id="labelNome">Nome:</label>
+										<input type = "text" class="form-control" name="nome" id="nome">
+									</div>
+								</div>
+								<div class="row" style="border:none;">
+									<div class="form-group col-md-6">
+									<label for="data_nasc" class="label-control" id="labelData">Data de Nascimento:</label>
+										<input class="form-control" type = "date" name="data_nasc" id="data_nasc">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="cpf" class="label-control" id="labelCpf">CPF:</label>
+										<input type="cpf" class="form-control" name="cpf" id="cpf">
+									</div>
+								</div>
+								<div class="row" style="border:none;">
+									<div class="form-group col-md-6">
+										<label for="perfil" class="label-control" id="labelPerfil">Perfil:</label>
+										<select class="form-control" name="perfil" id="perfil">
+											<?php
+												$consulta = mysql_query("SELECT * FROM PERFIL ORDER BY id_perfil");
+				    							$row = mysql_num_rows($consulta);
+												while($linha = mysql_fetch_assoc($consulta)){
+													echo "<option id='" . $linha['id_perfil'] . "'>" . $linha['nome'] . "</option>"; 
+												}
+												if ($row<=0){
+													echo "<option>Sem valor</option>";
+												}
+											?>
+										</select>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="setor" class="label-control" id="labelDepto">Departamento:</label>
+										<select class="form-control" name="departamento" id="departamento">
+											<?php
+												$consulta = mysql_query("SELECT * FROM DEPARTAMENTO ORDER BY id_departamento");
+				    							$row = mysql_num_rows($consulta);
+												while($linha = mysql_fetch_assoc($consulta)){
+													echo "<option id='" . $linha['id_departamento'] . "'>" . $linha['nome_depto'] . "</option>"; 
+												}
+												if ($row<=0){
+													echo "<option>Sem valor</option>";
+												}
+											?>
+										</select>
+									</div>
+								</div>
 							</div>
-						</div>
-						<div class="row" style="border:none;">
-							<div class="form-group col-md-3">
-							<label for="data_nasc" class="label-control" id="labelData">Data de Nascimento:</label>
-								<input class="form-control" type = "date" name="data_nasc" id="data_nasc">
-							</div>
-							<div class="form-group col-md-3">
-								<label for="email" class="label-control" id="labelEmail">Email:</label>
-								<input type="email" class="form-control email" name="email" id="assunto">
-							</div>
-						</div>
-						<div class="row" style="border:none;">
-							<div class="form-group col-md-3">
-							<label for="senha" class="label-control" id="labelSenha">Senha:</label>
-								<input class="form-control" type = "password" name="senha" id="senha">
-							</div>
-							<div class="form-group col-md-3">
-								<label for="conf-Senha" class="label-control" id="labelConfSenha">Confirmar Senha:</label>
-								<input type="password" class="form-control" name="conf-Senha" id="conf-Senha">
-							</div>
-						</div>
+							<div class="col-md-6">
+								<h3>Dados de Acesso</h3>
+								<div class="row" style="border:none">
+									<div class="form-group col-md-12">
+										<label for="email" class="label-control" id="labelEmail">Email:</label>
+										<input type="email" class="form-control email" name="email" id="email">
+									</div>
+								</div>
+
+								<div class="row" style="border:none;">
+									<div class="form-group col-md-6">
+										<label for="senha" class="label-control" id="labelSenha">Senha:</label>
+										<input class="form-control" type = "password" name="senha" id="senha">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="conf-Senha" class="label-control" id="labelConfSenha">Confirmar Senha:</label>
+										<input type="password" class="form-control" name="conf-Senha" id="conf-Senha">
+									</div>
+								</div>
 						
 					
-						<div class="row" style="border:none;">
-							<div class="form-group col-md-3">
-								<label for="perfil" class="label-control" id="labelPerfil">Perfil:</label>
-								<select class="form-control" name="perfil" id="perfil">
-									<option></option>
-									<option>Funcionário</option>
-								</select>
 							</div>
-							<div class="form-group col-md-3">
-								<label for="setor" class="label-control" id="labelSetor">Setor:</label>
-								<select class="form-control" name="setor" id="setor">
-									<option></option>
-									<option>Contas a receber</option>
-								</select>
-							</div>
+						
 						</div>
 						<div class="row" style="border:none;">
 							<div class="form-group col-md-3">

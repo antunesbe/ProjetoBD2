@@ -67,8 +67,9 @@
 		?>
 			<section class="col-md-10 conteudo">
 				<h2>Escrever Mensagem</h2>
-				<form class="form form-vertical">
+				<form class="form form-vertical" method="POST" action="includes/enviaMensagem.php">
 					<div class="row" style="border:none;">
+						<!-- DESTINATARIO -->
 						<div class="form-group col-md-3">
 							<label for="destinatario" class="label-control" id="labelDestinatario">Destinatario:</label>
 							<select class="form-control" name="destinatario" id="destinatario">
@@ -84,8 +85,10 @@
 								?>
 							</select>
 						</div>
+						<!-- /DESTINATARIO -->
 					</div>
 					<div class="row" style="border:none;">
+						<!-- TIPO MENSAGEM -->
 						<div class="form-group col-md-3">
 							<label for="tipoMsg" class="label-control" id="labelTipoMsg">Tipo da Mensagem:</label>
 							<select class="form-control" name="tipoMsg" id="tipoMsg">
@@ -101,18 +104,23 @@
 								?>
 							</select>
 						</div>
+						<!-- /TIPO MENSAGEM -->
 					</div>
 					<div class="row" style="border:none;">
+						<!-- ASSUNTO -->
 						<div class="form-group col-md-3">
 							<label for="assunto" class="label-control" id="labelAssunto">Assunto:</label>
 							<input type="text" class="form-control" name="assunto" id="assunto">
 						</div>
+						<!-- /ASSUNTO -->
 					</div>
 					<div class="row" style="border:none;">
+						<!-- MENSAGEM -->
 						<div class="form-group col-md-6">
 							<label for="assunto" class="label-control" id="labelAssunto">Mensagem:</label>
 							<textarea class="form-control" rows="5" name="mensagem" id="mensagem"></textarea>
 						</div>
+						<!-- /MENSAGEM --> 
 					</div>
 					<div class="row" style="border:none;">
 						<div class="form-group col-md-3">
