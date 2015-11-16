@@ -66,8 +66,13 @@
 			
 		?>
 			<section class="col-md-10 conteudo">
+				<br class="alertaCadastro hidden">
+				<div class="alert alert-success hidden alertaCadastro">
+					<span class="close" data-dismiss="alert">&times;</span>
+					Cadastro realizado com <strong>Sucesso</strong> !
+				</div>
 				<h2>Escrever Mensagem</h2>
-				<form class="form form-vertical" method="POST" action="includes/enviaMensagem.php">
+				<form class="form form-vertical" method="POST" action="?go=enviaMensagem">
 					<div class="row" style="border:none;">
 						<!-- DESTINATARIO -->
 						<div class="form-group col-md-3">
@@ -117,8 +122,8 @@
 					<div class="row" style="border:none;">
 						<!-- MENSAGEM -->
 						<div class="form-group col-md-6">
-							<label for="assunto" class="label-control" id="labelAssunto">Mensagem:</label>
-							<textarea class="form-control" rows="5" name="mensagem" id="mensagem"></textarea>
+							<label for="conteudo" class="label-control" id="labelAssunto">Mensagem:</label>
+							<textarea class="form-control" rows="5" name="conteudo" id="conteudo"></textarea>
 						</div>
 						<!-- /MENSAGEM --> 
 					</div>
@@ -149,3 +154,29 @@
 	</div>
 </body>
 </html>
+
+<?php
+
+	if($_GET['go'] = 'enviaMensagem'){
+		$destinatario = $_POST['destinatario'];
+		$tipoMensagem = $_POST['tipoMsg'];
+		$assunto = $_POST['assunto'];
+		$conteudo = $_POST['conteudo'];
+		$remetente = $_SESSION['id'];
+
+		$sql= mysql_query("INSERT INTO MENSAGEM VALUES (null,'$assunto', $conteudo, 0, null, '$remetente', '$destinatario', '$tipoMensagem')");
+
+
+		if(!$sql){
+			echo mysql_error();
+		}else{
+			?>
+			<script>
+				$('.alertaCadastro').removeClass("hidden");
+			</script>
+
+			<?php
+		}
+	}
+}
+?>

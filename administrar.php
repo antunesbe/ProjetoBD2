@@ -127,7 +127,7 @@
                         <div class="panel panel-danger">
                             <a href="Setor/gridSetor.php">
                                 <div class="panel-heading"  id="titleSetor">
-                                    Setores
+                                    Departamentos
                                 </div>
                             </a>
                                 <div class="panel-body admPills" id="bodySetor">

@@ -1,10 +1,14 @@
+<?php
+	session_start();
+	include "../includes/conexaoBD.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Pagina Inicial - Projeto BD-2 </title>
+	<title>Listar Perfil - Projeto BD-2 </title>
 
 	<!-- Arquivos CSS -->
 	<link rel="stylesheet" href="../css/bootstrap.css">
@@ -61,21 +65,35 @@
 				<h2>Perfis</h2>
 				<br>
 				<div class="form-group">
-					<button class = "pull-right"><a class="button glyphicon glyphicon-plus" href="create.php">Adicionar</a></button>
+					<a class="btn btn-success pull-left" href="create.php"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
 					<table class="table table-hover">
+						<thead>
+							<th>#</th>
+							<th>Nome</th>
+							<th>Descricao</th>
+							<th>Ação</th>
+						</thead>
 						<tbody>
-							<tr onclick="location.href = 'login.php'" class="tabelaClicavel" >
-								<td><input type="checkbox"</td>
-								<td>ID</td>
-								<td>Nome</td>
-								<td>Descrição</td>
-								<td>
-									<button class = "glyphicon glyphicon-edit"></button>
-									<button class = "glyphicon glyphicon-search"></button>
-									<button class = "glyphicon glyphicon-remove"></button>
-									<a href = "cadastrarPrivilegio.php"><button class = "glyphicon glyphicon-list"></button></a>
-								</td>
-							</tr>
+							<?php
+								$sql = mysql_query("SELECT * FROM PERFIL ORDER BY id_perfil");
+								$numrows = mysql_num_rows($sql);
+								if ($numrows<=0){
+									echo "<td colspan='4'>Não existem Departamentos cadastrados !</td>";
+								}else{
+									while($linha = mysql_fetch_assoc($sql)){
+										echo "<tr onclick='location.href = '../login.php'' class='tabelaClicavel' >";
+										echo "<td>" . $linha['id_perfil'] . "</td>";
+										echo "<td>" . $linha['nome_perfil'] . "</td>";
+										echo "<td>" . $linha['descricao_perfil'] . "</td>";
+										echo "<td>
+												<button class = 'glyphicon glyphicon-edit'></button>
+												<button class = 'glyphicon glyphicon-search'></button>
+												<button class = 'glyphicon glyphicon-remove'></button>
+											</td>";
+										echo "</tr>";
+									}
+								}
+							?>
 							
 						</tbody>
 					</table>

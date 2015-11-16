@@ -19,7 +19,7 @@
     		echo "<script>
     			alert('E-Mail e/ou Senha estão errados. Tente Novamente');
     			window.location.href='login.php';
-    		</script>";
+    			</script>";
     	}else{
   			$resultado = mysql_fetch_assoc($consulta);
     		$_SESSION['nome'] = $resultado['nome'];

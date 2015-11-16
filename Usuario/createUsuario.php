@@ -8,16 +8,17 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Pagina Inicial - Projeto BD-2 </title>
+	<title>Cadastrar Usuário - Projeto BD-2 </title>
 
 	<!-- Arquivos CSS -->
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/estilo.css">
 	<link rel="stylesheet" href="../css/menuTopoEstilo.css">
 	<link rel="stylesheet" href="../css/menuLateralEstilo.css">
+
 	<!-- Arquivos Javascript -->
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/jquery.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 </head>
 <body>
 	<!-- MENU SUPERIOR -->
@@ -62,8 +63,13 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
+				<br class="alertaCadastro hidden">
+				<div class="alert alert-success hidden alertaCadastro">
+					<span class="close" data-dismiss="alert">&times;</span>
+					Cadastro realizado com <strong>Sucesso</strong> !
+				</div>
 				<h2>Cadastrar Usuario </h2>
-					<form class="form form-vertical" method="POST" action="cadastraFuncionario.php">
+					<form class="form form-vertical" method="POST" action="?go=cadastraFuncionario">
 						<div class="row">
 							<div class="col-md-6">
 								<h3>Dados do Funcionário</h3>
@@ -87,11 +93,12 @@
 									<div class="form-group col-md-6">
 										<label for="perfil" class="label-control" id="labelPerfil">Perfil:</label>
 										<select class="form-control" name="perfil" id="perfil">
+											<option></option>
 											<?php
 												$consulta = mysql_query("SELECT * FROM PERFIL ORDER BY id_perfil");
 				    							$row = mysql_num_rows($consulta);
 												while($linha = mysql_fetch_assoc($consulta)){
-													echo "<option id='" . $linha['id_perfil'] . "'>" . $linha['nome'] . "</option>"; 
+													echo "<option id='" . $linha['id_perfil'] . "'>" . $linha['nome_perfil'] . "</option>"; 
 												}
 												if ($row<=0){
 													echo "<option>Sem valor</option>";
@@ -102,6 +109,7 @@
 									<div class="form-group col-md-6">
 										<label for="setor" class="label-control" id="labelDepto">Departamento:</label>
 										<select class="form-control" name="departamento" id="departamento">
+											<option></option>
 											<?php
 												$consulta = mysql_query("SELECT * FROM DEPARTAMENTO ORDER BY id_departamento");
 				    							$row = mysql_num_rows($consulta);
@@ -141,6 +149,8 @@
 						
 						</div>
 						<div class="row" style="border:none;">
+							<div class="col-md-5">
+							</div>
 							<div class="form-group col-md-3">
 								<button class="btn btn-success" id="btnEnviar">Enviar</button>
 								<button class="btn btn-default" id="btnLimpar">Limpar</button>
@@ -169,3 +179,36 @@
 	</div>
 </body>
 </html>
+
+<?php
+
+if($_GET['go']=='cadastraFuncionario'){
+	$nome = $_POST['nome'];
+	$data_nasc = $_POST['data_nasc'];
+	$cpf = $_POST['cpf'];
+	$perfil = $_POST['perfil'];
+	$depto = $_POST['departamento'];
+	$email = $_POST['email'];
+	$senha = $_POST['senha'];
+
+	if(empty($nome)){
+		echo "<script>alert(Preencha todos os dados !);</script>";
+		echo "oi";
+	}else{
+
+		$sql= mysql_query("INSERT INTO USUARIO VALUES (null,'$nome','$cpf','$data_nasc','$email','$senha', (SELECT id_departamento FROM DEPARTAMENTO WHERE '$depto'=nome_depto),(SELECT id_perfil FROM PERFIL WHERE '$perfil'=nome_perfil))");
+
+
+		if(!$sql){
+			echo mysql_error();
+		}else{
+			?>
+			<script>
+				$('.alertaCadastro').removeClass("hidden");
+			</script>
+
+			<?php
+		}
+	}
+}
+?>

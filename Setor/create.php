@@ -1,10 +1,14 @@
+<?php
+	session_start();
+	include "../includes/conexaoBD.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Pagina Inicial - Projeto BD-2 </title>
+	<title>Cadastrar Departamento - Projeto BD-2 </title>
 
 	<!-- Arquivos CSS -->
 	<link rel="stylesheet" href="../css/bootstrap.css">
@@ -12,15 +16,15 @@
 	<link rel="stylesheet" href="../css/menuTopoEstilo.css">
 	<link rel="stylesheet" href="../css/menuLateralEstilo.css">
 	<!-- Arquivos Javascript -->
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 	<script src="../js/bootstrap.js"></script>
-	<script src="../js/jquery.js"></script>
 </head>
 <body>
 	<!-- MENU SUPERIOR -->
 	<nav class="navbav navbar-default menuSuperior">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" id="tituloTopo" href="../index.php">Sistema de Comunicação Interno</a>
+				<a class="navbar-brand" id="tituloTopo" href="../index.php" >Sistema de Comunicação Interno</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a id="opcaoMenuSuperior1" href="../perfil.php"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
@@ -58,8 +62,13 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
-				<h2>Cadastrar Setor</h2>
-				<form class="form form-vertical">
+				<br class="alertaCadastro hidden">
+				<div class="alert alert-success hidden alertaCadastro">
+					<span class="close" data-dismiss="alert">&times;</span>
+					Cadastro realizado com <strong>Sucesso</strong> !
+				</div>
+				<h2>Cadastrar Departamento</h2>
+				<form class="form form-vertical" method="post" action="?go=cadastraDepto">
 					<div class="row" style="border:none;">
 						<div class="form-group col-md-6">
 							<label for="nome" class="label-control" id="labelNome">Nome:</label>
@@ -99,3 +108,24 @@
 	</div>
 </body>
 </html>
+
+<?php
+	if($_GET['go']=='cadastraDepto'){
+		$nome = $_POST['nome'];
+		$descricao = $_POST['descricao'];
+
+		$sql= mysql_query("INSERT INTO DEPARTAMENTO VALUES (null,'$nome','$descricao',null)");
+
+
+		if(!$sql){
+			echo mysql_error();
+		}else{
+			?>
+			<script>
+				$('.alertaCadastro').removeClass("hidden");
+			</script>
+
+			<?php
+		}
+	}
+?>

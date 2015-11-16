@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Pagina Inicial - Projeto BD-2 </title>
+	<title>Editar Departamento - Projeto BD-2 </title>
 
 	<!-- Arquivos CSS -->
 	<link rel="stylesheet" href="../css/bootstrap.css">
@@ -58,7 +58,7 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
-				<h2>Editar Setor</h2>
+				<h2>Editar Departamento</h2>
                 <br>
 				<form class="form form-vertical">
 					<div class="row" style="border:none;">

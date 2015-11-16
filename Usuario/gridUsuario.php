@@ -1,10 +1,14 @@
+<?php
+	session_start();
+	include "../includes/conexaoBD.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Pagina Inicial - Projeto BD-2 </title>
+	<title>Listar Usuário - Projeto BD-2 </title>
 
 	<!-- Arquivos CSS -->
 	<link rel="stylesheet" href="../css/bootstrap.css">
@@ -61,20 +65,39 @@
 				<h2>Usuários</h2>
 				<br>
 				<div class="form-group">
-					<button class = "pull-right"><a class="button" href="createUsuario.php"><span class="glyphicon glyphicon-plus"></span>Adicionar</a></button>
+					<a class="btn btn-success pull-left" href="createUsuario.php"><span class="glyphicon glyphicon-plus"></span>Adicionar</a>
 					<table class="table table-hover">
+						<thead>
+							<th>#</th>
+							<th>Nome</th>
+							<th>E-Mail</th>
+							<th>Data Nascimento</th>
+							<th>CPF</th>
+							<th>Ação</th>
+						</thead>
 						<tbody>
-							<tr onclick="location.href = '../login.php'" class="tabelaClicavel" >
-								<td><input type="checkbox"</td>
-								<td>Nome</td>
-								<td>E-mail</td>
-								<td>Data de Nascimento</td>
-								<td>
-									<button class = "glyphicon glyphicon-edit"></button>
-									<button class = "glyphicon glyphicon-search"></button>
-									<button class = "glyphicon glyphicon-remove"></button>
-								</td>
-							</tr>
+								<?php
+									$sql = mysql_query("SELECT * FROM USUARIO ORDER BY id_pessoa");
+									$numrows = mysql_num_rows($sql);
+									if ($numrows<=0){
+										echo "<td colspan='6'>Não existem usuários cadastrados !</td>";
+									}else{
+										while($linha = mysql_fetch_assoc($sql)){
+											echo "<tr onclick='location.href = '../login.php'' class='tabelaClicavel' >";
+											echo "<td>" . $linha['id_pessoa'] . "</td>";
+											echo "<td>" . $linha['nome'] . "</td>";
+											echo "<td>" . $linha['email'] . "</td>";
+											echo "<td>" . $linha['data_nascimento'] . "</td>";
+											echo "<td>" . $linha['cpf'] . "</td>";
+											echo "<td>
+													<button class = 'glyphicon glyphicon-edit'></button>
+													<button class = 'glyphicon glyphicon-search'></button>
+													<button class = 'glyphicon glyphicon-remove'></button>
+												</td>";
+											echo "</tr>";
+										}
+									}
+								?>
 							
 						</tbody>
 					</table>
