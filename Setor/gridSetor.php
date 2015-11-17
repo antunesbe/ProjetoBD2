@@ -83,15 +83,17 @@
 									echo "<td colspan='5'>Não existem Departamentos cadastrados !</td>";
 								}else{
 									while($linha = mysql_fetch_assoc($sql)){
+										$pessoa = $linha['pessoa_chave'];
+										$buscaPessoa = mysql_fetch_array(mysql_query("SELECT * FROM USUARIO WHERE '$pessoa'=id_pessoa"));
 										echo "<tr onclick='location.href = '../login.php'' class='tabelaClicavel' >";
 										echo "<td>" . $linha['id_departamento'] . "</td>";
 										echo "<td>" . $linha['nome_depto'] . "</td>";
 										echo "<td>" . $linha['descricao_depto'] . "</td>";
-										echo "<td>" . $linha['pessoa_chave'] . "</td>";
+										echo "<td>" . $buscaPessoa['nome'] . "</td>";
 										echo "<td>
-												<button class = 'glyphicon glyphicon-edit'></button>
-												<button class = 'glyphicon glyphicon-search'></button>
-												<button class = 'glyphicon glyphicon-remove'></button>
+												<button><a href='editarSetor.php?go=editaSetor&id=" . $linha['id_departamento'] . "'><span class = 'glyphicon glyphicon-edit'></span></a></button>
+												<button><a href='#'><span class = 'glyphicon glyphicon-search'></span></a></button>
+												<button><a href='deletarSetor.php?id=" . $linha['id_departamento'] . "' onclick='return confirmacao()'><span class = 'glyphicon glyphicon-remove'></span></a></button>
 											</td>";
 										echo "</tr>";
 									}

@@ -1,5 +1,6 @@
 <?php
-session_start();
+    session_start();
+    include "includes/conexaoBD.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -65,19 +66,38 @@ session_start();
                 <h2>Mesagens Recebidas</h2>
                 <br>
                 <table class="table table-hover">
+                    <thead>
+                        <th>#</th>
+                        <th>Remetente</th>
+                        <th>Assunto</th>
+                        <th>E-Mail</th>
+                        <th>Ação</th>
+                    </thead>
                     <tbody>
-                        <tr>
-                            <td><input type="checkbox"</td>
-                            <td>Remetente</td>
-                            <td>Assunto</td>
-                            <td>Data</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"</td>
-                            <td>Remetente</td>
-                            <td>Assunto</td>
-                            <td>Data</td>
-                        </tr>
+                            <?php
+                                $idUsuario = $_SESSION['id'];
+                                $sql = mysql_query("SELECT * FROM MENSAGEM WHERE destinatario='$idUsuario' ORDER BY id_mensagem DESC");
+                                $numrows = mysql_num_rows($sql);
+                                if ($numrows<=0){
+                                    echo "<td colspan='6'>Você não tem mensagens !</td>";
+                                }else{
+                                    while($linha = mysql_fetch_assoc($sql)){
+                                        $idRemetente = $linha['remetente'];
+                                        $buscaRemetente = mysql_query("SELECT * FROM USUARIO WHERE id_pessoa = '$idRemetente'");
+                                        $buscaRemetente = mysql_fetch_array($buscaRemetente);
+                                        echo "<tr onclick='location.href = '../login.php'' class='tabelaClicavel' >";
+                                        echo "<td></td>";
+                                        echo "<td>" . $buscaRemetente['nome'] . "</td>";
+                                        echo "<td>" . $linha['assunto'] . "</td>";
+                                        echo "<td>" . $buscaRemetente['email'] . "</td>";
+                                        echo "<td>
+                                                <button><a href='#'><span class = 'glyphicon glyphicon-search'></span></a></button>
+                                                <button><a href='deletarUsuario.php?id=" . $linha['id_mensagem'] . "' onclick='return confirmacao()'><span class = 'glyphicon glyphicon-remove'></span></a></button>
+                                              </td>";
+                                        echo "</tr>";
+                                    }
+                                }
+                            ?>
                         
                     </tbody>
                 </table>

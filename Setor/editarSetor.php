@@ -1,3 +1,30 @@
+<?php
+	include "../includes/conexaoBD.php";
+	
+	$idSetor = $_GET['id'];
+
+	if($_GET['go']=='alterarSetor'){
+
+		$nome = $_POST['nome'];
+		$desc = $_POST['descricao'];
+		$pChave = $_POST['pessoaChave'];
+
+		$alterar = mysql_query("UPDATE DEPARTAMENTO SET nome_depto='$nome', descricao_depto='$desc', pessoa_chave = (SELECT id_pessoa FROM USUARIO WHERE '$pChave'=email) WHERE '$idSetor' = id_departamento");
+	}
+	
+	$sql = mysql_query("SELECT * FROM DEPARTAMENTO WHERE '$idSetor'=id_departamento");
+
+	while($linha = mysql_fetch_array($sql)){
+		$nomeSetor = $linha['nome_depto'];
+		$descSetor = $linha['descricao_depto'];
+		$pessoaChaveSetor = $linha['pessoa_chave'];
+		$consultaPessoaChave = mysql_query("SELECT * FROM USUARIO WHERE '$pessoaChaveSetor'=id_pessoa");
+		$consultaPessoaChave = mysql_fetch_array($consultaPessoaChave);
+		$pessoaChaveSetor = $consultaPessoaChave['email'];
+		$idPessoaChaveSetor = $consultaPessoaChave['id_pessoa'];
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,8 +39,8 @@
 	<link rel="stylesheet" href="../css/menuTopoEstilo.css">
 	<link rel="stylesheet" href="../css/menuLateralEstilo.css">
 	<!-- Arquivos Javascript -->
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/jquery.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 </head>
 <body>
 	<!-- MENU SUPERIOR -->
@@ -58,34 +85,45 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
+				<br class="alertaCadastro hidden">
+				<div class="alert alert-success hidden alertaCadastro">
+					<span class="close" data-dismiss="alert">&times;</span>
+					Departamento editado com <strong>Sucesso</strong> !
+				</div>
 				<h2>Editar Departamento</h2>
                 <br>
-				<form class="form form-vertical">
+				<form class="form form-vertical" method="post" action="editarSetor.php?go=alterarSetor&id=<?php echo $idSetor; ?>">
 					<div class="row" style="border:none;">
 						<div class="form-group col-md-6">
 							<label for="nome" class="label-control" id="labelNome" >Nome:</label>
-							<input type="text" class="form-control" name="nome" id="nome" disabled = "disabled">
+							<input type="text" class="form-control" name="nome" id="nome" value="<?php echo $nomeSetor; ?>">
 						</div>
 					</div>
 					<div class="row" style="border:none;">
 						<div class="form-group col-md-6">
 							<label for="pessoaChave" class="label-control" id="labelPessoaChave">Pessoa Chave:</label>
 							<select class="form-control" name="pessoaChave" id="pessoaChave">
-								<option></option>
-								<option>Breno Bonassi</option>
+								<option><?php echo $pessoaChaveSetor; ?></option>
+								<?php
+									$sql = mysql_query("SELECT * FROM USUARIO WHERE id_pessoa <> '$idPessoaChaveSetor' ORDER BY id_pessoa");
+
+									while($linha = mysql_fetch_array($sql)){
+										echo "<option> " .  $linha['email'] . "</option>";
+									}
+								?>
 							</select>
 						</div>
 					</div>
 					<div class="row" style="border:none;">
 						<div class="form-group col-md-6">
 							<label for="descricao" class="label-control" id="labelDescricao">Descrição:</label>
-							<textarea class="form-control" rows="5" name="descricao" id="descricao"></textarea>
+							<textarea class="form-control" rows="5" name="descricao" id="descricao"><?php echo $descSetor; ?></textarea>
 						</div>
 					</div>
 					<div class="row" style="border:none;">
 						<div class="form-group col-md-3">
-							<button class="btn btn-success" id="btnEnviar">Enviar</button>
-							<button class="btn btn-default" id="btnLimpar">Limpar</button>
+							<button class="btn btn-success" id="btnEnviar" type="submit">Enviar</button>
+							<button class="btn btn-default" id="btnLimpar" type="reset">Limpar</button>
 						</div>
 					</div>
 				</form>
@@ -109,3 +147,15 @@
 	</div>
 </body>
 </html>
+<?php
+if(isset($_GET['go'])){
+	if($_GET['go'] == 'alterarSetor'){
+			?>
+			<script>
+				$('.alertaCadastro').removeClass("hidden");
+			</script>
+
+			<?php
+		}
+	}
+?>

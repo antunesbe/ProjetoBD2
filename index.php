@@ -28,6 +28,11 @@
     		$_SESSION['data_nasc'] = $resultado['data_nascimento'];
     		$_SESSION['email'] = $resultado['email'];
     	}
+/*PEGAR MENSAGENS NAO LIDAS*/
+    	$idUsuario = $_SESSION['id'];
+
+    	$consultaMsg = mysql_query("SELECT * FROM MENSAGEM WHERE destinatario='$idUsuario' AND lida = 0");
+    	$numRows = mysql_num_rows($consultaMsg);
   		
     }
 ?>
@@ -91,9 +96,10 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
-				<h2><small>Bem vindo,</small> <? echo $_SESSION['nome'];?></h2>
+				<h2><small>Bem vindo,</small> <?php echo $_SESSION['nome'];?></h2>
                 <br>
-                <p>Você tem __ mensagens não lidas.</p>
+
+                <p>Você tem <?php echo $numRows; ?> mensagens não lidas.</p>
                 <br><br>
                 <p>Data: <?php echo date('d/m/Y');?> Hora: <?php echo gmdate('H:i');?></p>
 

@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    include "includes/conexaoBD.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -62,13 +66,38 @@
                 <h2>Mesagens Enviadas</h2>
                 <br>
                 <table class="table table-hover">
+                    <thead>
+                        <th>#</th>
+                        <th>Destinatario</th>
+                        <th>Assunto</th>
+                        <th>E-Mail</th>
+                        <th>Ação</th>
+                    </thead>
                     <tbody>
-                        <tr class="tabelaClicavel">
-                            <td><input type="checkbox"</td>
-                            <td>Destinatario</td>
-                            <td>Assunto</td>
-                            <td>Data</td>
-                        </tr>
+                            <?php
+                                $idUsuario = $_SESSION['id'];
+                                $sql = mysql_query("SELECT * FROM MENSAGEM WHERE remetente = '$idUsuario' ORDER BY id_mensagem DESC");
+                                $numrows = mysql_num_rows($sql);
+                                if ($numrows<=0){
+                                    echo "<td colspan='6'>Não existem usuários cadastrados !</td>";
+                                }else{
+                                    while($linha = mysql_fetch_assoc($sql)){
+                                        $idDestinatario = $linha['destinatario'];
+                                        $buscaDestinatario = mysql_query("SELECT * FROM USUARIO WHERE '$idDestinatario' = id_pessoa");
+                                        $buscaDestinatario = mysql_fetch_array($buscaDestinatario);
+                                        echo "<tr onclick='location.href = '../login.php'' class='tabelaClicavel' >";
+                                        echo "<td></td>";
+                                        echo "<td>" . $buscaDestinatario['nome'] . "</td>";
+                                        echo "<td>" . $linha['assunto'] . "</td>";
+                                        echo "<td>" . $buscaDestinatario['email'] . "</td>";
+                                        echo "<td>
+                                                <button><a href='#'><span class = 'glyphicon glyphicon-search'></span></a></button>
+                                                <button><a href='deletarUsuario.php?id=" . $linha['id_mensagem'] . "' onclick='return confirmacao()'><span class = 'glyphicon glyphicon-remove'></span></a></button>
+                                            </td>";
+                                        echo "</tr>";
+                                    }
+                                }
+                            ?>
                         
                     </tbody>
                 </table>

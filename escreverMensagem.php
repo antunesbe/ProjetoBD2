@@ -1,6 +1,23 @@
 <?php
 	session_start();
 	include "includes/conexaoBD.php";
+	if(isset($_GET['go'])){
+		if($_GET['go'] == 'enviaMsg'){
+			$destinatario = $_POST['destinatario'];
+			$consultaDestinatario = mysql_query("SELECT * FROM DEPARTAMENTO WHERE '$destinatario' = nome_depto");
+			$consultaDestinatario = mysql_fetch_array($consultaDestinatario);
+			$destinatario = $consultaDestinatario['pessoa_chave'];
+			$tipoMensagem = $_POST['tipoMsg'];
+			$assunto = $_POST['assunto'];
+			$conteudo = $_POST['conteudo'];
+			$remetente = $_SESSION['id'];
+
+			$sql= mysql_query("INSERT INTO MENSAGEM VALUES (null,'$assunto', '$conteudo', 0, null, '$remetente', '$destinatario', (SELECT id_tipo_mensagem FROM TIPO_MENSAGEM WHERE nome_tipo_msg = '$tipoMensagem'))");
+			if(!$sql){
+				mysql_error();
+			}
+		}			
+	}	
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,8 +33,8 @@
 	<link rel="stylesheet" href="css/menuTopoEstilo.css">
 	<link rel="stylesheet" href="css/menuLateralEstilo.css">
 	<!-- Arquivos Javascript -->
-	<script src="js/bootstrap.js"></script>
-	<script src="js/jquery.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -66,13 +83,13 @@
 			
 		?>
 			<section class="col-md-10 conteudo">
-				<br class="alertaCadastro hidden">
-				<div class="alert alert-success hidden alertaCadastro">
+				<br class="alertaMensagem hidden">
+				<div class="alert alert-success hidden alertaMensagem">
 					<span class="close" data-dismiss="alert">&times;</span>
-					Cadastro realizado com <strong>Sucesso</strong> !
+					Mensagem enviada com <strong>Sucesso</strong> !
 				</div>
 				<h2>Escrever Mensagem</h2>
-				<form class="form form-vertical" method="POST" action="?go=enviaMensagem">
+				<form class="form form-vertical" method="post" action="escreverMensagem.php?go=enviaMsg">
 					<div class="row" style="border:none;">
 						<!-- DESTINATARIO -->
 						<div class="form-group col-md-3">
@@ -98,10 +115,10 @@
 							<label for="tipoMsg" class="label-control" id="labelTipoMsg">Tipo da Mensagem:</label>
 							<select class="form-control" name="tipoMsg" id="tipoMsg">
 								<?php
-								$consulta = mysql_query("SELECT * FROM TIPO_MENSAGEM ORDER BY id_tipo_mensagem");
+									$consulta = mysql_query("SELECT * FROM TIPO_MENSAGEM ORDER BY id_tipo_mensagem");
 		    							$row = mysql_num_rows($consulta);
 										while($linha = mysql_fetch_assoc($consulta)){
-											echo "<option id='" . $linha['id_tipo_mensagem'] . "'>" . $linha['nome_tipo_mensagem'] . "</option>"; 
+											echo "<option id='" . $linha['id_tipo_mensagem'] . "'>" . $linha['nome_tipo_msg'] . "</option>"; 
 										}
 										if ($row<=0){
 											echo "<option>Sem valor</option>";
@@ -129,7 +146,7 @@
 					</div>
 					<div class="row" style="border:none;">
 						<div class="form-group col-md-3">
-							<button class="btn btn-success" id="btnEnviar">Enviar</button>
+							<button class="btn btn-success" id="btnEnviar" type="submit">Enviar</button>
 							<button class="btn btn-default" id="btnLimpar">Limpar</button>
 						</div>
 					</div>
@@ -156,27 +173,14 @@
 </html>
 
 <?php
-
-	if($_GET['go'] = 'enviaMensagem'){
-		$destinatario = $_POST['destinatario'];
-		$tipoMensagem = $_POST['tipoMsg'];
-		$assunto = $_POST['assunto'];
-		$conteudo = $_POST['conteudo'];
-		$remetente = $_SESSION['id'];
-
-		$sql= mysql_query("INSERT INTO MENSAGEM VALUES (null,'$assunto', $conteudo, 0, null, '$remetente', '$destinatario', '$tipoMensagem')");
-
-
-		if(!$sql){
-			echo mysql_error();
-		}else{
+	if (isset($_GET['go'])){
+		if($_GET['go']=='enviaMsg'){
 			?>
 			<script>
-				$('.alertaCadastro').removeClass("hidden");
+				$('.alertaMensagem').removeClass("hidden");
 			</script>
 
 			<?php
 		}
 	}
-}
 ?>

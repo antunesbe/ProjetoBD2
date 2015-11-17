@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	include "../includes/conexaoBD.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

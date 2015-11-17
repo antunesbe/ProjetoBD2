@@ -16,9 +16,19 @@
 	<link rel="stylesheet" href="../css/menuTopoEstilo.css">
 	<link rel="stylesheet" href="../css/menuLateralEstilo.css">
 	<!-- Arquivos Javascript -->
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/jquery.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 </head>
+<script>
+	function confirmacao(){
+		if(confirm("Deseja excluir este item?")){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+</script>
 <body>
 	<!-- MENU SUPERIOR -->
 	<nav class="navbav navbar-default menuSuperior">
@@ -62,8 +72,13 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
+				<br class="alertaRemocao hidden">
+				<div class="alert alert-danger alertaRemocao hidden">
+					<span class="close" data-dismiss="alert">&times;</span>
+					Usuário deletado com <strong>Sucesso</strong> !
+				</div>
 				<h2>Usuários</h2>
-				<br>
+
 				<div class="form-group">
 					<a class="btn btn-success pull-left" href="createUsuario.php"><span class="glyphicon glyphicon-plus"></span>Adicionar</a>
 					<table class="table table-hover">
@@ -90,9 +105,9 @@
 											echo "<td>" . $linha['data_nascimento'] . "</td>";
 											echo "<td>" . $linha['cpf'] . "</td>";
 											echo "<td>
-													<button class = 'glyphicon glyphicon-edit'></button>
-													<button class = 'glyphicon glyphicon-search'></button>
-													<button class = 'glyphicon glyphicon-remove'></button>
+													<button><a href='editarUsuario.php?go=editaUsuario&id=" . $linha['id_pessoa'] . "'><span class = 'glyphicon glyphicon-edit'></span></a></button>
+													<button><a href='#'><span class = 'glyphicon glyphicon-search'></span></a></button>
+													<button><a href='deletarUsuario.php?id=" . $linha['id_pessoa'] . "' onclick='return confirmacao()'><span class = 'glyphicon glyphicon-remove'></span></a></button>
 												</td>";
 											echo "</tr>";
 										}
@@ -122,3 +137,17 @@
 	</div>
 </body>
 </html>
+
+<?php
+
+	if(isset($_GET['sit'])){
+		if($_GET['sit']=='usuarioDeletado'){
+			?>
+			<script>
+				$('.alertaRemocao').removeClass("hidden");
+			</script>
+			<?php
+		}
+	}
+
+?>
