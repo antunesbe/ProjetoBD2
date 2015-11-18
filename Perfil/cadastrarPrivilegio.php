@@ -1,3 +1,26 @@
+<?php
+	session_start();
+	include "../includes/conexaoBD.php";
+	
+		
+		$idRemetente = $_GET['id'];
+
+	/*if($_GET['go']=='alterarSetor'){
+
+		$nome = $_POST['nome'];
+		$desc = $_POST['descricao'];
+		$pChave = $_POST['pessoaChave'];
+
+		$alterar = mysql_query("UPDATE DEPARTAMENTO SET nome_depto='$nome', descricao_depto='$desc', pessoa_chave = (SELECT id_pessoa FROM USUARIO WHERE '$pChave'=email) WHERE '$idSetor' = id_departamento");
+	}*/
+	
+	$sql = mysql_query("SELECT * FROM PERFIL WHERE '$idRemetente'=id_perfil");
+	while($linha = mysql_fetch_array($sql)){
+		$nomePerfil = $linha['nome_perfil'];
+	}	
+?>
+	
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -59,13 +82,27 @@
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
 				<h2>Cadastrar Privilegio</h2>
-				<form class="form form-vertical">
+				<form class="form form-vertical" method = "post" action = "cadastrarPrivilegio.php?go=salvarPrivilegio?id=<?php echo $idRemetente; ?>">
 					<div class="row" style="border:none;">
 						<div class="form-group col-md-3">
-							<label for="destinatario" class="label-control" id="labelDestinatario">Destinatario:</label>
+							<label for="destinatario" class="label-control" id="labelDestinatario">Perfil Remetente:</label>
+							<input type = "text" class = "form-control" disabled value = "<?php echo $nomePerfil; ?>">
+						</div>
+					</div>
+					<div class="row" style="border:none;">
+						<div class="form-group col-md-3">
+							<label for="destinatario" class="label-control" id="labelDestinatario">Perfil Destinatario:</label>
 							<select class="form-control" name="destinatario" id="destinatario">
-								<option></option>
-								<option>Contas a receber</option>
+								<?php
+									$consulta = mysql_query("SELECT * FROM PERFIL ORDER BY id_perfil");
+									$row = mysql_num_rows($consulta);
+									while($linha = mysql_fetch_assoc($consulta)){
+										echo "<option id='" . $linha['id_perfil'] . "'>" . $linha['nome_perfil'] . "</option>"; 
+									}
+									if ($row<=0){
+										echo "<option>Sem valor</option>";
+									}
+								?>
 							</select>
 						</div>
 					</div>
@@ -73,14 +110,22 @@
 						<div class="form-group col-md-3">
 							<label for="tipoMsg" class="label-control" id="labelTipoMsg">Tipo da Mensagem:</label>
 							<select class="form-control" name="tipoMsg" id="tipoMsg">
-								<option></option>
-								<option>Aviso</option>
+								<?php
+									$consulta = mysql_query("SELECT * FROM TIPO_MENSAGEM ORDER BY id_tipo_mensagem");
+									$row = mysql_num_rows($consulta);
+									while($linha = mysql_fetch_assoc($consulta)){
+										echo "<option id='" . $linha['id_tipo_mensagem'] . "'>" . $linha['nome_tipo_msg'] . "</option>"; 
+									}
+									if ($row<=0){
+										echo "<option>Sem valor</option>";
+									}
+								?>
 							</select>
 						</div>
 					</div>
 					<div class="row" style="border:none;">
 						<div class="form-group col-md-3">
-							<button class="btn btn-success" id="btnEnviar">Enviar</button>
+							<button type = "submit" class="btn btn-success" id="btnEnviar">Enviar</button>
 							<button class="btn btn-default" id="btnLimpar">Limpar</button>
 						</div>
 					</div>

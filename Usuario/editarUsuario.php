@@ -183,7 +183,7 @@
 							<div class="col-md-5">
 							</div>
 							<div class="form-group col-md-3">
-								<button class="btn btn-success" id="btnEnviar">Enviar</button>
+								<button type = "submit" class="btn btn-success" id="btnEnviar">Enviar</button>
 								<button class="btn btn-default" id="btnLimpar">Limpar</button>
 							</div>
 						</div>

@@ -86,9 +86,10 @@
 										echo "<td>" . $linha['nome_perfil'] . "</td>";
 										echo "<td>" . $linha['descricao_perfil'] . "</td>";
 										echo "<td>
-												<button class = 'glyphicon glyphicon-edit'></button>
-												<button class = 'glyphicon glyphicon-search'></button>
-												<button class = 'glyphicon glyphicon-remove'></button>
+												<a href = 'cadastrarPrivilegio.php?go=cadastrarPrivilegio&id=" .$linha['id_perfil']. "' title = 'Cadastrar Privilegio'><button class = 'glyphicon glyphicon-list'></button></a>
+												<button class = 'glyphicon glyphicon-edit' title = 'Editar'></button>
+												<button class = 'glyphicon glyphicon-search' title = 'Visualizar'></button>
+												<button class = 'glyphicon glyphicon-remove' title = 'Remover'></button>
 											</td>";
 										echo "</tr>";
 									}
