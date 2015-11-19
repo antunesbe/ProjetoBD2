@@ -1,23 +1,22 @@
 <?php
 	session_start();
 	include "../includes/conexaoBD.php";
-	
-		
+
 		$idRemetente = $_GET['id'];
 
-	/*if($_GET['go']=='alterarSetor'){
+	if($_GET['go']=='salvarPrivilegio'){
 
-		$nome = $_POST['nome'];
-		$desc = $_POST['descricao'];
-		$pChave = $_POST['pessoaChave'];
+		$destinatario = $_POST['destinatario'];
+		$tipoMsg = $_POST['tipoMsg'];
 
-		$alterar = mysql_query("UPDATE DEPARTAMENTO SET nome_depto='$nome', descricao_depto='$desc', pessoa_chave = (SELECT id_pessoa FROM USUARIO WHERE '$pChave'=email) WHERE '$idSetor' = id_departamento");
-	}*/
+		$sql= mysql_query("INSERT INTO PRIVILEGIO VALUES (null,'$idRemetente','$destinatario','$tipoMsg')");
+	}
 	
 	$sql = mysql_query("SELECT * FROM PERFIL WHERE '$idRemetente'=id_perfil");
 	while($linha = mysql_fetch_array($sql)){
 		$nomePerfil = $linha['nome_perfil'];
-	}	
+	}
+	
 ?>
 	
 
@@ -82,7 +81,7 @@
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
 				<h2>Cadastrar Privilegio</h2>
-				<form class="form form-vertical" method = "post" action = "cadastrarPrivilegio.php?go=salvarPrivilegio?id=<?php echo $idRemetente; ?>">
+				<form class="form form-vertical" method = "post" action = "cadastrarPrivilegio.php?go=salvarPrivilegio&id=<?php echo $idRemetente; ?>">
 					<div class="row" style="border:none;">
 						<div class="form-group col-md-3">
 							<label for="destinatario" class="label-control" id="labelDestinatario">Perfil Remetente:</label>
@@ -133,20 +132,43 @@
 				
 				<div class="form-group">
 					<table class="table table-hover">
-						<tbody>
-							<tr onclick="location.href = 'login.php'" class="tabelaClicavel" >
-								<td><input type="checkbox"</td>
-								<td>Perfil Remetente</td>
-								<td>Tipo Mensagem</td>
-								<td>Perfil Destinatario</td>
-								<td>
-									<button class = "glyphicon glyphicon-edit"></button>
-									<button class = "glyphicon glyphicon-search"></button>
-									<button class = "glyphicon glyphicon-remove"></button>
-								</td>
+						<thead>
+								<td><b>ID</td>
+								<td><b>Perfil Remetente</td>
+								<td><b>Tipo Mensagem</td>
+								<td><b>Perfil Destinatario</td>
+								<td><b>Opções</td>
 							</tr>
-							
-						</tbody>
+						</thead>
+						<tbody>
+							<?php
+								$sql = mysql_query("SELECT PR.id_privilegio as privilegio, P1.nome_perfil as remetente, P2.nome_perfil as destinatario, TP.nome_tipo_msg as tipo_msg
+													FROM PRIVILEGIO PR
+													INNER JOIN PERFIL P1 ON PR.perfil_remetente = P1.id_perfil
+													INNER JOIN PERFIL P2 ON PR.perfil_destinatario = P2.id_perfil
+													INNER JOIN TIPO_MENSAGEM TP ON PR.priv_tipo_mensagem = TP.id_tipo_mensagem
+													ORDER BY P1.nome_perfil");
+								$numrows = mysql_num_rows($sql);
+								if ($numrows<=0){
+									echo "<td colspan='6'>Não existem usuários cadastrados !</td>";
+								}else{
+									while($linha = mysql_fetch_assoc($sql)){
+										echo "<tr onclick='location.href = '../login.php'' class='tabelaClicavel' >";
+										echo "<td>" . $linha['privilegio'] . "</td>";
+										echo "<td>" . $linha['remetente'] . "</td>";
+										echo "<td>" . $linha['destinatario'] . "</td>";
+										echo "<td>" . $linha['tipo_msg'] . "</td>";
+										echo "<td>
+												<button class = 'glyphicon glyphicon-edit'></button>
+												<button class = 'glyphicon glyphicon-search'></button>
+												<button class = 'glyphicon glyphicon-remove'></button>
+											</td>";
+										echo "</tr>";
+									}
+								}
+							?>
+						
+					</tbody>
 					</table>
 				</div>
 			</section>
@@ -169,3 +191,16 @@
 	</div>
 </body>
 </html>
+
+<?php
+if(isset($_GET['go'])){
+	if($_GET['go'] == 'salvarPrivilegio'){
+			?>
+			<script>
+				$('.salvarPrivilegio').removeClass("hidden");
+			</script>
+
+			<?php
+		}
+	}
+?>
