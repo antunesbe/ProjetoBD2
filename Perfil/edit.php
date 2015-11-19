@@ -1,6 +1,22 @@
 <?php
 	session_start();
 	include "../includes/conexaoBD.php";
+	
+	$idPerfil = $_GET['id'];
+
+	if($_GET['go']=='alterarPerfil'){
+
+		$nome = $_POST['nome'];
+		$desc = $_POST['descricao'];
+		$alterar = mysql_query("UPDATE PERFIL SET nome_perfil='$nome', descricao_perfil='$desc' WHERE '$idPerfil' = id_perfil");
+	}
+	
+	$sql = mysql_query("SELECT * FROM PERFIL WHERE '$idPerfil'=id_perfil");
+
+	while($linha = mysql_fetch_array($sql)){
+		$nomePerfil = $linha['nome_perfil'];
+		$descPerfil = $linha['descricao_perfil'];
+	}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -8,7 +24,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Listar Perfil - Projeto BD-2 </title>
+	<title>Cadastrar Perfil - Projeto BD-2 </title>
 
 	<!-- Arquivos CSS -->
 	<link rel="stylesheet" href="../css/bootstrap.css">
@@ -62,43 +78,32 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
-				<h2>Perfis</h2>
-				<br>
-				<div class="form-group">
-					<a class="btn btn-success pull-left" href="create.php"><span class="glyphicon glyphicon-plus"></span> Adicionar</a>
-					<table class="table table-hover">
-						<thead>
-							<th>#</th>
-							<th>Nome</th>
-							<th>Descricao</th>
-							<th>Ação</th>
-						</thead>
-						<tbody>
-							<?php
-								$sql = mysql_query("SELECT * FROM PERFIL ORDER BY id_perfil");
-								$numrows = mysql_num_rows($sql);
-								if ($numrows<=0){
-									echo "<td colspan='4'>Não existem Departamentos cadastrados !</td>";
-								}else{
-									while($linha = mysql_fetch_assoc($sql)){
-										echo "<tr onclick='location.href = '../login.php'' class='tabelaClicavel' >";
-										echo "<td>" . $linha['id_perfil'] . "</td>";
-										echo "<td>" . $linha['nome_perfil'] . "</td>";
-										echo "<td>" . $linha['descricao_perfil'] . "</td>";
-										echo "<td>
-												<a href = 'cadastrarPrivilegio.php?go=cadastrarPrivilegio&id=" .$linha['id_perfil']. "' title = 'Cadastrar Privilegio'><button class = 'glyphicon glyphicon-list' title = 'Cadastrar Privilegio'></button></a>
-												<a href = 'edit.php?go=editarPerfil&id=" .$linha['id_perfil']. "' title = 'Cadastrar Privilegio'><button class = 'glyphicon glyphicon-edit' title = 'Editar'></button></a>
-												<button class = 'glyphicon glyphicon-search' title = 'Visualizar'></button>
-												<button class = 'glyphicon glyphicon-remove' title = 'Remover'></button>
-											</td>";
-										echo "</tr>";
-									}
-								}
-							?>
-							
-						</tbody>
-					</table>
+				<br class="alertaCadastro hidden">
+				<div class="alert alert-success hidden alertaCadastro">
+					<span class="close" data-dismiss="alert">&times;</span>
+					Cadastro realizado com <strong>Sucesso</strong> !
 				</div>
+				<h2>Cadastrar Perfil</h2>
+				<form class="form form-vertical" method="post" action="?go=alterarPerfil&id=<?php echo $idPerfil; ?>">
+					<div class="row" style="border:none;">
+						<div class="form-group col-md-6">
+							<label for="nome" class="label-control" id="labelNome">Nome:</label>
+							<input type="text" class="form-control" name="nome" id="nome" value = "<?php echo $nomePerfil; ?>">
+						</div>
+					</div>
+					<div class="row" style="border:none;">
+						<div class="form-group col-md-6">
+							<label for="descricao" class="label-control" id="labelDescricao">Descrição:</label>
+							<textarea class="form-control" rows="5" name="descricao" id="descricao"><?php echo $descPerfil; ?></textarea>
+						</div>
+					</div>
+					<div class="row" style="border:none;">
+						<div class="form-group col-md-3">
+							<button class="btn btn-success" id="btnEnviar">Enviar</button>
+							<button class="btn btn-default" id="btnLimpar">Limpar</button>
+						</div>
+					</div>
+				</form>
 			</section>
 			<!-- /CONTEUDO -->
 		</div>	
@@ -119,3 +124,16 @@
 	</div>
 </body>
 </html>
+
+<?php
+if(isset($_GET['go'])){
+	if($_GET['go'] == 'alterarSetor'){
+			?>
+			<script>
+				$('.alertaCadastro').removeClass("hidden");
+			</script>
+
+			<?php
+		}
+	}
+?>

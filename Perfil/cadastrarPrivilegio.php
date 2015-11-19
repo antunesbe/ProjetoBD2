@@ -2,17 +2,9 @@
 	session_start();
 	include "../includes/conexaoBD.php";
 
-		$idRemetente = $_GET['id'];
-
-	if($_GET['go']=='salvarPrivilegio'){
-
-		$destinatario = $_POST['destinatario'];
-		$tipoMsg = $_POST['tipoMsg'];
-
-		$sql= mysql_query("INSERT INTO PRIVILEGIO VALUES (null,'$idRemetente','$destinatario','$tipoMsg')");
-	}
-	
+	$idRemetente = $_GET['id'];
 	$sql = mysql_query("SELECT * FROM PERFIL WHERE '$idRemetente'=id_perfil");
+	
 	while($linha = mysql_fetch_array($sql)){
 		$nomePerfil = $linha['nome_perfil'];
 	}
@@ -80,6 +72,11 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
+			<br class="alertaCadastro hidden">
+				<div class="alert alert-success hidden alertaCadastro">
+					<span class="close" data-dismiss="alert">&times;</span>
+					Cadastro realizado com <strong>Sucesso</strong> !
+				</div>
 				<h2>Cadastrar Privilegio</h2>
 				<form class="form form-vertical" method = "post" action = "cadastrarPrivilegio.php?go=salvarPrivilegio&id=<?php echo $idRemetente; ?>">
 					<div class="row" style="border:none;">
@@ -124,7 +121,7 @@
 					</div>
 					<div class="row" style="border:none;">
 						<div class="form-group col-md-3">
-							<button type = "submit" class="btn btn-success" id="btnEnviar">Enviar</button>
+							<button class="btn btn-success" id="btnEnviar">Enviar</button>
 							<button class="btn btn-default" id="btnLimpar">Limpar</button>
 						</div>
 					</div>
@@ -193,11 +190,20 @@
 </html>
 
 <?php
-if(isset($_GET['go'])){
-	if($_GET['go'] == 'salvarPrivilegio'){
+	if($_GET['go']=='salvarPrivilegio'){
+		$destinatario = $_POST['destinatario'];
+		$tipoMsg = $_POST['tipoMsg'];
+		$sql= mysql_query("INSERT INTO PRIVILEGIO VALUES (null,idRemetente = (SELECT id_perfil FROM PERFIL WHERE '$idRemetente '=nome_perfil),
+							destinatario = (SELECT id_perfil FROM PERFIL WHERE '$destinatario'=nome_perfil),
+							tipoMsg = (SELECT id_tipo_mensagem FROM TIPO_MENSAGEM WHERE '$tipoMsg'=nome_tipo_msg))");
+	
+
+		if(!$sql){
+			echo mysql_error();
+		}else{
 			?>
 			<script>
-				$('.salvarPrivilegio').removeClass("hidden");
+				$('.alertaCadastro').removeClass("hidden");
 			</script>
 
 			<?php

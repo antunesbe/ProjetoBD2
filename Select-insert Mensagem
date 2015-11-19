@@ -1,0 +1,14 @@
+SELECT MS.id_mensagem, MS.assunto, MS.conteudo, MS.lida, resposta, U1.nome as remetente, U2.nome as destinatario, TP.nome_tipo_msg as tipo_mensagem 
+FROM MENSAGEM MS 
+INNER JOIN USUARIO U1
+	ON U1.id_pessoa = MS.remetente
+INNER JOIN USUARIO U2
+	ON U2.id_pessoa = MS.destinatario
+INNER JOIN TIPO_MENSAGEM TP
+	ON TP.id_tipo_mensagem = MS.tipo_mensagem 
+	
+
+INSERT INTO MENSAGEM VALUES (null,$assunto,$conteudo,$lida,$resposta,
+		idRemetente = "SELECT id_pessoa FROM USUARIO WHERE nome =" .$remetente,
+		idDestianatario = "SELECT id_pessoa FROM USUARIO WHERE nome =" .$destinatario, 
+		idTipoMsg ="SELECT id_tipo_mensagem FROM TIPO_MENSAGEM WHERE nome_tipo_msg =". $tipoMsg)
