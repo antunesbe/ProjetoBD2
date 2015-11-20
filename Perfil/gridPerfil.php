@@ -75,7 +75,13 @@
 						</thead>
 						<tbody>
 							<?php
-								$sql = mysql_query("SELECT * FROM PERFIL ORDER BY id_perfil");
+								$page = $_GET['page'];
+								if($page == "")
+									$page1 = 0;
+								else
+									$page1 = ($page-1)*3;
+								
+								$sql = mysql_query("SELECT * FROM PERFIL ORDER BY id_perfil limit $page1,3");
 								$numrows = mysql_num_rows($sql);
 								if ($numrows<=0){
 									echo "<td colspan='4'>Não existem Departamentos cadastrados !</td>";
@@ -98,6 +104,19 @@
 							
 						</tbody>
 					</table>
+					<?php
+						$sql = mysql_query("SELECT * FROM PERFIL");
+						$numrows = mysql_num_rows($sql);
+								
+						$a=$numrows/3;
+						$a=ceil($a);
+						echo "<br> <br>";
+						for ($i = 1; $i<=$a; $i++)
+						{
+							?><a href = "gridPerfil.php?&page= <?php echo $i; ?>"><button> <?php echo $i; ?></button></a>
+							<?php
+						}
+					?>
 				</div>
 			</section>
 			<!-- /CONTEUDO -->
