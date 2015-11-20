@@ -26,6 +26,16 @@
 	<script src="../js/bootstrap.js"></script>
 	<script src="../js/jquery.js"></script>
 </head>
+<script>
+	function confirmacao(){
+		if(confirm("Deseja excluir este item?")){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+</script>
 <body>
 	<!-- MENU SUPERIOR -->
 	<nav class="navbav navbar-default menuSuperior">
