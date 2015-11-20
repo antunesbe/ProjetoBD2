@@ -12,3 +12,16 @@ INSERT INTO MENSAGEM VALUES (null,$assunto,$conteudo,$lida,$resposta,
 		idRemetente = "SELECT id_pessoa FROM USUARIO WHERE nome =" .$remetente,
 		idDestianatario = "SELECT id_pessoa FROM USUARIO WHERE nome =" .$destinatario, 
 		idTipoMsg ="SELECT id_tipo_mensagem FROM TIPO_MENSAGEM WHERE nome_tipo_msg =". $tipoMsg)
+		
+		
+SELECT TP.nome_tipo_msg, TP.id_tipo_mensagem 
+	FROM TIPO_MENSAGEM TP
+    WHERE TP.id_tipo_mensagem in (
+        SELECT PV.priv_tipo_mensagem 
+        FROM PRIVILEGIO PV
+		INNER JOIN USUARIO RE ON RE.perfil = PV.perfil_remetente
+		INNER JOIN USUARIO DE ON DE.perfil = PV.perfil_destinatario
+		WHERE RE.id_pessoa =  1
+		AND DE.id_pessoa = 1
+		)
+	ORDER BY TP.nome_tipo_msg;
