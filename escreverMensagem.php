@@ -43,7 +43,6 @@
 	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 </head>
-
 <body>
 	<!-- MENU SUPERIOR -->
 	<nav class="navbav navbar-default menuSuperior">
@@ -120,7 +119,7 @@
 						<!-- TIPO MENSAGEM -->
 						<div class="form-group col-md-3">
 							<label for="tipoMsg" class="label-control" id="labelTipoMsg">Tipo da Mensagem:</label>
-							<select class="form-control" name="tipoMsg" id="tipoMsg">
+							<select class="form-control" name="tipoMsg" id="tipoMsg" disabled="true">
 								<?php
 									$consulta = mysql_query("SELECT * FROM TIPO_MENSAGEM ORDER BY id_tipo_mensagem");
 		    							$row = mysql_num_rows($consulta);
@@ -179,7 +178,17 @@
 </body>
 </html>
 
+
+
 <?php
+	$consultaDeptoUsuario = mysql_query("SELECT * FROM USUARIO WHERE '$idUsuario' = id_pessoa") or die(mysql_error());
+	$consultaDeptoUsuario = mysql_fetch_array($consultaDeptoUsuario);
+	$deptoUsuario = $consultaDeptoUsuario['departamento'];
+	echo "<script>";
+	echo "if(document.getElementById('destinatario').value ==" . $deptoUsuario . "){ document.getElementById('tipoMsg').disabled= false";
+	echo "</script>";
+
+
 	if (isset($_GET['go'])){
 		if($_GET['go']=='enviaMsg'){
 			?>
