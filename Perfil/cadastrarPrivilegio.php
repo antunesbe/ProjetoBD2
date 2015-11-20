@@ -179,7 +179,7 @@
 										echo "<td>" . $linha['destinatario'] . "</td>";
 										echo "<td>" . $linha['tipo_msg'] . "</td>";
 										echo "<td>
-												<a href='deletePrivilegio.php?id=" . $linha['privilegio'] . "&idRemetente=". $linha['remetente'] ."' onclick='return confirmacao()'><button title = 'Remover' class = 'glyphicon glyphicon-remove' ></button></a>
+												<a href='deletePrivilegio.php?id=" . $linha['privilegio'] . "&idRemetente=". $idRemetente ."' onclick='return confirmacao()'><button title = 'Remover' class = 'glyphicon glyphicon-remove' ></button></a>
 											</td>";
 										echo "</tr>";
 									}
