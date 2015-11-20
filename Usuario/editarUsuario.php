@@ -1,6 +1,6 @@
 <?php
 	include "../includes/conexaoBD.php";
-	
+	session_start();
 	$idUsuario = $_GET['id'];
 
 	if($_GET['go']=='alterarUsuario'){
@@ -35,7 +35,6 @@
 	}
 	
 /*PEGAR MENSAGENS NAO LIDAS*/
-  		$idUsuario = $_SESSION['id'];
 		$consultaMsg = mysql_query("SELECT * FROM MENSAGEM WHERE destinatario='$idUsuario' AND lida = 0") or die(mysql_error());
 		$msgsNaoLidas = mysql_num_rows($consultaMsg);
 ?>

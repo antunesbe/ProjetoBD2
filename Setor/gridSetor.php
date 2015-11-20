@@ -25,6 +25,16 @@
 	<script src="../js/bootstrap.js"></script>
 	<script src="../js/jquery.js"></script>
 </head>
+<script>
+	function confirmacao(){
+		if(confirm("Deseja excluir este item?")){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+</script>
 <body>
 	<!-- MENU SUPERIOR -->
 	<nav class="navbav navbar-default menuSuperior">
@@ -68,6 +78,11 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
+				<br class="alertaRemocao hidden">
+				<div class="alert alert-danger alertaRemocao hidden">
+					<span class="close" data-dismiss="alert">&times;</span>
+					Usuário deletado com <strong>Sucesso</strong> !
+				</div>
 				<h2>Departamentos</h2>
 				<br>
 				<div class="form-group">
@@ -130,3 +145,16 @@
 	</div>
 </body>
 </html>
+<?php
+
+	if(isset($_GET['sit'])){
+		if($_GET['sit']=='deptoDeletado'){
+			?>
+			<script>
+				$('.alertaRemocao').removeClass("hidden");
+			</script>
+			<?php
+		}
+	}
+
+?>
