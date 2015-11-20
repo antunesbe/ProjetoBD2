@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    include "includes/conexaoBD.php";
+
+    /*PEGAR MENSAGENS NAO LIDAS*/
+    $idUsuario = $_SESSION['id'];
+    $consultaMsg = mysql_query("SELECT * FROM MENSAGEM WHERE destinatario='$idUsuario' AND lida = 0") or die(mysql_error());
+    $msgsNaoLidas = mysql_num_rows($consultaMsg);
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -42,7 +52,7 @@
                             <a href="escreverMensagem.php" id="opcaoMenuLateral1">Escrever Mensagem <span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
                         </li>
                         <li>
-                            <a href="mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right">12</span></a>
+                            <a href="mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right"><?php echo $msgsNaoLidas; ?></span></a>
                         </li>
                         <li>
                             <a href="mensagensEnviadas.php" id="opcaoMenuLateral3">Mensagens Enviadas <span class="glyphicon glyphicon-envelope pull-right icones"></span></a>
@@ -59,26 +69,29 @@
         <!-- /MENU LATERAL -->
         <!-- CONTEUDO -->
             <section class="col-md-10 conteudo">
-                <h1>Contatos</h1>
+                <h2>Contatos</h2>
                 <br>
                 <table class="table table-hover">
+                    <thead>
+                        <th>Nome</th>
+                        <th>E-Mail</th>
+                        <th>Ação</th>
+                    </thead>
                     <tbody>
-                        <tr>
-                            <td>Ademir de Luca</td>
-                            <td>Setor 102</td>
-                        </tr>
-                        <tr>
-                            <td> Breno Bonassi dos Santos</td>
-                            <td> Setor 120</td>
-                        </tr>
-                        <tr>
-                            <td> Danilo Freitas da Silva</td>
-                            <td> Setor 130</td>
-                        </tr>
-                        <tr>
-                            <td> Fernando Luquinha</td>
-                            <td> Setor 230</td>
-                        </tr>
+                        <?php
+                            $sql = mysql_query("SELECT * FROM USUARIO WHERE departamento = (SELECT departamento FROM USUARIO WHERE id_pessoa = '$idUsuario')");
+                            
+                            while($linha = mysql_fetch_array($sql)){
+                                echo "<tr>";
+                                echo "<td>" . $linha['nome'] . "</td>";
+                                echo "<td>" . $linha['email'] . "</td>";
+                                echo "<td>
+                                        <button><a href='#'><span class = 'glyphicon glyphicon-share-alt'></span></a></button>
+                                        </td>";
+                                echo "</tr>";
+                            }
+                        
+                        ?>
                     </tbody>    
                 </table>
 
@@ -92,11 +105,11 @@
 
             </div>
             <div class="col-md-4 conteudoRodape">
-                <p style="font-size:25px">Trabalho de Banco de Dados 2</p>
-                <p style="font-size:20px">PUC-Campinas</p>
+                <p style="font-size:20px">Trabalho de Banco de Dados 2</p>
+                <p style="font-size:15px">PUC-Campinas</p>
             </div>
             <div class="col-md-4 conteudoRodape">
-                <p class="pull-right text-left"style="font-size:17px">Breno Antunes - 12021069 <br>Breno Bonassi - 120201069 <br>Danilo Freitas - 12021069 </p>
+                <p class="pull-right text-left"style="font-size:15px">Breno Antunes - 12021069 <br>Breno Bonassi - 12118501 <br>Danilo Freitas - 12647111 </p>
             </div>
         </footer>
     </div>
