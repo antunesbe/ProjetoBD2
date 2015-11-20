@@ -3,7 +3,7 @@
 
 	$idDepto = $_GET['id'];
 
-	$deleta = mysql_query("DELETE FROM DEPARTAMENTO WHERE id_departamento = '$idDepto");
+	$deleta = mysql_query("DELETE FROM DEPARTAMENTO WHERE id_departamento = '$idDepto'");
 
 	header("Location:gridSetor.php?sit=deptoDeletado");
 
