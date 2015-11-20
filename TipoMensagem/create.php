@@ -22,8 +22,8 @@
 	<link rel="stylesheet" href="../css/menuTopoEstilo.css">
 	<link rel="stylesheet" href="../css/menuLateralEstilo.css">
 	<!-- Arquivos Javascript -->
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/jquery.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 </head>
 <body>
 	<!-- MENU SUPERIOR -->
@@ -68,9 +68,14 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
-				<h2>Cadastrar Tipo de Mensagem</h2>
-				<form class="form form-vertical">
-					<div class="row"  style="border:none;">
+				<br class="alertaCadastro hidden">
+				<div class="alert alert-success hidden alertaCadastro">
+					<span class="close" data-dismiss="alert">&times;</span>
+					Cadastro realizado com <strong>Sucesso</strong> !
+				</div>
+				<h2>Cadastrar Tipo Mensagem</h2>
+				<form class="form form-vertical" method="post" action="?go=cadastraPerfil">
+					<div class="row" style="border:none;">
 						<div class="form-group col-md-6">
 							<label for="nome" class="label-control" id="labelNome">Nome:</label>
 							<input type="text" class="form-control" name="nome" id="nome">
@@ -109,3 +114,25 @@
 	</div>
 </body>
 </html>
+
+
+<?php
+	if($_GET['go']=='cadastraPerfil'){
+		$nome = $_POST['nome'];
+		$descricao = $_POST['descricao'];
+
+		$sql= mysql_query("INSERT INTO TIPO_MENSAGEM VALUES (null,'$nome','$descricao')");
+
+
+		if(!$sql){
+			echo mysql_error();
+		}else{
+			?>
+			<script>
+				$('.alertaCadastro').removeClass("hidden");
+			</script>
+
+			<?php
+		}
+	}
+?>

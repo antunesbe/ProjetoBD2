@@ -69,6 +69,10 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
+				<div class="alert alert-danger alertaRemocao hidden">
+					<span class="close" data-dismiss="alert">&times;</span>
+					Tipo Mensagem deletado com <strong>Sucesso</strong> !
+				</div>
 				<h2>Tipos de Mensagens</h2>
 				<br>
 				<div class="form-group">
@@ -93,9 +97,9 @@
 											echo 	"<td>" . $linha['nome_tipo_msg'] . "</td>";
 											echo 	"<td>" . $linha['descricao_tipo_msg'] . "</td>";
 											echo 	"<td>
-														<button class = 'glyphicon glyphicon-edit'></button>
-														<button class = 'glyphicon glyphicon-search'></button>
-														<button class = 'glyphicon glyphicon-remove'></button>
+														<a href = 'edit.php?go=editarPerfil&id=" .$linha['id_tipo_mensagem']. "'><button class = 'glyphicon glyphicon-edit' title = 'Editar'></button></a>
+														<button class = 'glyphicon glyphicon-search' title = 'Visualizar'></button>
+														<a href='delete.php?id=" . $linha['id_tipo_mensagem'] . "' onclick='return confirmacao()'><button title = 'Remover' class = 'glyphicon glyphicon-remove' ></button></a>
 													</td>";
 											echo "</tr>";
 
@@ -126,3 +130,17 @@
 	</div>
 </body>
 </html>
+
+<?php
+
+	if(isset($_GET['sit'])){
+		if($_GET['sit']=='tipoMsgDeletado'){
+			?>
+			<script>
+				$('.alertaRemocao').removeClass("hidden");
+			</script>
+			<?php
+		}
+	}
+
+?>

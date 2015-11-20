@@ -112,7 +112,7 @@
                                 <div class="panel-body admPills">
                                     <ul class="nav nav-pills nav-stacked" id="bodyPerfil">
                                         <li>
-                                            <a href="Perfil/gridPerfil.php">Listar</a>
+                                            <a href="Perfil/gridPerfil.php?&page=1">Listar</a>
                                         </li>
                                         <li>
                                             <a href="Perfil/create.php">Adicionar</a>

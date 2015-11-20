@@ -3,19 +3,19 @@
 	include "../includes/conexaoBD.php";
 	
 	$idTipoMsg = $_GET['id'];
-	
-	if($_GET['go']=='alteraTipoMensagem'){
-		
+
+	if($_GET['go']=='alterarTipoMsg'){
+
 		$nome = $_POST['nome'];
 		$desc = $_POST['descricao'];
 		$alterar = mysql_query("UPDATE TIPO_MENSAGEM SET nome_tipo_msg='$nome', descricao_tipo_msg='$desc' WHERE '$idTipoMsg' = id_tipo_mensagem");
 	}
 	
 	$sql = mysql_query("SELECT * FROM TIPO_MENSAGEM WHERE '$idTipoMsg'=id_tipo_mensagem");
-	
+
 	while($linha = mysql_fetch_array($sql)){
-		$nomeMsg = $linha['nome_tipo_msg'];
-		$descMsg = $linha['descricao_tipo_msg'];
+		$nomeTipoMsg = $linha['nome_tipo_msg'];
+		$descTipoMsg = $linha['descricao_tipo_msg'];
 	}
 	
 /*PEGAR MENSAGENS NAO LIDAS*/
@@ -23,14 +23,13 @@
 		$consultaMsg = mysql_query("SELECT * FROM MENSAGEM WHERE destinatario='$idUsuario' AND lida = 0") or die(mysql_error());
 		$msgsNaoLidas = mysql_num_rows($consultaMsg);
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Cadastrar Tipo Mensagem - Projeto BD-2 </title>
+	<title>Editar Tipo Mensagem - Projeto BD-2 </title>
 
 	<!-- Arquivos CSS -->
 	<link rel="stylesheet" href="../css/bootstrap.css">
@@ -38,15 +37,15 @@
 	<link rel="stylesheet" href="../css/menuTopoEstilo.css">
 	<link rel="stylesheet" href="../css/menuLateralEstilo.css">
 	<!-- Arquivos Javascript -->
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/jquery.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 </head>
 <body>
 	<!-- MENU SUPERIOR -->
 	<nav class="navbav navbar-default menuSuperior">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" id="tituloTopo" href="../index.php">Sistema de ComunicaÃ§Ã£o Interno</a>
+				<a class="navbar-brand" id="tituloTopo" href="../index.php">Sistema de Comunicação Interno</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a id="opcaoMenuSuperior1" href="../perfil.php"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
@@ -84,24 +83,23 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
-			<br class="alertaTipo_mensagem hidden">
-				<div class="alert alert-success hidden alertaTipo_mensagem">
+				<br class="alertaEdicao hidden">
+				<div class="alert alert-success hidden alertaEdicao">
 					<span class="close" data-dismiss="alert">&times;</span>
-					Tipo de mensagem editado com <strong>Sucesso</strong> !
+					O Tipo Mensagem foi editado com <strong>Sucesso</strong> !
 				</div>
-				<h2>Editar Tipo de Mensagem</h2>
-				<form class="form form-vertical" method="POST" action="editarTipoMensagem.php?go=alteraTipoMensagem&id=<?php echo $IdTipoMsg; ?>">
-				<form class="form form-vertical">
-					<div class="row"  style="border:none;">
+				<h2>Cadastrar Tipo Mensagem</h2>
+				<form class="form form-vertical" method="post" action="?go=alterarTipoMsg&id=<?php echo $idTipoMsg; ?>">
+					<div class="row" style="border:none;">
 						<div class="form-group col-md-6">
 							<label for="nome" class="label-control" id="labelNome">Nome:</label>
-							<input type="text" class="form-control" name="nome" id="nome" value = "<?php echo $nomeMsg; ?>>
+							<input type="text" class="form-control" name="nome" id="nome" value = "<?php echo $nomeTipoMsg; ?>">
 						</div>
 					</div>
 					<div class="row" style="border:none;">
 						<div class="form-group col-md-6">
-							<label for="descricao" class="label-control" id="labelDescricao">DescriÃ§Ã£o:</label>
-							<textarea class="form-control" rows="5" name="descricao" id="descricao"><?php echo $descMsg; ?></textarea>
+							<label for="descricao" class="label-control" id="labelDescricao">Descrição:</label>
+							<textarea class="form-control" rows="5" name="descricao" id="descricao"><?php echo $descTipoMsg; ?></textarea>
 						</div>
 					</div>
 					<div class="row" style="border:none;">
@@ -111,7 +109,7 @@
 						</div>
 					</div>
 				</form>
-			</section>	
+			</section>
 			<!-- /CONTEUDO -->
 		</div>	
 	</div>
@@ -135,12 +133,13 @@
 
 <?php
 if(isset($_GET['go'])){
-	if($_GET['go']=='alteraTipoMensagem'){
+	if($_GET['go'] == 'alterarTipoMsg'){
 			?>
 			<script>
-				$('.alertaTipoMensagem').removeClass("hidden");
+				$('.alertaEdicao').removeClass("hidden");
 			</script>
 
 			<?php
 		}
 	}
+?>

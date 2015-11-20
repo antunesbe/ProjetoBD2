@@ -66,7 +66,11 @@
 			</nav>
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
-			<section class="col-md-10 conteudo">
+			<section class="col-md-10 conteudo"><br class="alertaRemocao hidden">
+				<div class="alert alert-danger alertaRemocao hidden">
+					<span class="close" data-dismiss="alert">&times;</span>
+					Perfil deletado com <strong>Sucesso</strong> !
+				</div>
 				<h2>Perfis</h2>
 				<br>
 				<div class="form-group">
@@ -97,10 +101,10 @@
 										echo "<td>" . $linha['nome_perfil'] . "</td>";
 										echo "<td>" . $linha['descricao_perfil'] . "</td>";
 										echo "<td>
-												<a href = 'cadastrarPrivilegio.php?go=cadastrarPrivilegio&id=" .$linha['id_perfil']. "' title = 'Cadastrar Privilegio'><button class = 'glyphicon glyphicon-list' title = 'Cadastrar Privilegio'></button></a>
+												<a href = 'cadastrarPrivilegio.php?go=cadastrarPrivilegio&id=" .$linha['id_perfil']. "&page=1' title = 'Cadastrar Privilegio'><button class = 'glyphicon glyphicon-list' title = 'Cadastrar Privilegio'></button></a>
 												<a href = 'edit.php?go=editarPerfil&id=" .$linha['id_perfil']. "' title = 'Cadastrar Privilegio'><button class = 'glyphicon glyphicon-edit' title = 'Editar'></button></a>
 												<button class = 'glyphicon glyphicon-search' title = 'Visualizar'></button>
-												<button class = 'glyphicon glyphicon-remove' title = 'Remover'></button>
+												<a href='delete.php?id=" . $linha['id_perfil'] . "' onclick='return confirmacao()'><button title = 'Remover' class = 'glyphicon glyphicon-remove' ></button></a>
 											</td>";
 										echo "</tr>";
 									}
@@ -115,10 +119,10 @@
 								
 						$a=$numrows/3;
 						$a=ceil($a);
-						echo "<br> <br>";
-						for ($i = 1; $i<=$a; $i++)
+						echo "<br>";
+						for ($i = $a; $i>=1; $i--)
 						{
-							?><a href = "gridPerfil.php?&page= <?php echo $i; ?>"><button> <?php echo $i; ?></button></a>
+							?><a href = "gridPerfil.php?&page= <?php echo $i; ?>"><button class = "pull-right"> <?php echo $i; ?></button></a>
 							<?php
 						}
 					?>
@@ -143,3 +147,17 @@
 	</div>
 </body>
 </html>
+
+<?php
+
+	if(isset($_GET['sit'])){
+		if($_GET['sit']=='perfilDeletado'){
+			?>
+			<script>
+				$('.alertaRemocao').removeClass("hidden");
+			</script>
+			<?php
+		}
+	}
+
+?>

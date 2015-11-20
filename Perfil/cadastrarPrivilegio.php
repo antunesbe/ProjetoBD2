@@ -32,7 +32,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Pagina Inicial - Projeto BD-2 </title>
+	<title>Cadastrar Privilégio - Projeto BD-2 </title>
 
 	<!-- Arquivos CSS -->
 	<link rel="stylesheet" href="../css/bootstrap.css">
@@ -91,15 +91,17 @@
 					<span class="close" data-dismiss="alert">&times;</span>
 					Cadastro realizado com <strong>Sucesso</strong> !
 				</div>
+				<div class="alert alert-danger alertaRemocao hidden">
+					<span class="close" data-dismiss="alert">&times;</span>
+					Perfil deletado com <strong>Sucesso</strong> !
+				</div>
 				<h2>Cadastrar Privilegio</h2>
-				<form class="form form-vertical" method = "post" action = "cadastrarPrivilegio.php?go=salvarPrivilegio&id=<?php echo $idRemetente; ?>">
+				<form class="form form-vertical" method = "post" action = "cadastrarPrivilegio.php?go=salvarPrivilegio&id=<?php echo $idRemetente; ?>&page=1">
 					<div class="row" style="border:none;">
 						<div class="form-group col-md-3">
 							<label for="destinatario" class="label-control" id="labelDestinatario">Perfil Remetente:</label>
 							<input type = "text" class = "form-control" disabled value = "<?php echo $nomePerfil; ?>">
 						</div>
-					</div>
-					<div class="row" style="border:none;">
 						<div class="form-group col-md-3">
 							<label for="destinatario" class="label-control" id="labelDestinatario">Perfil Destinatario:</label>
 							<select class="form-control" name="destinatario" id="destinatario">
@@ -115,8 +117,6 @@
 								?>
 							</select>
 						</div>
-					</div>
-					<div class="row" style="border:none;">
 						<div class="form-group col-md-3">
 							<label for="tipoMsg" class="label-control" id="labelTipoMsg">Tipo da Mensagem:</label>
 							<select class="form-control" name="tipoMsg" id="tipoMsg">
@@ -153,13 +153,21 @@
 						</thead>
 						<tbody>
 							<?php
+								$page = $_GET['page'];
+								if($page == "")
+									$page1 = 0;
+								else
+									$page1 = ($page-1)*3;
+								
+								
 								$sql = mysql_query("SELECT PR.id_privilegio as privilegio, P1.nome_perfil as remetente, P2.nome_perfil as destinatario, TP.nome_tipo_msg as tipo_msg
 													FROM PRIVILEGIO PR
 													INNER JOIN PERFIL P1 ON PR.perfil_remetente = P1.id_perfil
 													INNER JOIN PERFIL P2 ON PR.perfil_destinatario = P2.id_perfil
 													INNER JOIN TIPO_MENSAGEM TP ON PR.priv_tipo_mensagem = TP.id_tipo_mensagem
 													WHERE PR.perfil_remetente = '$idRemetente	'
-													ORDER BY id_privilegio");
+													ORDER BY id_privilegio limit $page1,3");
+													
 								$numrows = mysql_num_rows($sql);
 								if ($numrows<=0){
 									echo "<td colspan='6'>Não existem usuários cadastrados !</td>";
@@ -171,9 +179,7 @@
 										echo "<td>" . $linha['destinatario'] . "</td>";
 										echo "<td>" . $linha['tipo_msg'] . "</td>";
 										echo "<td>
-												<button class = 'glyphicon glyphicon-edit'></button>
-												<button class = 'glyphicon glyphicon-search'></button>
-												<button class = 'glyphicon glyphicon-remove'></button>
+												<a href='deletePrivilegio.php?id=" . $linha['privilegio'] . "&idRemetente=". $linha['remetente'] ."' onclick='return confirmacao()'><button title = 'Remover' class = 'glyphicon glyphicon-remove' ></button></a>
 											</td>";
 										echo "</tr>";
 									}
@@ -182,6 +188,18 @@
 						
 					</tbody>
 					</table>
+					<?php
+						$sql = mysql_query("SELECT * FROM PRIVILEGIO");
+						$numrows = mysql_num_rows($sql);
+								
+						$a=$numrows/3;
+						$a=ceil($a);
+						for ($i = $a; $i>=1; $i--)
+						{
+							?><a href = "cadastrarPrivilegio.php?go=cadastrarPrivilegio&id=<?php echo $idRemetente; ?>&page= <?php echo $i; ?>"><button class = "pull-right"> <?php echo $i; ?></button></a>
+							<?php
+						}
+					?>
 				</div>
 			</section>
 			<!-- /CONTEUDO -->
@@ -215,5 +233,14 @@
 			<?php
 		}
 
+	}
+	if(isset($_GET['sit'])){
+		if($_GET['sit']=='privilegioDeletado'){
+			?>
+			<script>
+				$('.alertaRemocao').removeClass("hidden");
+			</script>
+			<?php
+		}
 	}
 ?>
