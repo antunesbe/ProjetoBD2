@@ -3,6 +3,14 @@
 	include "../includes/conexaoBD.php";
 
 	$idRemetente = $_GET['id'];
+
+	if(isset($_GET['go'])){
+		if($_GET['go']=='salvarPrivilegio'){
+			$destinatario = $_POST['destinatario'];
+			$tipoMsg = $_POST['tipoMsg'];
+			$sql= mysql_query("INSERT INTO PRIVILEGIO VALUES (null, (SELECT id_perfil FROM PERFIL WHERE '$idRemetente'=id_perfil), (SELECT id_perfil FROM PERFIL WHERE '$destinatario'=nome_perfil),(SELECT id_tipo_mensagem FROM TIPO_MENSAGEM WHERE '$tipoMsg'=nome_tipo_msg))") or die(mysql_error());
+		}
+	}
 	$sql = mysql_query("SELECT * FROM PERFIL WHERE '$idRemetente'=id_perfil");
 	
 	while($linha = mysql_fetch_array($sql)){
@@ -26,8 +34,8 @@
 	<link rel="stylesheet" href="../css/menuTopoEstilo.css">
 	<link rel="stylesheet" href="../css/menuLateralEstilo.css">
 	<!-- Arquivos Javascript -->
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/jquery.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 </head>
 <body>
 	<!-- MENU SUPERIOR -->
@@ -132,8 +140,8 @@
 						<thead>
 								<td><b>ID</td>
 								<td><b>Perfil Remetente</td>
-								<td><b>Tipo Mensagem</td>
 								<td><b>Perfil Destinatario</td>
+								<td><b>Tipo Mensagem</td>
 								<td><b>Opções</td>
 							</tr>
 						</thead>
@@ -144,7 +152,8 @@
 													INNER JOIN PERFIL P1 ON PR.perfil_remetente = P1.id_perfil
 													INNER JOIN PERFIL P2 ON PR.perfil_destinatario = P2.id_perfil
 													INNER JOIN TIPO_MENSAGEM TP ON PR.priv_tipo_mensagem = TP.id_tipo_mensagem
-													ORDER BY P1.nome_perfil");
+													WHERE PR.perfil_remetente = '$idRemetente	'
+													ORDER BY id_privilegio");
 								$numrows = mysql_num_rows($sql);
 								if ($numrows<=0){
 									echo "<td colspan='6'>Não existem usuários cadastrados !</td>";
@@ -190,17 +199,8 @@
 </html>
 
 <?php
-	if($_GET['go']=='salvarPrivilegio'){
-		$destinatario = $_POST['destinatario'];
-		$tipoMsg = $_POST['tipoMsg'];
-		$sql= mysql_query("INSERT INTO PRIVILEGIO VALUES (null,idRemetente = (SELECT id_perfil FROM PERFIL WHERE '$idRemetente '=nome_perfil),
-							destinatario = (SELECT id_perfil FROM PERFIL WHERE '$destinatario'=nome_perfil),
-							tipoMsg = (SELECT id_tipo_mensagem FROM TIPO_MENSAGEM WHERE '$tipoMsg'=nome_tipo_msg))");
-	
-
-		if(!$sql){
-			echo mysql_error();
-		}else{
+	if(isset($_GET['go'])){
+		if($_GET['go']=='salvarPrivilegio'){
 			?>
 			<script>
 				$('.alertaCadastro').removeClass("hidden");
@@ -208,5 +208,6 @@
 
 			<?php
 		}
+
 	}
 ?>

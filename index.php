@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include "includes/conexaoBD.php";
 	$USUARIO;
 	$SENHA;
     if(!$_POST){
@@ -10,7 +11,6 @@
     		</script>";
     		}
     }else{
-		include "includes/conexaoBD.php";
 		$EMAIL = $_POST["email"];
     	$SENHA = $_POST["senha"];
 
@@ -28,13 +28,12 @@
     		$_SESSION['data_nasc'] = $resultado['data_nascimento'];
     		$_SESSION['email'] = $resultado['email'];
     	}
-/*PEGAR MENSAGENS NAO LIDAS*/
-    	$idUsuario = $_SESSION['id'];
 
-    	$consultaMsg = mysql_query("SELECT * FROM MENSAGEM WHERE destinatario='$idUsuario' AND lida = 0");
-    	$numRows = mysql_num_rows($consultaMsg);
-  		
     }
+    /*PEGAR MENSAGENS NAO LIDAS*/
+  		$idUsuario = $_SESSION['id'];
+		$consultaMsg = mysql_query("SELECT * FROM MENSAGEM WHERE destinatario='$idUsuario' AND lida = 0") or die(mysql_error());
+		$msgsNaoLidas = mysql_num_rows($consultaMsg);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -79,7 +78,7 @@
 	                        <a href="escreverMensagem.php" id="opcaoMenuLateral1">Escrever Mensagem <span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
 	                    </li>
 	                    <li>
-	                        <a href="mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right">12</span></a>
+	                        <a href="mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right"><?php echo $msgsNaoLidas; ?></span></a>
 	                    </li>
 	                    <li>
 	                        <a href="mensagensEnviadas.php" id="opcaoMenuLateral3">Mensagens Enviadas <span class="glyphicon glyphicon-envelope pull-right icones"></span></a>
@@ -99,7 +98,7 @@
 				<h2><small>Bem vindo,</small> <?php echo $_SESSION['nome'];?></h2>
                 <br>
 
-                <p>Você tem <?php echo $numRows; ?> mensagens não lidas.</p>
+                <p>Você tem <?php echo $msgsNaoLidas; ?> mensagens não lidas.</p>
                 <br><br>
                 <p>Data: <?php echo date('d/m/Y');?> Hora: <?php echo gmdate('H:i');?></p>
 

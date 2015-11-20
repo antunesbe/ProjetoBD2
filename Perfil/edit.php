@@ -24,7 +24,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Cadastrar Perfil - Projeto BD-2 </title>
+	<title>Editar Perfil - Projeto BD-2 </title>
 
 	<!-- Arquivos CSS -->
 	<link rel="stylesheet" href="../css/bootstrap.css">
@@ -32,8 +32,8 @@
 	<link rel="stylesheet" href="../css/menuTopoEstilo.css">
 	<link rel="stylesheet" href="../css/menuLateralEstilo.css">
 	<!-- Arquivos Javascript -->
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/jquery.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 </head>
 <body>
 	<!-- MENU SUPERIOR -->
@@ -78,10 +78,10 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 			<section class="col-md-10 conteudo">
-				<br class="alertaCadastro hidden">
-				<div class="alert alert-success hidden alertaCadastro">
+				<br class="alertaEdicao hidden">
+				<div class="alert alert-success hidden alertaEdicao">
 					<span class="close" data-dismiss="alert">&times;</span>
-					Cadastro realizado com <strong>Sucesso</strong> !
+					O perfil foi editado com <strong>Sucesso</strong> !
 				</div>
 				<h2>Cadastrar Perfil</h2>
 				<form class="form form-vertical" method="post" action="?go=alterarPerfil&id=<?php echo $idPerfil; ?>">
@@ -127,10 +127,10 @@
 
 <?php
 if(isset($_GET['go'])){
-	if($_GET['go'] == 'alterarSetor'){
+	if($_GET['go'] == 'alterarPerfil'){
 			?>
 			<script>
-				$('.alertaCadastro').removeClass("hidden");
+				$('.alertaEdicao').removeClass("hidden");
 			</script>
 
 			<?php
