@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include "includes/conexaoBD.php";
+	
 	$USUARIO;
 	$SENHA;
     if(!$_POST){
@@ -98,7 +99,7 @@
 				<h2><small>Bem vindo,</small> <?php echo $_SESSION['nome'];?></h2>
                 <br>
 
-                <p>Você tem <?php echo $msgsNaoLidas; ?> mensagens não lidas.</p>
+                <p>Você tem <?php echo $msgsNaoLidas; ?> mensagem(ns) não lida(s).</p>
                 <br><br>
                 <p>Data: <?php echo date('d/m/Y');?> Hora: <?php echo gmdate('H:i');?></p>
 

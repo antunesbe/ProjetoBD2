@@ -60,11 +60,11 @@
 
 			</div>
 			<div class="col-md-4 conteudoRodape">
-				<p style="font-size:25px">Trabalho de Banco de Dados 2</p>
-				<p style="font-size:20px">PUC-Campinas</p>
+				<p style="font-size:20px">Trabalho de Banco de Dados 2</p>
+				<p style="font-size:15px">PUC-Campinas</p>
 			</div>
 			<div class="col-md-4 conteudoRodape">
-				<p class="pull-right text-left"style="font-size:17px">Breno Antunes - 12021069 <br>Breno Bonassi - 120201069 <br>Danilo Freitas - 12021069 </p>
+				<p class="pull-right text-left"style="font-size:15px">Breno Antunes - 12021069 <br>Breno Bonassi - 12118501 <br>Danilo Freitas - 12647111 </p>
 			</div>
 		</footer>
 	</div>

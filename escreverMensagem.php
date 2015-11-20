@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include "includes/conexaoBD.php";
+	
 	if(isset($_GET['go'])){
 		if($_GET['go'] == 'enviaMsg'){
 			$destinatario = $_POST['destinatario'];
@@ -17,7 +18,13 @@
 				mysql_error();
 			}
 		}			
-	}	
+	}
+
+/*PEGAR MENSAGENS NAO LIDAS*/
+  		$idUsuario = $_SESSION['id'];
+		$consultaMsg = mysql_query("SELECT * FROM MENSAGEM WHERE destinatario='$idUsuario' AND lida = 0") or die(mysql_error());
+		$msgsNaoLidas = mysql_num_rows($consultaMsg);
+		
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -63,7 +70,7 @@
 	                        <a href="escreverMensagem.php" id="opcaoMenuLateral1">Escrever Mensagem <span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
 	                    </li>
 	                    <li>
-	                        <a href="mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right">12</span></a>
+	                        <a href="mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right"><?php echo $msgsNaoLidas; ?></span></a>
 	                    </li>
 	                    <li>
 	                        <a href="mensagensEnviadas.php" id="opcaoMenuLateral3">Mensagens Enviadas <span class="glyphicon glyphicon-envelope pull-right icones"></span></a>
@@ -161,11 +168,11 @@
 
 			</div>
 			<div class="col-md-4 conteudoRodape">
-				<p style="font-size:25px">Trabalho de Banco de Dados 2</p>
-				<p style="font-size:20px">PUC-Campinas</p>
+				<p style="font-size:20px">Trabalho de Banco de Dados 2</p>
+				<p style="font-size:15px">PUC-Campinas</p>
 			</div>
 			<div class="col-md-4 conteudoRodape">
-				<p class="pull-right text-left"style="font-size:17px">Breno Antunes - 12021069 <br>Breno Bonassi - 120201069 <br>Danilo Freitas - 12021069 </p>
+				<p class="pull-right text-left"style="font-size:15px">Breno Antunes - 12021069 <br>Breno Bonassi - 12118501 <br>Danilo Freitas - 12647111 </p>
 			</div>
 		</footer>
 	</div>
