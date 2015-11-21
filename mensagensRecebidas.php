@@ -48,21 +48,26 @@
                         <li>
                             <a href="index.php" id="opcaoMenuLateral0">HOME</a> 
                         </li>
-                        <li>
-                            <a href="escreverMensagem.php" id="opcaoMenuLateral1">Escrever Mensagem <span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
-                        </li>
-                        <li class="active">
-                            <a href="mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right"><?php echo $msgsNaoLidas; ?></span></a>
-                        </li>
-                        <li>
-                            <a href="mensagensEnviadas.php" id="opcaoMenuLateral3">Mensagens Enviadas <span class="glyphicon glyphicon-envelope pull-right icones"></span></a>
-                        </li>
-                        <li>
-                            <a href="contatos.php" id="opcaoMenuLateral4">Contatos <span class="glyphicon glyphicon-list-alt pull-right icones"></span></a>
-                        </li>
-                        <li>
-                            <a href="administrar.php" id="opcaoMenuLateral5">Administrar <span class="glyphicon glyphicon-cog pull-right icones"></span></a>
-                        </li>
+                       <li>
+	                        <a href="escreverMensagem.php?&go=enviar" id="opcaoMenuLateral1">Escrever Mensagem <span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
+	                    </li>
+	                    <li class = "active">
+	                        <a href="mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right"><?php echo $msgsNaoLidas; ?></span></a>
+	                    </li>
+	                    <li>
+	                        <a href="mensagensEnviadas.php" id="opcaoMenuLateral3">Mensagens Enviadas <span class="glyphicon glyphicon-envelope pull-right icones"></span></a>
+	                    </li>
+	                    <li>
+	                        <a href="contatos.php" id="opcaoMenuLateral4">Contatos <span class="glyphicon glyphicon-list-alt pull-right icones"></span></a>
+	                    </li>
+						<?php
+	                    if ($_SESSION['nomePerfil']=="ADMIN")
+						{
+							echo "<li>";
+							echo	"<a href='administrar.php' id='opcaoMenuLateral5'>Administrar <span class='glyphicon glyphicon-cog pull-right icones'></span></a>";
+							echo "</li>";
+						}
+						?>
                     </ul>  
                 </ul>
             </nav>
@@ -99,7 +104,8 @@
                                         echo "<td>
                                                 <button><a href='#'><span class = 'glyphicon glyphicon-search'></span></a></button>
                                                 <button><a href='deletarUsuario.php?id=" . $linha['id_mensagem'] . "' onclick='return confirmacao()'><span class = 'glyphicon glyphicon-remove'></span></a></button>
-                                              </td>";
+												<button title = 'Enviar Mensagem'><a href='escreverMensagem.php?&go=responder&id=". $linha['id_mensagem'] ."'><span class = 'glyphicon glyphicon-share-alt'></span></a></button>
+											</td>";
                                         echo "</tr>";
                                     }
                                 }

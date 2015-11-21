@@ -6,6 +6,8 @@
 		$perfil = $_SESSION['perfil'];
 		$remetente = $_SESSION['id'];
 		$destinatario = 0;
+		$departamento = 0;
+		$assunto = "";
 	if(isset($_GET['go'])){
 		if($_GET['go'] == 'enviaMsg'){
 			$departamento = $_POST['departamento'];
@@ -34,7 +36,24 @@
 		if($_GET['go'] == 'selectTipo'){
 			$destinatario = $_GET['destinatario'];
 			$remetente = $_SESSION['id'];
-		}		
+		}
+		if($_GET['go'] == 'contato'){
+			$destinatario = $_GET['destinatario'];
+			$remetente = $_SESSION['id'];
+			
+		}
+		if($_GET['go'] == 'responder'){
+			$id = $_GET['id'];
+			$remetente = $_SESSION['id'];
+			$sql = mysql_query("SELECT * FROM MENSAGEM WHERE id_mensagem = '$id'");
+			$resultado = mysql_fetch_array($sql);
+			$destinatario = $resultado['remetente'];
+			$assunto = $resultado['assunto'];
+			$sql = mysql_query("SELECT * FROM USUARIO WHERE id_pessoa = '$destinatario'");
+			$resultado = mysql_fetch_array($sql);
+			$departamento = $resultado['departamento'];
+		}
+		
 	}
 
 /*PEGAR MENSAGENS NAO LIDAS*/
@@ -83,7 +102,7 @@
 							<a href="index.php" id="opcaoMenuLateral0">HOME</a> 
 						</li>
 					    <li class="active">
-	                        <a href="escreverMensagem.php" id="opcaoMenuLateral1">Escrever Mensagem <span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
+	                        <a href="escreverMensagem.php?&go=enviar" id="opcaoMenuLateral1">Escrever Mensagem <span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
 	                    </li>
 	                    <li>
 	                        <a href="mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right"><?php echo $msgsNaoLidas; ?></span></a>
@@ -94,9 +113,14 @@
 	                    <li>
 	                        <a href="contatos.php" id="opcaoMenuLateral4">Contatos <span class="glyphicon glyphicon-list-alt pull-right icones"></span></a>
 	                    </li>
-	                    <li>
-	                        <a href="administrar.php" id="opcaoMenuLateral5">Administrar <span class="glyphicon glyphicon-cog pull-right icones"></span></a>
-	                    </li>
+						<?php
+	                    if ($_SESSION['nomePerfil']=="ADMIN")
+						{
+							echo "<li>";
+							echo	"<a href='administrar.php' id='opcaoMenuLateral5'>Administrar <span class='glyphicon glyphicon-cog pull-right icones'></span></a>";
+							echo "</li>";
+						}
+						?>
 	                </ul>  
 				</ul>
 			</nav>
@@ -157,11 +181,13 @@
 							<select class="form-control" name="tipoMsg" id="tipoMsg" disabled>
 								<?php
 										
+											
+										if ($departamento != $departamentoUsu)
 											$consulta = mysql_query("SELECT *
 																	FROM TIPO_MENSAGEM
 																	ORDER BY nome_tipo_msg;");																	
 										
-										if ($destinatario != 0)
+										if ($destinatario != 0 && ($departamento == 0 || $departamento == $departamentoUsu))
 										{
 											$consulta = mysql_query("SELECT *
 																	FROM TIPO_MENSAGEM TP
@@ -208,7 +234,7 @@
 					<div class="row" style="border:none;">
 						<div class="form-group col-md-3">
 							<button class="btn btn-success" id="btnEnviar" type="submit" disabled>Enviar</button>
-							<button class="btn btn-default" id="btnLimpar">Limpar</button>
+							<button class="btn btn-default" type = "reset" id="btnLimpar">Limpar</button>
 						</div>
 					</div>
 				</form>
@@ -235,14 +261,35 @@
 <script>
 		$(window).load(function() {
 			
-			<?php echo "var usuDep = ".$destinatario;?>;			
-			if (usuDep != 0)
+			<?php echo "var des = ".$destinatario;?>;		
+				debugger;
+			if (des != 0)
 			{
-				$('#departamento').val(<?php echo $departamentoUsu?>);
-				$('#destinatario').val(<?php echo $destinatario?>) ;
 				$('#tipoMsg').prop('disabled', false);
-				$('#labelDestinatario').removeClass("hidden");
-				$('#destinatario').removeClass("hidden");
+				if(<?php echo $departamento. " == ". $departamentoUsu . " || ". $departamento ." == 0";?>)
+				{
+					$('#departamento').val(<?php echo $departamentoUsu?>);
+					$('#destinatario').val(<?php echo $destinatario?>) ;
+					$('#labelDestinatario').removeClass("hidden");
+					$('#destinatario').removeClass("hidden");
+				}
+				else
+				{
+					$('#departamento').val(<?php echo $departamento?>);
+					$('#destinatario').val(<?php echo $destinatario?>) ;
+				}
+				debugger;
+				if ('contato' == '<?php echo $_GET['go']?>')
+				{
+					$('#departamento').prop('disabled', true);
+					$('#destinatario').prop('disabled', true);
+				}
+				if ('responder' == '<?php echo $_GET['go']?>')
+				{
+					$('#departamento').prop('disabled', true);
+					$('#destinatario').prop('disabled', true);
+					$('#assunto').val('<?php echo $assunto?>');
+				}
 			}
 			else
 			{

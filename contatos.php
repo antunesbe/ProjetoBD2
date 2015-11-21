@@ -49,20 +49,25 @@
                             <a href="index.php" id="opcaoMenuLateral0">HOME</a> 
                         </li>
                         <li>
-                            <a href="escreverMensagem.php" id="opcaoMenuLateral1">Escrever Mensagem <span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
-                        </li>
-                        <li>
-                            <a href="mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right"><?php echo $msgsNaoLidas; ?></span></a>
-                        </li>
-                        <li>
-                            <a href="mensagensEnviadas.php" id="opcaoMenuLateral3">Mensagens Enviadas <span class="glyphicon glyphicon-envelope pull-right icones"></span></a>
-                        </li>
-                        <li class="active">
-                            <a href="contatos.php" id="opcaoMenuLateral4">Contatos <span class="glyphicon glyphicon-list-alt pull-right icones"></span></a>
-                        </li>
-                        <li>
-                            <a href="administrar.php" id="opcaoMenuLateral5">Administrar <span class="glyphicon glyphicon-cog pull-right icones"></span></a>
-                        </li>
+	                        <a href="escreverMensagem.php?&go=enviar" id="opcaoMenuLateral1">Escrever Mensagem <span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
+	                    </li>
+	                    <li>
+	                        <a href="mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right"><?php echo $msgsNaoLidas; ?></span></a>
+	                    </li>
+	                    <li>
+	                        <a href="mensagensEnviadas.php" id="opcaoMenuLateral3">Mensagens Enviadas <span class="glyphicon glyphicon-envelope pull-right icones"></span></a>
+	                    </li>
+	                    <li class = "active">
+	                        <a href="contatos.php" id="opcaoMenuLateral4">Contatos <span class="glyphicon glyphicon-list-alt pull-right icones"></span></a>
+	                    </li>
+						<?php
+	                    if ($_SESSION['nomePerfil']=="ADMIN")
+						{
+							echo "<li>";
+							echo	"<a href='administrar.php' id='opcaoMenuLateral5'>Administrar <span class='glyphicon glyphicon-cog pull-right icones'></span></a>";
+							echo "</li>";
+						}
+						?>
                     </ul>  
                 </ul>
             </nav>
@@ -79,14 +84,14 @@
                     </thead>
                     <tbody>
                         <?php
-                            $sql = mysql_query("SELECT * FROM USUARIO WHERE departamento = (SELECT departamento FROM USUARIO WHERE id_pessoa = '$idUsuario')");
+                            $sql = mysql_query("SELECT * FROM USUARIO WHERE departamento = (SELECT departamento FROM USUARIO WHERE id_pessoa = '$idUsuario') AND id_pessoa <> '$idUsuario'");
                             
                             while($linha = mysql_fetch_array($sql)){
                                 echo "<tr>";
                                 echo "<td>" . $linha['nome'] . "</td>";
                                 echo "<td>" . $linha['email'] . "</td>";
                                 echo "<td>
-                                        <button><a href='#'><span class = 'glyphicon glyphicon-share-alt'></span></a></button>
+                                        <button title = 'Enviar Mensagem'><a href='escreverMensagem.php?&go=contato&destinatario=". $linha['id_pessoa'] ."'><span class = 'glyphicon glyphicon-share-alt'></span></a></button>
                                         </td>";
                                 echo "</tr>";
                             }
