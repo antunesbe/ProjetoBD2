@@ -6,12 +6,13 @@
 		$perfil = $_SESSION['perfil'];
 		$remetente = $_SESSION['id'];
 		$destinatario = 0;
+		$departamento = 0;
 	if(isset($_GET['go'])){
 		if($_GET['go'] == 'enviaMsg'){
 			$departamento = $_POST['departamento'];
 			if ($departamentoUsu != $departamento)
 			{
-				$consultaDestinatario = mysql_query("SELECT * FROM DEPARTAMENTO WHERE '$destinatario' = nome_depto");
+				$consultaDestinatario = mysql_query("SELECT * FROM DEPARTAMENTO WHERE '$destinatario' = id_departamento");
 				$consultaDestinatario = mysql_fetch_array($consultaDestinatario);
 				$destinatario = $consultaDestinatario['pessoa_chave'];
 			}
@@ -29,6 +30,7 @@
 			if(!$sql){
 				mysql_error();
 			}
+			$destinatario = 0;
 		}
 		if($_GET['go'] == 'selectTipo'){
 			$destinatario = $_GET['destinatario'];
@@ -102,7 +104,7 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 		<?php
-			
+			echo $departamento;
 		?>
 			<section class="col-md-10 conteudo">
 				<br class="alertaMensagem hidden">
