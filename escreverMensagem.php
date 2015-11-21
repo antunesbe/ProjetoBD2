@@ -6,7 +6,6 @@
 		$perfil = $_SESSION['perfil'];
 		$remetente = $_SESSION['id'];
 		$destinatario = 0;
-		$departamento = 0;
 	if(isset($_GET['go'])){
 		if($_GET['go'] == 'enviaMsg'){
 			$departamento = $_POST['departamento'];
@@ -104,7 +103,6 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 		<?php
-			echo $departamento;
 		?>
 			<section class="col-md-10 conteudo">
 				<br class="alertaMensagem hidden">
