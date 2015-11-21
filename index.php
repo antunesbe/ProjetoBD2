@@ -28,6 +28,8 @@
     		$_SESSION['cpf'] = $resultado['cpf'];
     		$_SESSION['data_nasc'] = $resultado['data_nascimento'];
     		$_SESSION['email'] = $resultado['email'];
+			$_SESSION['departamento'] = $resultado['departamento'];
+			$_SESSION['perfil'] = $resultado['perfil'];
     	}
 
     }

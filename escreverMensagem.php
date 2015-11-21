@@ -2,22 +2,38 @@
 	session_start();
 	include "includes/conexaoBD.php";
 	
+		$departamentoUsu = $_SESSION['departamento'];
+		$perfil = $_SESSION['perfil'];
+		$remetente = $_SESSION['id'];
+		$destinatario = 0;
 	if(isset($_GET['go'])){
 		if($_GET['go'] == 'enviaMsg'){
-			$destinatario = $_POST['destinatario'];
-			$consultaDestinatario = mysql_query("SELECT * FROM DEPARTAMENTO WHERE '$destinatario' = nome_depto");
-			$consultaDestinatario = mysql_fetch_array($consultaDestinatario);
-			$destinatario = $consultaDestinatario['pessoa_chave'];
+			$departamento = $_POST['departamento'];
+			if ($departamentoUsu != $departamento)
+			{
+				$consultaDestinatario = mysql_query("SELECT * FROM DEPARTAMENTO WHERE '$destinatario' = nome_depto");
+				$consultaDestinatario = mysql_fetch_array($consultaDestinatario);
+				$destinatario = $consultaDestinatario['pessoa_chave'];
+			}
+			else 
+			{
+				$destinatario = $_POST['destinatario'];
+			}
 			$tipoMensagem = $_POST['tipoMsg'];
 			$assunto = $_POST['assunto'];
 			$conteudo = $_POST['conteudo'];
 			$remetente = $_SESSION['id'];
 
-			$sql= mysql_query("INSERT INTO MENSAGEM VALUES (null,'$assunto', '$conteudo', 0, null, '$remetente', '$destinatario', (SELECT id_tipo_mensagem FROM TIPO_MENSAGEM WHERE nome_tipo_msg = '$tipoMensagem'))");
+			$sql= mysql_query("INSERT INTO MENSAGEM VALUES (null,'$assunto', '$conteudo', 0, null, '$remetente', '$destinatario', 
+								(SELECT id_tipo_mensagem FROM TIPO_MENSAGEM WHERE id_tipo_mensagem = '$tipoMensagem'))");
 			if(!$sql){
 				mysql_error();
 			}
-		}			
+		}
+		if($_GET['go'] == 'selectTipo'){
+			$destinatario = $_GET['destinatario'];
+			$remetente = $_SESSION['id'];
+		}		
 	}
 
 /*PEGAR MENSAGENS NAO LIDAS*/
@@ -99,13 +115,32 @@
 					<div class="row" style="border:none;">
 						<!-- DESTINATARIO -->
 						<div class="form-group col-md-3">
-							<label for="destinatario" class="label-control" id="labelDestinatario">Destinatario:</label>
-							<select class="form-control" name="destinatario" id="destinatario">
+							<label for="departamento" class="label-control" id="labelDepartamento">Departamento:</label>
+							<select class="form-control" name="departamento" id="departamento">
+								<option value = "">...Selecione</option>
 								<?php
 									$consulta = mysql_query("SELECT * FROM DEPARTAMENTO ORDER BY id_departamento");
 	    							$row = mysql_num_rows($consulta);
 									while($linha = mysql_fetch_assoc($consulta)){
-										echo "<option id='" . $linha['id_departamento'] . "'>" . $linha['nome_depto'] . "</option>"; 
+										echo "<option value='" . $linha['id_departamento'] . "'>" . $linha['nome_depto'] . "</option>"; 
+									}
+									if ($row<=0){
+										echo "<option>Sem valor</option>";
+									}
+								?>
+							</select>
+						</div>
+							
+						<div class="form-group col-md-3">
+							<label for="destinatario" class="label-control hidden"  id="labelDestinatario">Destinatario:</label>
+							<select class="form-control hidden" name="destinatario" id="destinatario">
+								<option value = "">...Selecione</option>
+								<?php
+									$consulta = mysql_query("SELECT * FROM USUARIO WHERE '$departamentoUsu' = departamento AND '$remetente' <> id_pessoa ORDER BY nome");
+	    							$row = mysql_num_rows($consulta);
+									$i=1;
+									while($linha = mysql_fetch_assoc($consulta)){
+										echo "<option value='" . $linha['id_pessoa'] . "'>" . $linha['nome'] . "</option>"; 
 									}
 									if ($row<=0){
 										echo "<option>Sem valor</option>";
@@ -119,26 +154,46 @@
 						<!-- TIPO MENSAGEM -->
 						<div class="form-group col-md-3">
 							<label for="tipoMsg" class="label-control" id="labelTipoMsg">Tipo da Mensagem:</label>
-							<select class="form-control" name="tipoMsg" id="tipoMsg" disabled="true">
+							<select class="form-control" name="tipoMsg" id="tipoMsg" disabled>
 								<?php
-									$consulta = mysql_query("SELECT * FROM TIPO_MENSAGEM ORDER BY id_tipo_mensagem");
-		    							$row = mysql_num_rows($consulta);
-										while($linha = mysql_fetch_assoc($consulta)){
-											echo "<option id='" . $linha['id_tipo_mensagem'] . "'>" . $linha['nome_tipo_msg'] . "</option>"; 
+										
+											$consulta = mysql_query("SELECT *
+																	FROM TIPO_MENSAGEM
+																	ORDER BY nome_tipo_msg;");																	
+										
+										if ($destinatario != 0)
+										{
+											$consulta = mysql_query("SELECT *
+																	FROM TIPO_MENSAGEM TP
+																	WHERE TP.id_tipo_mensagem in (
+																		SELECT PV.priv_tipo_mensagem 
+																		FROM PRIVILEGIO PV
+																		INNER JOIN USUARIO RE ON RE.perfil = PV.perfil_remetente
+																		INNER JOIN USUARIO DE ON DE.perfil = PV.perfil_destinatario
+																		WHERE RE.id_pessoa =  '$remetente'
+																		AND DE.id_pessoa = '$destinatario'
+																		)
+																	ORDER BY TP.nome_tipo_msg;");
 										}
-										if ($row<=0){
-											echo "<option>Sem valor</option>";
+										$row = mysql_num_rows($consulta);
+										if ($row>0)
+										{
+											echo "<option value = ''>...Selecione</option>";
+											while($linha = mysql_fetch_assoc($consulta)){
+												echo "<option value='" . $linha['id_tipo_mensagem'] . "'>" . $linha['nome_tipo_msg'] . "</option>"; 
+											}
+										}
+										else if ($row<=0){
+											echo "<option value = '0'>Sem valor</option>";
 										}
 								?>
 							</select>
 						</div>
 						<!-- /TIPO MENSAGEM -->
-					</div>
-					<div class="row" style="border:none;">
 						<!-- ASSUNTO -->
 						<div class="form-group col-md-3">
 							<label for="assunto" class="label-control" id="labelAssunto">Assunto:</label>
-							<input type="text" class="form-control" name="assunto" id="assunto">
+							<input type="text" class="form-control" name="assunto" id="assunto" disabled> </input>
 						</div>
 						<!-- /ASSUNTO -->
 					</div>
@@ -146,13 +201,13 @@
 						<!-- MENSAGEM -->
 						<div class="form-group col-md-6">
 							<label for="conteudo" class="label-control" id="labelAssunto">Mensagem:</label>
-							<textarea class="form-control" rows="5" name="conteudo" id="conteudo"></textarea>
+							<textarea class="form-control" rows="5" name="conteudo" id="conteudo" disabled></textarea>
 						</div>
 						<!-- /MENSAGEM --> 
 					</div>
 					<div class="row" style="border:none;">
 						<div class="form-group col-md-3">
-							<button class="btn btn-success" id="btnEnviar" type="submit">Enviar</button>
+							<button class="btn btn-success" id="btnEnviar" type="submit" disabled>Enviar</button>
 							<button class="btn btn-default" id="btnLimpar">Limpar</button>
 						</div>
 					</div>
@@ -177,16 +232,69 @@
 	</div>
 </body>
 </html>
+<script>
+		$(window).load(function() {
+			
+			<?php echo "var usuDep = ".$destinatario;?>;			
+			if (usuDep != 0)
+			{
+				$('#departamento').val(<?php echo $departamentoUsu?>);
+				$('#destinatario').val(<?php echo $destinatario?>) ;
+				$('#tipoMsg').prop('disabled', false);
+				$('#labelDestinatario').removeClass("hidden");
+				$('#destinatario').removeClass("hidden");
+			}
+			else
+			{
+				$('#labelDestinatario').addClass("hidden");
+				$('#destinatario').addClass("hidden");
+			}
+		});
 
+	$().ready(function() {
+		
+
+    $('#departamento').change(function() {
+		var e = document.getElementById('departamento');
+		var depSelect = e.options[e.selectedIndex].value;
+		<?php echo "var usuDep = ".$departamentoUsu;?>;
+		if (usuDep == depSelect)
+		{
+			$('#labelDestinatario').removeClass("hidden");
+			$('#destinatario').removeClass("hidden");
+			$('#tipoMsg').prop('disabled', true);
+		}
+		else
+		{
+			$('#labelDestinatario').addClass("hidden");
+			$('#destinatario').addClass("hidden");
+			$('#tipoMsg').prop('disabled', false);
+		}
+    });
+	$('#destinatario').change(function() {
+		$('#tipoMsg').prop('disabled', false);
+		var e = document.getElementById('destinatario');
+		var destSelect = e.options[e.selectedIndex].value;
+		window.location.href = "escreverMensagem.php?go=selectTipo&destinatario=" + destSelect;
+		
+    });
+	
+	$('#tipoMsg').change(function() {
+		$('#assunto').prop('disabled', false);
+		$('#conteudo').prop('disabled', false);
+		$('#btnEnviar').prop('disabled', false);
+    });
+});
+</script>
 
 
 <?php
 	$consultaDeptoUsuario = mysql_query("SELECT * FROM USUARIO WHERE '$idUsuario' = id_pessoa") or die(mysql_error());
 	$consultaDeptoUsuario = mysql_fetch_array($consultaDeptoUsuario);
 	$deptoUsuario = $consultaDeptoUsuario['departamento'];
-	echo "<script>";
-	echo "if(document.getElementById('destinatario').value ==" . $deptoUsuario . "){ document.getElementById('tipoMsg').disabled= false";
-	echo "</script>";
+	//echo "<script>";
+	//echo "$('#destinatario').value ==" . $deptoUsuario . "){ document.getElementById('tipoMsg').disabled= false";
+	//echo "</script>";
 
 
 	if (isset($_GET['go'])){
