@@ -18,7 +18,6 @@ CREATE TABLE IF NOT EXISTS `MENSAGEM` (
   `assunto` varchar(50) NOT NULL,
   `conteudo` text NOT NULL,
   `lida` tinyint(1) NOT NULL,
-  `resposta` int(11) DEFAULT NULL,
   `remetente` int(11) NOT NULL,
   `destinatario` int(11) NOT NULL,
   `tipo_mensagem` int(11) NOT NULL
@@ -128,9 +127,6 @@ ADD FOREIGN KEY (perfil) REFERENCES PERFIL (id_perfil);
 
 ALTER TABLE USUARIO 
 ADD FOREIGN KEY (departamento) REFERENCES DEPARTAMENTO (id_departamento);
-
-ALTER TABLE MENSAGEM 
-ADD FOREIGN KEY (resposta) REFERENCES MENSAGEM (id_mensagem);
 
 ALTER TABLE MENSAGEM 
 ADD FOREIGN KEY (remetente) REFERENCES USUARIO (id_pessoa);
