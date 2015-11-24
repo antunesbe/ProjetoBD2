@@ -102,7 +102,7 @@
                                         echo "<td>" . $linha['assunto'] . "</td>";
                                         echo "<td>" . $buscaDestinatario['email'] . "</td>";
                                         echo "<td>
-                                                <button><a href='#'><span class = 'glyphicon glyphicon-search'></span></a></button>
+                                                <button><a href='visualizar.php?id=" .$linha['id_mensagem'] . "'><span class = 'glyphicon glyphicon-search'></span></a></button>
                                                 <button><a href='deletarUsuario.php?id=" . $linha['id_mensagem'] . "' onclick='return confirmacao()'><span class = 'glyphicon glyphicon-remove'></span></a></button>
                                             </td>";
                                         echo "</tr>";

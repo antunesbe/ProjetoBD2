@@ -132,3 +132,11 @@ a #titleSetor:hover{
 	margin-bottom: 5px;
 }
 /*/CONF ADMINISTRAR*/
+
+#btnEsquerda{
+	margin-right: 11px;
+	border-radius: 20px;
+}
+#btnDireita{
+	border-radius: 20px;
+}

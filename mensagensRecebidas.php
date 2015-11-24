@@ -102,7 +102,7 @@
                                         echo "<td>" . $linha['assunto'] . "</td>";
                                         echo "<td>" . $buscaRemetente['email'] . "</td>";
                                         echo "<td>
-                                                <button><a href='#'><span class = 'glyphicon glyphicon-search'></span></a></button>
+                                                <button><a href='visualizar.php?go=verMsg&id=" .$linha['id_mensagem'] . "'><span class = 'glyphicon glyphicon-search'></span></a></button>
                                                 <button><a href='deletarUsuario.php?id=" . $linha['id_mensagem'] . "' onclick='return confirmacao()'><span class = 'glyphicon glyphicon-remove'></span></a></button>
 												<button title = 'Enviar Mensagem'><a href='escreverMensagem.php?&go=responder&id=". $linha['id_mensagem'] ."'><span class = 'glyphicon glyphicon-share-alt'></span></a></button>
 											</td>";
