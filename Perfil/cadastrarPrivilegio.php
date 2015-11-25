@@ -106,10 +106,6 @@
 					<span class="close" data-dismiss="alert">&times;</span>
 					Cadastro realizado com <strong>Sucesso</strong> !
 				</div>
-				<div class="alert alert-danger alertaRemocao hidden">
-					<span class="close" data-dismiss="alert">&times;</span>
-					Perfil deletado com <strong>Sucesso</strong> !
-				</div>
 				<h2>Cadastrar Privilegio</h2>
 				<form class="form form-vertical" method = "post" action = "cadastrarPrivilegio.php?go=salvarPrivilegio&id=<?php echo $idRemetente; ?>&page=1">
 					<div class="row" style="border:none;">
@@ -248,14 +244,5 @@
 			<?php
 		}
 
-	}
-	if(isset($_GET['sit'])){
-		if($_GET['sit']=='privilegioDeletado'){
-			?>
-			<script>
-				$('.alertaRemocao').removeClass("hidden");
-			</script>
-			<?php
-		}
 	}
 ?>

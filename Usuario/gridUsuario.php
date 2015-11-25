@@ -82,11 +82,6 @@
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
 			<section class="col-md-9 conteudo">
-				<br class="alertaRemocao hidden">
-				<div class="alert alert-danger alertaRemocao hidden">
-					<span class="close" data-dismiss="alert">&times;</span>
-					Usuário deletado com <strong>Sucesso</strong> !
-				</div>
 				<h2>Usuários</h2>
 
 				<div class="form-group">
@@ -147,17 +142,3 @@
 	</div>
 </body>
 </html>
-
-<?php
-
-	if(isset($_GET['sit'])){
-		if($_GET['sit']=='usuarioDeletado'){
-			?>
-			<script>
-				$('.alertaRemocao').removeClass("hidden");
-			</script>
-			<?php
-		}
-	}
-
-?>
