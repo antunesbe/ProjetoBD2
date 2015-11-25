@@ -97,8 +97,10 @@
 				<div class="row">
 					<div class="col-md-10">
 						<div class="btn-group pull-right">
-						    <button class="btn btn-default" type="button" id="btnEsquerda"><a href="#">Responder</a></button>
 						    <?php
+							echo "<a href='escreverMensagem.php?&go=responder&id=". $idMsg ."'><button class='btn btn-default' type='button' id='btnEsquerda'>Responder</button></a>";
+											
+						    
 
 								if(isset($_GET['go'])){
 									if($_GET['go']!='MarcarNaoLida'){

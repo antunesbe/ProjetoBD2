@@ -8,6 +8,7 @@
 		$destinatario = 0;
 		$departamento = 0;
 		$assunto = "";
+		$tipoMensagem = 0;
 	if(isset($_GET['go'])){
 		if($_GET['go'] == 'enviaMsg'){
 			$departamento = $_POST['departamento'];
@@ -47,6 +48,7 @@
 			$resultado = mysql_fetch_array($sql);
 			$destinatario = $resultado['remetente'];
 			$assunto = $resultado['assunto'];
+			$tipoMensagem = $resultado['tipo_mensagem']; //<-aqui
 			$sql = mysql_query("SELECT * FROM USUARIO WHERE id_pessoa = '$destinatario'");
 			$resultado = mysql_fetch_array($sql);
 			$departamento = $resultado['departamento'];
@@ -180,7 +182,7 @@
 								<?php
 										
 											
-										if ($departamento != $departamentoUsu)
+										if ($departamento != $departamentoUsu && $tipoMensagem !=0)
 											$consulta = mysql_query("SELECT *
 																	FROM TIPO_MENSAGEM
 																	ORDER BY nome_tipo_msg;");																	
@@ -267,12 +269,14 @@
 				if(<?php echo $departamento. " == ". $departamentoUsu . " || ". $departamento ." == 0";?>)
 				{
 					$('#departamento').val(<?php echo $departamentoUsu?>);
-					$('#destinatario').val(<?php echo $destinatario?>) ;
+					
 					$('#labelDestinatario').removeClass("hidden");
 					$('#destinatario').removeClass("hidden");
+					$('#destinatario').val(<?php echo $destinatario?>) ;
 				}
 				else
 				{
+					debugger;
 					$('#departamento').val(<?php echo $departamento?>);
 					$('#destinatario').val(<?php echo $destinatario?>) ;
 				}
@@ -286,7 +290,11 @@
 				{
 					$('#departamento').prop('disabled', true);
 					$('#destinatario').prop('disabled', true);
-					$('#assunto').val('<?php echo $assunto?>');
+					$('#assunto').val('RE:<?php echo $assunto?>'); //aqui tambem
+					$('#tipoMsg').val('<?php echo $tipoMensagem?>'); //<-
+					$('#tipoMsg').prop('disabled', true);//<-
+					$('#conteudo').prop('disabled', false);//<-
+					$('#btnEnviar').prop('disabled', false);//<-
 				}
 			}
 			else
