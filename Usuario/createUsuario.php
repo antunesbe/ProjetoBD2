@@ -44,28 +44,28 @@
 	<div class="container-fluid principal">
 		<div class="row linhaPrincipal">
 		<!-- MENU LATERAL -->
-			<nav class="col-md-2 menuLateral">
+			<nav class="col-md-3 menuLateral">
 				<ul class="nav nav-pulls nav-stacked">
 						<li>
 							<a href="../index.php" id="opcaoMenuLateral0">HOME</a> 
 						</li>
 					    <li>
-	                        <a href="escreverMensagem.php?&go=enviar" id="opcaoMenuLateral1">Escrever Mensagem <span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
+	                        <a href="../escreverMensagem.php?&go=enviar" id="opcaoMenuLateral1">Escrever Mensagem <span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
 	                    </li>
 	                    <li>
-	                        <a href="mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right"><?php echo $msgsNaoLidas; ?></span></a>
+	                        <a href="../mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right"><?php echo $msgsNaoLidas; ?></span></a>
 	                    </li>
 	                    <li>
-	                        <a href="mensagensEnviadas.php" id="opcaoMenuLateral3">Mensagens Enviadas <span class="glyphicon glyphicon-envelope pull-right icones"></span></a>
+	                        <a href="../mensagensEnviadas.php" id="opcaoMenuLateral3">Mensagens Enviadas <span class="glyphicon glyphicon-envelope pull-right icones"></span></a>
 	                    </li>
 	                    <li>
-	                        <a href="contatos.php" id="opcaoMenuLateral4">Contatos <span class="glyphicon glyphicon-list-alt pull-right icones"></span></a>
+	                        <a href="../contatos.php" id="opcaoMenuLateral4">Contatos <span class="glyphicon glyphicon-list-alt pull-right icones"></span></a>
 	                    </li>
 						<?php
 	                    if ($_SESSION['nomePerfil']=="ADMIN")
 						{
 							echo "<li class = 'active'>";
-							echo	"<a href='administrar.php' id='opcaoMenuLateral5'>Administrar <span class='glyphicon glyphicon-cog pull-right icones'></span></a>";
+							echo	"<a href='../administrar.php' id='opcaoMenuLateral5'>Administrar <span class='glyphicon glyphicon-cog pull-right icones'></span></a>";
 							echo "</li>";
 						}
 						?>				
@@ -74,7 +74,7 @@
 			</nav>
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
-			<section class="col-md-10 conteudo">
+			<section class="col-md-9 conteudo">
 				<br class="alertaCadastro hidden">
 				<div class="alert alert-success hidden alertaCadastro">
 					<span class="close" data-dismiss="alert">&times;</span>
@@ -194,32 +194,34 @@
 
 <?php
 
-if($_GET['go']=='cadastraFuncionario'){
-	$nome = $_POST['nome'];
-	$data_nasc = $_POST['data_nasc'];
-	$cpf = $_POST['cpf'];
-	$perfil = $_POST['perfil'];
-	$depto = $_POST['departamento'];
-	$email = $_POST['email'];
-	$senha = $_POST['senha'];
+if(isset($_GET['go'])){
+	if($_GET['go']=='cadastraFuncionario'){
+		$nome = $_POST['nome'];
+		$data_nasc = $_POST['data_nasc'];
+		$cpf = $_POST['cpf'];
+		$perfil = $_POST['perfil'];
+		$depto = $_POST['departamento'];
+		$email = $_POST['email'];
+		$senha = $_POST['senha'];
 
-	if(empty($nome)){
-		echo "<script>alert(Preencha todos os dados !);</script>";
-		echo "oi";
-	}else{
-
-		$sql= mysql_query("INSERT INTO USUARIO VALUES (null,'$nome','$cpf','$data_nasc','$email','$senha', (SELECT id_departamento FROM DEPARTAMENTO WHERE '$depto'=nome_depto),(SELECT id_perfil FROM PERFIL WHERE '$perfil'=nome_perfil))");
-
-
-		if(!$sql){
-			echo mysql_error();
+		if(empty($nome)){
+			echo "<script>alert(Preencha todos os dados !);</script>";
+			echo "oi";
 		}else{
-			?>
-			<script>
-				$('.alertaCadastro').removeClass("hidden");
-			</script>
 
-			<?php
+			$sql= mysql_query("INSERT INTO USUARIO VALUES (null,'$nome','$cpf','$data_nasc','$email','$senha', (SELECT id_departamento FROM DEPARTAMENTO WHERE '$depto'=nome_depto),(SELECT id_perfil FROM PERFIL WHERE '$perfil'=nome_perfil))");
+
+
+			if(!$sql){
+				echo mysql_error();
+			}else{
+				?>
+				<script>
+					$('.alertaCadastro').removeClass("hidden");
+				</script>
+
+				<?php
+			}
 		}
 	}
 }

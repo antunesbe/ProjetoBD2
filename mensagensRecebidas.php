@@ -43,7 +43,7 @@
     <div class="container-fluid principal">
         <div class="row linhaPrincipal">
         <!-- MENU LATERAL -->
-            <nav class="col-md-2 menuLateral">
+            <nav class="col-md-3 menuLateral">
                 <ul class="nav nav-pulls nav-stacked">
                         <li>
                             <a href="index.php" id="opcaoMenuLateral0">HOME</a> 
@@ -73,7 +73,7 @@
             </nav>
         <!-- /MENU LATERAL -->
         <!-- CONTEUDO -->
-            <section class="col-md-10 conteudo">
+            <section class="col-md-9 conteudo">
                 <h2>Mesagens Recebidas</h2>
                 <br>
                 <table class="table table-hover">
@@ -103,7 +103,6 @@
                                         echo "<td>" . $buscaRemetente['email'] . "</td>";
                                         echo "<td>
                                                 <button><a href='visualizar.php?go=verMsg&id=" .$linha['id_mensagem'] . "'><span class = 'glyphicon glyphicon-search'></span></a></button>
-                                                <button><a href='deletarUsuario.php?id=" . $linha['id_mensagem'] . "' onclick='return confirmacao()'><span class = 'glyphicon glyphicon-remove'></span></a></button>
 												<button title = 'Enviar Mensagem'><a href='escreverMensagem.php?&go=responder&id=". $linha['id_mensagem'] ."'><span class = 'glyphicon glyphicon-share-alt'></span></a></button>
 											</td>";
                                         echo "</tr>";

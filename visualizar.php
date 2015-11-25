@@ -60,7 +60,7 @@
 	<div class="container-fluid principal">
 		<div class="row linhaPrincipal"> 
 		<!-- MENU LATERAL -->
-			<nav class="col-md-2 menuLateral">
+			<nav class="col-md-3 menuLateral">
 				<ul class="nav nav-pulls nav-stacked">
 						<li>
 							<a href="index.php" id="opcaoMenuLateral0">HOME</a> 
@@ -90,18 +90,18 @@
 			</nav>
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
-			<section class="col-md-10 conteudo">
+			<section class="col-md-9 conteudo">
 				<h2>Visualizar Mensagem</h2>
 				<br>
 				<form class="form form-horizontal">
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-10">
 						<div class="btn-group pull-right">
 						    <button class="btn btn-default" type="button" id="btnEsquerda"><a href="#">Responder</a></button>
 						    <?php
 
 								if(isset($_GET['go'])){
-									if($_GET['go']=='MarcarNaoLida'){
+									if($_GET['go']!='MarcarNaoLida'){
 										?>
 									    <button class="btn btn-default" id="btnDireita"><a href="visualizar.php?go=MarcarNaoLida&id=<?php echo $idMsg;?>">Marcar como não lida</a></button>
 							<?php
@@ -112,19 +112,19 @@
 					</div>
 				</div>
 					<div class="row">
-						<div class="col-md-5">
+						<div class="col-md-9">
 							<label for="remetente" class="label-control">Remetente:</label>
 							<p  name="txtRemetente"id="txtRemetente" disabled><?php echo $remetente;?></p>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-5">
+						<div class="col-md-9">
 							<label for="remetente" class="label-control">Assunto:</label>
 							<p id="txtAssunto" name="txtRemetente" disabled><?php echo $msgInfo['assunto'];?></input>
 						</div>
 					</div>
 					<div class="row">
-						<div class=" col-md-6">
+						<div class=" col-md-10">
 							<label for="mensagem" class="label-control">Mensagem:</label>
 							<textarea class="form-control" id="txtMensagem" style="height:200px;"name="txtMensagem" disabled><?php echo $msgInfo['conteudo'];?></textarea>
 						</div>

@@ -52,28 +52,28 @@
 	<div class="container-fluid principal">
 		<div class="row linhaPrincipal">
 		<!-- MENU LATERAL -->
-			<nav class="col-md-2 menuLateral">
+			<nav class="col-md-3 menuLateral">
 				<ul class="nav nav-pulls nav-stacked">
 						<li>
 							<a href="../index.php" id="opcaoMenuLateral0">HOME</a> 
 						</li>
 					    <li>
-	                        <a href="escreverMensagem.php?&go=enviar" id="opcaoMenuLateral1">Escrever Mensagem <span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
+	                        <a href="../escreverMensagem.php?&go=enviar" id="opcaoMenuLateral1">Escrever Mensagem <span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
 	                    </li>
 	                    <li>
-	                        <a href="mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right"><?php echo $msgsNaoLidas; ?></span></a>
+	                        <a href="../mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right"><?php echo $msgsNaoLidas; ?></span></a>
 	                    </li>
 	                    <li>
-	                        <a href="mensagensEnviadas.php" id="opcaoMenuLateral3">Mensagens Enviadas <span class="glyphicon glyphicon-envelope pull-right icones"></span></a>
+	                        <a href="../mensagensEnviadas.php" id="opcaoMenuLateral3">Mensagens Enviadas <span class="glyphicon glyphicon-envelope pull-right icones"></span></a>
 	                    </li>
 	                    <li>
-	                        <a href="contatos.php" id="opcaoMenuLateral4">Contatos <span class="glyphicon glyphicon-list-alt pull-right icones"></span></a>
+	                        <a href="../contatos.php" id="opcaoMenuLateral4">Contatos <span class="glyphicon glyphicon-list-alt pull-right icones"></span></a>
 	                    </li>
 						<?php
 	                    if ($_SESSION['nomePerfil']=="ADMIN")
 						{
 							echo "<li class = 'active'>";
-							echo	"<a href='administrar.php' id='opcaoMenuLateral5'>Administrar <span class='glyphicon glyphicon-cog pull-right icones'></span></a>";
+							echo	"<a href='../administrar.php' id='opcaoMenuLateral5'>Administrar <span class='glyphicon glyphicon-cog pull-right icones'></span></a>";
 							echo "</li>";
 						}
 						?>
@@ -82,7 +82,7 @@
 			</nav>
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
-			<section class="col-md-10 conteudo">
+			<section class="col-md-9 conteudo">
 				<br class="alertaRemocao hidden">
 				<div class="alert alert-danger alertaRemocao hidden">
 					<span class="close" data-dismiss="alert">&times;</span>
@@ -113,7 +113,10 @@
 										echo "<tr onclick='location.href = '../login.php'' class='tabelaClicavel' >";
 										echo "<td>" . $linha['id_departamento'] . "</td>";
 										echo "<td>" . $linha['nome_depto'] . "</td>";
-										echo "<td>" . $linha['descricao_depto'] . "</td>";
+										if(strlen($linha['descricao_depto'])> 30){
+											$linha['descricao_depto'] =substr($linha['descricao_depto'],0,30);
+										}
+										echo "<td id='tdDescricao'>" . $linha['descricao_depto'] . "</td>";
 										echo "<td>" . $buscaPessoa['nome'] . "</td>";
 										echo "<td>
 												<button><a href='editarSetor.php?go=editaSetor&id=" . $linha['id_departamento'] . "'><span class = 'glyphicon glyphicon-edit'></span></a></button>

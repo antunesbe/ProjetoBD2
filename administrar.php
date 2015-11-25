@@ -44,7 +44,7 @@
     <div class="container-fluid principal">
         <div class="row linhaPrincipal">
         <!-- MENU LATERAL -->
-            <nav class="col-md-2 menuLateral">
+            <nav class="col-md-3 menuLateral">
                 <ul class="nav nav-pulls nav-stacked">
                         <li>
                             <a href="index.php" id="opcaoMenuLateral0">HOME</a> 
@@ -74,7 +74,7 @@
             </nav>
         <!-- /MENU LATERAL -->
         <!-- CONTEUDO -->
-            <section class="col-md-10 conteudo">
+            <section class="col-md-9 conteudo">
                 <h2>Administrar</h2>
                 
                 <div class="row">
@@ -94,12 +94,6 @@
                                     </li>
                                     <li>
                                         <a href="Usuario/createUsuario.php">Adicionar</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Editar</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Excluir</a>
                                     </li>
                                 </ul>
                             </div>
@@ -122,12 +116,6 @@
                                         <li>
                                             <a href="Perfil/create.php">Adicionar</a>
                                         </li>
-                                        <li>
-                                            <a href="#">Editar</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Excluir</a>
-                                        </li>
                                     </ul>
                                 </div>
                             
@@ -148,12 +136,6 @@
                                         <li>
                                             <a href="Setor/create.php">Adicionar</a>
                                         </li>
-                                        <li>
-                                            <a href="Setor/edit.php">Editar</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Excluir</a>
-                                        </li>
                                     </ul>
                                 </div>
                             
@@ -163,7 +145,7 @@
                         <div class="panel panel-primary">
                             <a href="TipoMensagem/gridTipoMensagem.php">
                                 <div class="panel-heading" id="titleTipoMensagem">
-                                    Tipos de Mensagem
+                                    <span style="font-size:13px">Tipos de Mensagem</span>
                                 </div>
                             </a>
                             <div class="panel-body admPills">
@@ -173,12 +155,6 @@
                                     </li>
                                     <li>
                                         <a href="TipoMensagem/create.php">Adicionar</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Editar</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Excluir</a>
                                     </li>
                                 </ul>
                             </div>

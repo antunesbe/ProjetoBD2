@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	include "../includes/conexaoBD.php";
 	
 	$idSetor = $_GET['id'];
@@ -64,28 +65,28 @@
 	<div class="container-fluid principal">
 		<div class="row linhaPrincipal">
 		<!-- MENU LATERAL -->
-			<nav class="col-md-2 menuLateral">
+			<nav class="col-md-3 menuLateral">
 				<ul class="nav nav-pulls nav-stacked">
 						<li>
 							<a href="../index.php" id="opcaoMenuLateral0">HOME</a> 
 						</li>
 					    <li>
-	                        <a href="escreverMensagem.php?&go=enviar" id="opcaoMenuLateral1">Escrever Mensagem <span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
+	                        <a href="../escreverMensagem.php?&go=enviar" id="opcaoMenuLateral1">Escrever Mensagem <span class="glyphicon glyphicon-pencil pull-right icones"></span></a>
 	                    </li>
 	                    <li>
-	                        <a href="mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right"><?php echo $msgsNaoLidas; ?></span></a>
+	                        <a href="../mensagensRecebidas.php" id="opcaoMenuLateral2">Caixa de Entrada <span class="badge pull-right"><?php echo $msgsNaoLidas; ?></span></a>
 	                    </li>
 	                    <li>
-	                        <a href="mensagensEnviadas.php" id="opcaoMenuLateral3">Mensagens Enviadas <span class="glyphicon glyphicon-envelope pull-right icones"></span></a>
+	                        <a href="../mensagensEnviadas.php" id="opcaoMenuLateral3">Mensagens Enviadas <span class="glyphicon glyphicon-envelope pull-right icones"></span></a>
 	                    </li>
 	                    <li>
-	                        <a href="contatos.php" id="opcaoMenuLateral4">Contatos <span class="glyphicon glyphicon-list-alt pull-right icones"></span></a>
+	                        <a href="../contatos.php" id="opcaoMenuLateral4">Contatos <span class="glyphicon glyphicon-list-alt pull-right icones"></span></a>
 	                    </li>
 						<?php
 	                    if ($_SESSION['nomePerfil']=="ADMIN")
 						{
 							echo "<li class = 'active'>";
-							echo	"<a href='administrar.php' id='opcaoMenuLateral5'>Administrar <span class='glyphicon glyphicon-cog pull-right icones'></span></a>";
+							echo	"<a href='../administrar.php' id='opcaoMenuLateral5'>Administrar <span class='glyphicon glyphicon-cog pull-right icones'></span></a>";
 							echo "</li>";
 						}
 						?>
@@ -94,7 +95,7 @@
 			</nav>
 		<!-- /MENU LATERAL -->
 		<!-- CONTEUDO -->
-			<section class="col-md-10 conteudo">
+			<section class="col-md-9 conteudo">
 				<br class="alertaCadastro hidden">
 				<div class="alert alert-success hidden alertaCadastro">
 					<span class="close" data-dismiss="alert">&times;</span>
@@ -115,7 +116,7 @@
 							<select class="form-control" name="pessoaChave" id="pessoaChave">
 								<option><?php echo $pessoaChaveSetor; ?></option>
 								<?php
-									$sql = mysql_query("SELECT * FROM USUARIO WHERE id_pessoa <> '$idPessoaChaveSetor' ORDER BY id_pessoa");
+									$sql = mysql_query("SELECT * FROM USUARIO WHERE id_pessoa <> '$idPessoaChaveSetor' AND departamento='$idSetor' ORDER BY id_pessoa");
 
 									while($linha = mysql_fetch_array($sql)){
 										echo "<option> " .  $linha['email'] . "</option>";

@@ -140,3 +140,8 @@ a #titleSetor:hover{
 #btnDireita{
 	border-radius: 20px;
 }
+
+/**/
+#tdDescricao{
+	width: 150px;
+}

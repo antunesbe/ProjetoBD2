@@ -13,8 +13,8 @@
 			$departamento = $_POST['departamento'];
 			if ($departamentoUsu != $departamento)
 			{
-				$consultaDestinatario = mysql_query("SELECT * FROM DEPARTAMENTO WHERE '$destinatario' = id_departamento");
-				$consultaDestinatario = mysql_fetch_array($consultaDestinatario);
+				$consultaDestinatario = mysql_query("SELECT * FROM DEPARTAMENTO WHERE id_departamento='$departamento'") or die(mysql_error());
+				$consultaDestinatario = mysql_fetch_assoc($consultaDestinatario);
 				$destinatario = $consultaDestinatario['pessoa_chave'];
 			}
 			else 
@@ -26,11 +26,9 @@
 			$conteudo = $_POST['conteudo'];
 			$remetente = $_SESSION['id'];
 
-			$sql= mysql_query("INSERT INTO MENSAGEM VALUES (null,'$assunto', '$conteudo', 0, null, '$remetente', '$destinatario', 
-								(SELECT id_tipo_mensagem FROM TIPO_MENSAGEM WHERE id_tipo_mensagem = '$tipoMensagem'))");
-			if(!$sql){
-				mysql_error();
-			}
+			$sql= mysql_query("INSERT INTO MENSAGEM VALUES (null,'$assunto', '$conteudo', 0, '$remetente',(SELECT id_pessoa FROM USUARIO WHERE id_pessoa='$destinatario'), 
+								(SELECT id_tipo_mensagem FROM TIPO_MENSAGEM WHERE id_tipo_mensagem = '$tipoMensagem'))") or die(mysql_error());
+			
 			$destinatario = 0;
 		}
 		if($_GET['go'] == 'selectTipo'){
@@ -96,7 +94,7 @@
 	<div class="container-fluid principal">
 		<div class="row linhaPrincipal">
 		<!-- MENU LATERAL -->
-			<nav class="col-md-2 menuLateral">
+			<nav class="col-md-3 menuLateral">
 				<ul class="nav nav-pulls nav-stacked">
 						<li>
 							<a href="index.php" id="opcaoMenuLateral0">HOME</a> 
@@ -128,7 +126,7 @@
 		<!-- CONTEUDO -->
 		<?php
 		?>
-			<section class="col-md-10 conteudo">
+			<section class="col-md-9 conteudo">
 				<br class="alertaMensagem hidden">
 				<div class="alert alert-success hidden alertaMensagem">
 					<span class="close" data-dismiss="alert">&times;</span>
@@ -346,12 +344,14 @@
 
 	if (isset($_GET['go'])){
 		if($_GET['go']=='enviaMsg'){
+			if(sql){
 			?>
 			<script>
 				$('.alertaMensagem').removeClass("hidden");
 			</script>
 
 			<?php
+			}
 		}
 	}
 ?>

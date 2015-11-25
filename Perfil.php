@@ -44,7 +44,7 @@
     <div class="container-fluid principal">
         <div class="row linhaPrincipal">
         <!-- MENU LATERAL -->
-            <nav class="col-md-2 menuLateral">
+            <nav class="col-md-3 menuLateral">
                 <ul class="nav nav-pulls nav-stacked">
                         <li>
                             <a href="index.php" id="opcaoMenuLateral0">HOME</a> 
@@ -74,7 +74,7 @@
             </nav>
         <!-- /MENU LATERAL -->
         <!-- CONTEUDO -->
-            <section class="col-md-10 conteudo">
+            <section class="col-md-9 conteudo">
                 <h2>Perfil</h2>
                 <br>
 
@@ -88,12 +88,15 @@
                 <fieldset>
                     <legend class="tituloPerfil">Empresa</legend>
                     <p><span class="legendaPerfil">ID: <?echo $_SESSION['id'];?></span></p>
-                    <p><span class="legendaPerfil">Sua prioridade de sistema é: </span></p>
-                    <p><span class="legendaPerfil">Data de Vinculação: </span></p>
-                    <p><span class="legendaPerfil">Setor: </span></p>
+                    <?php
+                        $idDepto = $_SESSION['departamento'];
+                        $pegaNomeDepto = mysql_query("SELECT * FROM DEPARTAMENTO WHERE id_departamento ='$idDepto'");
+                        $pegaNomeDepto = mysql_fetch_assoc($pegaNomeDepto);
+                        $idDepto = $pegaNomeDepto['nome_depto'];
+                    ?>
+                    <p><span class="legendaPerfil">Setor: <?echo $idDepto;?></span></p>
                 </fieldset>
-                <hr/>
-                    <a class="btn btn-default" style="margin-left:45%;">Editar</a>
+
 
             </section>
             <!-- /CONTEUDO -->

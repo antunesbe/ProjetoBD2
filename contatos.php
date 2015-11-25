@@ -43,7 +43,7 @@
     <div class="container-fluid principal">
         <div class="row linhaPrincipal">
         <!-- MENU LATERAL -->
-            <nav class="col-md-2 menuLateral">
+            <nav class="col-md-3 menuLateral">
                 <ul class="nav nav-pulls nav-stacked">
                         <li>
                             <a href="index.php" id="opcaoMenuLateral0">HOME</a> 
@@ -73,7 +73,7 @@
             </nav>
         <!-- /MENU LATERAL -->
         <!-- CONTEUDO -->
-            <section class="col-md-10 conteudo">
+            <section class="col-md-9 conteudo">
                 <h2>Contatos</h2>
                 <br>
                 <table class="table table-hover">

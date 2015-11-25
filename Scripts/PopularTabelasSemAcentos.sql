@@ -2,11 +2,11 @@
 	-- INSERIR EM PERFIL
 	--
 
-	INSERT INTO `perfil` (`id_perfil`, `nome_perfil`, `descricao_perfil`) VALUES ('1', 'Professor', 'Perfil para professor, mediador de mensagens.');
-	INSERT INTO `perfil` (`id_perfil`, `nome_perfil`, `descricao_perfil`) VALUES ('2', 'Aluno', 'Para fazer uso deste perfil deve ser aluno da universidade');
-	INSERT INTO `perfil` (`id_perfil`, `nome_perfil`, `descricao_perfil`) VALUES ('3', 'Funcionario', 'Qualquer funcionario da faculdade tem acesso a este perfil');
-	INSERT INTO `perfil` (`id_perfil`, `nome_perfil`, `descricao_perfil`) VALUES ('4', 'Reitor', 'Parte do sistema usado apenas pelo diretor da faculdade');
-	INSERT INTO `perfil` (`id_perfil`, `nome_perfil`, `descricao_perfil`) VALUES ('5', 'Administrador', 'Capaz de manejar o sistema por completo');
+	INSERT INTO `perfil` (`id_perfil`, `nome_perfil`, `descricao_perfil`) VALUES ('1', 'Professor', 'Perfil para professor.');
+	INSERT INTO `perfil` (`id_perfil`, `nome_perfil`, `descricao_perfil`) VALUES ('2', 'Aluno', 'Para fazer uso deste perfil deve ser aluno.');
+	INSERT INTO `perfil` (`id_perfil`, `nome_perfil`, `descricao_perfil`) VALUES ('3', 'Funcionario', 'Todos funcionarios.');
+	INSERT INTO `perfil` (`id_perfil`, `nome_perfil`, `descricao_perfil`) VALUES ('4', 'Reitor', 'Apenas o(a) Reitor(a).');
+	INSERT INTO `perfil` (`id_perfil`, `nome_perfil`, `descricao_perfil`) VALUES ('5', 'ADMIN', 'Capaz de manejar o sistema por completo');
 
 	--
 	-- INSERIR EM TIPO MSG
