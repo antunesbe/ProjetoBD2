@@ -98,12 +98,13 @@
 					<div class="col-md-10">
 						<div class="btn-group pull-right">
 						    <?php
+						    
+								if(isset($_GET['go'])){
+									if($_GET['go']!='MarcarNaoLida'){
 							echo "<a href='escreverMensagem.php?&go=responder&id=". $idMsg ."'><button class='btn btn-default' type='button' id='btnEsquerda'>Responder</button></a>";
 											
 						    
 
-								if(isset($_GET['go'])){
-									if($_GET['go']!='MarcarNaoLida'){
 										?>
 									    <button class="btn btn-default" id="btnDireita"><a href="visualizar.php?go=MarcarNaoLida&id=<?php echo $idMsg;?>">Marcar como não lida</a></button>
 							<?php

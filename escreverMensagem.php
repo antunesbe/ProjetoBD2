@@ -24,9 +24,9 @@
 				$destinatario = $_POST['destinatario'];
 			}*/
 			$tipoMensagem = $_POST['tipoMsg'];
-			$pegaNomeTipoMsg = mysql_query("SELECT * FROM TIPO_MENSAGEM WHERE nome_tipo_msg='$tipoMensagem'");
+			/*$pegaNomeTipoMsg = mysql_query("SELECT * FROM TIPO_MENSAGEM WHERE nome_tipo_msg='$tipoMensagem'");
 			$pegaNomeTipoMsg = mysql_fetch_assoc($pegaNomeTipoMsg);
-			$tipoMensagem = $pegaNomeTipoMsg['id_tipo_mensagem'];
+			$tipoMensagem = $pegaNomeTipoMsg['id_tipo_mensagem'];*/
 			$assunto = $_POST['assunto'];
 			$conteudo = $_POST['conteudo'];
 			$remetente = $_SESSION['id'];
@@ -56,6 +56,7 @@
 			$destinatario = $resultado['remetente'];
 			$assunto = $resultado['assunto'];
 			$tipoMensagem = $resultado['tipo_mensagem']; //<-aqui
+											echo $tipoMensagem;
 			$sql = mysql_query("SELECT * FROM USUARIO WHERE id_pessoa = '$destinatario'");
 			$resultado = mysql_fetch_array($sql);
 			$departamento = $resultado['departamento'];
@@ -198,7 +199,7 @@
 										if($_GET['go']=='responder'){
 											$pegaNomeTipoMsg = mysql_query("SELECT * FROM TIPO_MENSAGEM WHERE id_tipo_mensagem='$tipoMensagem'");
 											$pegaNomeTipoMsg = mysql_fetch_assoc($pegaNomeTipoMsg);
-											echo "<option id='" . $tipoMensagem . "'>" . $pegaNomeTipoMsg['nome_tipo_msg'] . "</option>";
+											echo "<option value='" . $tipoMensagem . "'>" . $pegaNomeTipoMsg['nome_tipo_msg'] . "</option>";
 										}else{
 											
 											
