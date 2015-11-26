@@ -12,16 +12,17 @@
 	if(isset($_GET['go'])){
 		if($_GET['go'] == 'enviaMsg'){
 			$departamento = $_POST['departamento'];
-			if ($departamentoUsu != $departamento)
+			$destinatario = $_POST['destinatario'];
+			if ($destinatario == 0 || $destinatario == null)
 			{
-				$consultaDestinatario = mysql_query("SELECT * FROM DEPARTAMENTO WHERE nome_depto='$departamento'") or die(mysql_error());
+				$consultaDestinatario = mysql_query("SELECT * FROM DEPARTAMENTO WHERE id_departamento='$departamento'") or die(mysql_error());
 				$consultaDestinatario = mysql_fetch_assoc($consultaDestinatario);
 				$destinatario = $consultaDestinatario['pessoa_chave'];
 			}
-			else 
+			/*else 
 			{
 				$destinatario = $_POST['destinatario'];
-			}
+			}*/
 			$tipoMensagem = $_POST['tipoMsg'];
 			$pegaNomeTipoMsg = mysql_query("SELECT * FROM TIPO_MENSAGEM WHERE nome_tipo_msg='$tipoMensagem'");
 			$pegaNomeTipoMsg = mysql_fetch_assoc($pegaNomeTipoMsg);
@@ -279,7 +280,6 @@
 </html>
 <script>
 		$(window).load(function() {
-			
 			<?php echo "var des = ".$destinatario;?>;	
 			$('#departamento').val(<?php echo $destinatario?>);
 			<?php echo "var depto = ".$departamento;?>;	
