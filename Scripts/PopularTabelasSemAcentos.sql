@@ -1,4 +1,4 @@
-﻿	--
+--
 	-- INSERIR EM PERFIL
 	--
 
@@ -22,10 +22,10 @@
 	-- INSERIR EM DEPARTAMENTO
 	--
 
-	INSERT INTO `departamento` (`id_departamento`, `nome_depto`, `descricao_depto`, `pessoa_chave`) VALUES ('1', 'Setor Contabil', 'Area destinada a evitar que a empresa cometa sonegacao fiscal, adultere patrimonios e cometa qualquer tipo de fraude, atos que sao considerados crimes, nesse caso ele  atua como orientador.', NULL);
-	INSERT INTO `departamento` (`id_departamento`, `nome_depto`, `descricao_depto`, `pessoa_chave`) VALUES ('2', 'Recursos humanos', 'Area destinada a cuidar de selecao, contratacao, treinamento, remuneracao, formacao sobre higiene e seguranca no trabalho da faculdade', NULL);
-	INSERT INTO `departamento` (`id_departamento`, `nome_depto`, `descricao_depto`, `pessoa_chave`) VALUES ('3', 'Departamento Social', 'Area que cuidara de fechar a folha de pagamento, atuar com imposto de renda, RAIS, GEFIF, atendimento aos clientes, organizacao de arquivos, preparar e calcular a folha de pagamento, rescisoes, ferias, recolhimento de contribuicoes.', NULL);
-	INSERT INTO `departamento` (`id_departamento`, `nome_depto`, `descricao_depto`, `pessoa_chave`) VALUES ('4', 'Contas a receber', 'Area destinada a efetuar os lancamentos no sistema referente aos pagamentos, agendar e efetuar os pagamentos, emissao de cheques e lancamentos no sistema bancario.', NULL);
+	INSERT INTO `departamento` (`id_departamento`, `nome_depto`, `descricao_depto`, `pessoa_chave`) VALUES ('1', 'Setor Contabil', 'Area destinada a evitar que a empresa cometa sonegacao fiscal, adultere patrimonios e cometa qualquer tipo de fraude, atos que sao considerados crimes, nesse caso ele  atua como orientador.', '1');
+	INSERT INTO `departamento` (`id_departamento`, `nome_depto`, `descricao_depto`, `pessoa_chave`) VALUES ('2', 'Recursos humanos', 'Area destinada a cuidar de selecao, contratacao, treinamento, remuneracao, formacao sobre higiene e seguranca no trabalho da faculdade', '4');
+	INSERT INTO `departamento` (`id_departamento`, `nome_depto`, `descricao_depto`, `pessoa_chave`) VALUES ('3', 'Departamento Social', 'Area que cuidara de fechar a folha de pagamento, atuar com imposto de renda, RAIS, GEFIF, atendimento aos clientes, organizacao de arquivos, preparar e calcular a folha de pagamento, rescisoes, ferias, recolhimento de contribuicoes.', '6');
+	INSERT INTO `departamento` (`id_departamento`, `nome_depto`, `descricao_depto`, `pessoa_chave`) VALUES ('4', 'Contas a receber', 'Area destinada a efetuar os lancamentos no sistema referente aos pagamentos, agendar e efetuar os pagamentos, emissao de cheques e lancamentos no sistema bancario.', '8');
 
 	--
 	-- INSERIR EM USUÁRIOS
@@ -38,8 +38,8 @@
 	INSERT INTO `usuario` (`id_pessoa`, `nome`, `cpf`, `data_nascimento`, `email`, `senha`, `departamento`, `perfil`) VALUES ('5', 'Luciano Foster', '08764898243', '1972-02-14', 'Luciano@grupo.com', '1234', '4', '3');
 	INSERT INTO `usuario` (`id_pessoa`, `nome`, `cpf`, `data_nascimento`, `email`, `senha`, `departamento`, `perfil`) VALUES ('6', 'Ludimila Feber', '90184672937', '1995-04-24', 'mcludimila@grupo.com', '1234', '1', '3');
 	INSERT INTO `usuario` (`id_pessoa`, `nome`, `cpf`, `data_nascimento`, `email`, `senha`, `departamento`, `perfil`) VALUES ('7', 'Maxell Ribonato', '11111111111', '1992-09-12', 'maxell@grupo.com', '1234', '2', '3');
-	INSERT INTO `usuario` (`id_pessoa`, `nome`, `cpf`, `data_nascimento`, `email`, `senha`, `departamento`, `perfil`) VALUES ('8', 'Louco Abreu', '45289109287', '1980-06-14', 'mcludimila@grupo.com', '1234', '3', '3');
-	INSERT INTO `usuario` (`id_pessoa`, `nome`, `cpf`, `data_nascimento`, `email`, `senha`, `departamento`, `perfil`) VALUES ('9', 'Rogerio Pulatoco', '06756526389', '1983-11-03', 'pulabau@grupo.com', '1234', '4', '3');
+	INSERT INTO `usuario` (`id_pessoa`, `nome`, `cpf`, `data_nascimento`, `email`, `senha`, `departamento`, `perfil`) VALUES ('8', 'Louco Abreu', '45289109287', '1980-06-14', 'louquinho@grupo.com', '1234', '3', '3');
+	INSERT INTO `usuario` (`id_pessoa`, `nome`, `cpf`, `data_nascimento`, `email`, `senha`, `departamento`, `perfil`) VALUES ('9', 'Rogerio Pulatoco', '06756526389', '1983-11-03', 'pulatoco@grupo.com', '1234', '4', '3');
 	INSERT INTO `usuario` (`id_pessoa`, `nome`, `cpf`, `data_nascimento`, `email`, `senha`, `departamento`, `perfil`) VALUES ('10', 'Pula Bau', '123456789101', '1994-06-12', 'pulabau@grupo.com', '1234', '1', '3');
 	
 	--
@@ -61,13 +61,3 @@
 	INSERT INTO `privilegio` (`id_privilegio`, `perfil_remetente`, `perfil_destinatario`, `priv_tipo_mensagem`) VALUES ('14', '5', '4', '2');
 	INSERT INTO `privilegio` (`id_privilegio`, `perfil_remetente`, `perfil_destinatario`, `priv_tipo_mensagem`) VALUES ('15', '5', '4', '3');
 	INSERT INTO `privilegio` (`id_privilegio`, `perfil_remetente`, `perfil_destinatario`, `priv_tipo_mensagem`) VALUES ('16', '5', '4', '4');
-	
-	
-
-
-	-- 4 TIPOS DE MSG [X]
-	-- 4 DEPARTAMENTOS [X]
-	-- 2 USUÁRIOS [X]
-	-- 4 PERFIS [X]
-	-- 1 usuario a mais por departamento [X]
-	-- Adicionar todos os privilegios para ADMIN(todos os tipos de msg para todos os tipos de pessoa) [X]
