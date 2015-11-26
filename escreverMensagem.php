@@ -11,17 +11,24 @@
 	if(isset($_GET['go'])){
 		if($_GET['go'] == 'enviaMsg'){
 			$departamento = $_POST['departamento'];
-			if ($departamentoUsu != $departamento)
+			$destinatario = $_POST['destinatario'];
+			if ($destinatario == 0 || $destinatario == null)
 			{
 				$consultaDestinatario = mysql_query("SELECT * FROM DEPARTAMENTO WHERE id_departamento='$departamento'") or die(mysql_error());
 				$consultaDestinatario = mysql_fetch_assoc($consultaDestinatario);
 				$destinatario = $consultaDestinatario['pessoa_chave'];
 			}
-			else 
+			/*else 
 			{
 				$destinatario = $_POST['destinatario'];
-			}
+			}*/
 			$tipoMensagem = $_POST['tipoMsg'];
+<<<<<<< HEAD
+=======
+			/*$pegaNomeTipoMsg = mysql_query("SELECT * FROM TIPO_MENSAGEM WHERE nome_tipo_msg='$tipoMensagem'");
+			$pegaNomeTipoMsg = mysql_fetch_assoc($pegaNomeTipoMsg);
+			$tipoMensagem = $pegaNomeTipoMsg['id_tipo_mensagem'];*/
+>>>>>>> origin/master
 			$assunto = $_POST['assunto'];
 			$conteudo = $_POST['conteudo'];
 			$remetente = $_SESSION['id'];
@@ -47,6 +54,11 @@
 			$resultado = mysql_fetch_array($sql);
 			$destinatario = $resultado['remetente'];
 			$assunto = $resultado['assunto'];
+<<<<<<< HEAD
+=======
+			$tipoMensagem = $resultado['tipo_mensagem']; //<-aqui
+											echo $tipoMensagem;
+>>>>>>> origin/master
 			$sql = mysql_query("SELECT * FROM USUARIO WHERE id_pessoa = '$destinatario'");
 			$resultado = mysql_fetch_array($sql);
 			$departamento = $resultado['departamento'];
@@ -178,7 +190,16 @@
 							<label for="tipoMsg" class="label-control" id="labelTipoMsg">Tipo da Mensagem:</label>
 							<select class="form-control" name="tipoMsg" id="tipoMsg" disabled>
 								<?php
+<<<<<<< HEAD
 										
+=======
+										if($_GET['go']=='responder'){
+											$pegaNomeTipoMsg = mysql_query("SELECT * FROM TIPO_MENSAGEM WHERE id_tipo_mensagem='$tipoMensagem'");
+											$pegaNomeTipoMsg = mysql_fetch_assoc($pegaNomeTipoMsg);
+											echo "<option value='" . $tipoMensagem . "'>" . $pegaNomeTipoMsg['nome_tipo_msg'] . "</option>";
+										}else{
+											
+>>>>>>> origin/master
 											
 										if ($departamento != $departamentoUsu)
 											$consulta = mysql_query("SELECT *
@@ -258,8 +279,15 @@
 </html>
 <script>
 		$(window).load(function() {
+<<<<<<< HEAD
 			
 			<?php echo "var des = ".$destinatario;?>;		
+=======
+			<?php echo "var des = ".$destinatario;?>;	
+			$('#departamento').val(<?php echo $destinatario?>);
+			<?php echo "var depto = ".$departamento;?>;	
+			$('#departamento').val(<?php echo $departamento?>);			
+>>>>>>> origin/master
 				debugger;
 			if (des != 0)
 			{

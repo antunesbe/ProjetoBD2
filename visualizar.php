@@ -99,9 +99,16 @@
 						<div class="btn-group pull-right">
 						    <button class="btn btn-default" type="button" id="btnEsquerda"><a href="#">Responder</a></button>
 						    <?php
-
+<<<<<<< HEAD
+=======
+						    
 								if(isset($_GET['go'])){
 									if($_GET['go']!='MarcarNaoLida'){
+							echo "<a href='escreverMensagem.php?&go=responder&id=". $idMsg ."'><button class='btn btn-default' type='button' id='btnEsquerda'>Responder</button></a>";
+											
+						    
+>>>>>>> origin/master
+
 										?>
 									    <button class="btn btn-default" id="btnDireita"><a href="visualizar.php?go=MarcarNaoLida&id=<?php echo $idMsg;?>">Marcar como não lida</a></button>
 							<?php
