@@ -36,7 +36,10 @@
 			$destinatario = 0;
 		}
 		if($_GET['go'] == 'selectTipo'){
-			$destinatario = $_GET['destinatario'];
+			if(isset ($_GET['destinatario']))
+				$destinatario = $_GET['destinatario'];
+			else if (isset ($_GET['dp']))
+				$departamento = $_GET['dp'];
 			$remetente = $_SESSION['id'];
 		}
 		if($_GET['go'] == 'contato'){
@@ -144,7 +147,7 @@
 						<div class="form-group col-md-3">
 							<label for="departamento" class="label-control" id="labelDepartamento">Departamento:</label>
 							<select class="form-control" name="departamento" id="departamento">
-								<option value = "">...Selecione</option>
+								<option value = "0">...Selecione</option>
 								<?php
 									if($_GET['go']=='responder'){
 										$consultaNomeDepto = mysql_query("SELECT * FROM DEPARTAMENTO WHERE '$departamento'=id_departamento");
@@ -169,7 +172,7 @@
 						<div class="form-group col-md-3">
 							<label for="destinatario" class="label-control hidden"  id="labelDestinatario">Destinatario:</label>
 							<select class="form-control hidden" name="destinatario" id="destinatario">
-								<option value = "">...Selecione</option>
+								<option value = "0">...Selecione</option>
 								<?php
 									$consulta = mysql_query("SELECT * FROM USUARIO WHERE '$departamentoUsu' = departamento AND '$remetente' <> id_pessoa ORDER BY nome");
 	    							$row = mysql_num_rows($consulta);
@@ -197,13 +200,13 @@
 											echo "<option id='" . $tipoMensagem . "'>" . $pegaNomeTipoMsg['nome_tipo_msg'] . "</option>";
 										}else{
 											
-											if ($departamento != $departamentoUsu && $tipoMensagem !=0)
+											
+											if ($departamento != $departamentoUsu)
 												$consulta = mysql_query("SELECT *
 																		FROM TIPO_MENSAGEM
-																		ORDER BY nome_tipo_msg;");																	
+																		ORDER BY nome_tipo_msg;");																																	
 											
-											if ($destinatario != 0 && ($departamento == 0 || $departamento == $departamentoUsu))
-											{
+											if ($departamento == $departamentoUsu || $destinatario > 0){
 												$consulta = mysql_query("SELECT *
 																		FROM TIPO_MENSAGEM TP
 																		WHERE TP.id_tipo_mensagem in (
@@ -219,7 +222,7 @@
 											$row = mysql_num_rows($consulta);
 											if ($row>0)
 											{
-												echo "<option value = ''>...Selecione</option>";
+												echo "<option value = '0'>...Selecione</option>";
 												while($linha = mysql_fetch_assoc($consulta)){
 													echo "<option value='" . $linha['id_tipo_mensagem'] . "'>" . $linha['nome_tipo_msg'] . "</option>"; 
 												}
@@ -277,9 +280,12 @@
 <script>
 		$(window).load(function() {
 			
-			<?php echo "var des = ".$destinatario;?>;		
+			<?php echo "var des = ".$destinatario;?>;	
+			$('#departamento').val(<?php echo $destinatario?>);
+			<?php echo "var depto = ".$departamento;?>;	
+			$('#departamento').val(<?php echo $departamento?>);			
 				debugger;
-			if (des != 0)
+			if (des != 0 || depto !=0)
 			{
 				$('#tipoMsg').prop('disabled', false);
 				if(<?php echo $departamento. " == ". $departamentoUsu . " || ". $departamento ." == 0";?>)
@@ -314,6 +320,7 @@
 		
 
     $('#departamento').change(function() {
+		debugger;
 		var e = document.getElementById('departamento');
 		var depSelect = e.options[e.selectedIndex].value;
 		<?php echo "var usuDep = ".$departamentoUsu;?>;
@@ -328,6 +335,7 @@
 			$('#labelDestinatario').addClass("hidden");
 			$('#destinatario').addClass("hidden");
 			$('#tipoMsg').prop('disabled', false);
+			window.location.href = "escreverMensagem.php?go=selectTipo&dp="+depSelect;
 		}
     });
 	$('#destinatario').change(function() {
